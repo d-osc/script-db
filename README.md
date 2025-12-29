@@ -15,13 +15,13 @@ A lightweight script database management tool.
 ### Windows
 
 ```powershell
-irm https://yourusername.github.io/script-db/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex
 ```
 
 ### Linux/macOS
 
 ```bash
-curl -fsSL https://yourusername.github.io/script-db/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash
 ```
 
 ## Documentation

@@ -12,12 +12,12 @@ export const InstallationPage = (): VNode => {
       h3({ class: styles.pageH3 }, 'PowerShell Installation'),
       p({ class: styles.pageP }, 'Open PowerShell and run:'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'irm https://yourusername.github.io/script-db/scripts/install.ps1 | iex')
+        code({ class: styles.pageCode }, 'irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex')
       ),
 
       h3({ class: styles.pageH3 }, 'Custom Installation Directory'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '$env:SCRIPTDB_INSTALL = "C:\\your\\custom\\path"\nirm https://yourusername.github.io/script-db/scripts/install.ps1 | iex')
+        code({ class: styles.pageCode }, '$env:SCRIPTDB_INSTALL = "C:\\your\\custom\\path"\nirm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex')
       )
     ),
 
@@ -26,12 +26,12 @@ export const InstallationPage = (): VNode => {
       h3({ class: styles.pageH3 }, 'Bash Installation'),
       p({ class: styles.pageP }, 'Open your terminal and run:'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'curl -fsSL https://yourusername.github.io/script-db/scripts/install.sh | bash')
+        code({ class: styles.pageCode }, 'curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash')
       ),
 
       h3({ class: styles.pageH3 }, 'Custom Installation Directory'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'export SCRIPTDB_INSTALL="/your/custom/path"\ncurl -fsSL https://yourusername.github.io/script-db/scripts/install.sh | bash')
+        code({ class: styles.pageCode }, 'export SCRIPTDB_INSTALL="/your/custom/path"\ncurl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash')
       )
     ),
 
@@ -48,11 +48,11 @@ export const InstallationPage = (): VNode => {
       p({ class: styles.pageP }, 'To uninstall ScriptDB:'),
       h3({ class: styles.pageH3 }, 'Windows'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'irm https://yourusername.github.io/script-db/scripts/uninstall.ps1 | iex')
+        code({ class: styles.pageCode }, 'irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.ps1 | iex')
       ),
       h3({ class: styles.pageH3 }, 'Linux/macOS'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'curl -fsSL https://yourusername.github.io/script-db/scripts/uninstall.sh | bash')
+        code({ class: styles.pageCode }, 'curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.sh | bash')
       )
     )
   );

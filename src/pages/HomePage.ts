@@ -63,11 +63,11 @@ export const HomePage = (): VNode => {
         reactive(activeTab, (tab) => {
           if (tab === 'windows') {
             return pre({ class: styles.pagePre },
-              code({ class: styles.pageCode }, 'irm https://yourusername.github.io/script-db/scripts/install.ps1 | iex')
+              code({ class: styles.pageCode }, 'irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex')
             );
           } else {
             return pre({ class: styles.pagePre },
-              code({ class: styles.pageCode }, 'curl -fsSL https://yourusername.github.io/script-db/scripts/install.sh | bash')
+              code({ class: styles.pageCode }, 'curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash')
             );
           }
         })

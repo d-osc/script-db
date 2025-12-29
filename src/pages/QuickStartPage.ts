@@ -12,11 +12,11 @@ export const QuickStartPage = (): VNode => {
       p({ class: styles.pageP }, 'First, install ScriptDB for your platform:'),
       h3({ class: styles.pageH3 }, 'Windows'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'irm https://yourusername.github.io/script-db/scripts/install.ps1 | iex')
+        code({ class: styles.pageCode }, 'irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex')
       ),
       h3({ class: styles.pageH3 }, 'Linux/macOS'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'curl -fsSL https://yourusername.github.io/script-db/scripts/install.sh | bash')
+        code({ class: styles.pageCode }, 'curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash')
       )
     ),
 
