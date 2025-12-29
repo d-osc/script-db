@@ -1,0 +1,27 @@
+{
+  "name": "script-db-website",
+  "version": "1.0.0",
+  "description": "ScriptDB Website - A lightweight script database management tool",
+  "type": "module",
+  "scripts": {
+    "dev": "elit dev",
+    "build": "elit build",
+    "preview": "elit preview"
+  },
+  "keywords": [
+    "script-db",
+    "database",
+    "scripts",
+    "installation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "elit": "^3.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.3.3"
+  }
+}

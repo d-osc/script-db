@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npx elit --help:*)",
+      "Bash(npx elit:*)",
+      "Bash(npm view:*)",
+      "Bash(cat:*)",
+      "Bash(for file in *.js)",
+      "Bash(do sed -i \"s/return el\\(''div'', { class: ''page'' },/return el\\(''div'', {},/\" \"$file\")",
+      "Bash(done)",
+      "Bash(find:*)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)"
+    ]
+  }
+}

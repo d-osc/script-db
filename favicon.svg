@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="ScriptDB icon alt">
+  <rect width="256" height="256" rx="56" fill="#0b1220"/>
+
+  <!-- curly braces -->
+  <path d="M98 72c-18 0-28 10-28 28v12c0 10-6 18-14 22 8 4 14 12 14 22v12c0 18 10 28 28 28"
+        fill="none" stroke="#eafff6" stroke-width="18" stroke-linecap="round"/>
+  <path d="M158 72c18 0 28 10 28 28v12c0 10 6 18 14 22-8 4-14 12-14 22v12c0 18-10 28-28 28"
+        fill="none" stroke="#eafff6" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- single data “seed” -->
+  <circle cx="128" cy="128" r="16" fill="#34d399"/>
+</svg>
