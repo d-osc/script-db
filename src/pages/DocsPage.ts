@@ -1,4 +1,4 @@
-import { div, h1, h2, h3, p, ul, li, code, strong } from 'elit/el';
+import { div, h1, h2, h3, p, ul, li, code, strong, a } from 'elit/el';
 import type { VNode } from 'elit';
 import { styles } from '../styleNames';
 
@@ -63,6 +63,16 @@ export const DocsPage = (): VNode => {
         li({ class: styles.pageLi }, strong('Cross-Platform'), ' - Works everywhere'),
         li({ class: styles.pageLi }, strong('Secure'), ' - Built with security best practices')
       )
+    ),
+
+    div({ class: styles.section },
+      h2({ class: styles.pageH2 }, 'Client Libraries'),
+      p({ class: styles.pageP }, 'ScriptDB provides client libraries for integrating with your applications:'),
+      ul({ class: styles.pageUl },
+        li({ class: styles.pageLi }, strong(a({ href: '#/api', onclick: (e: Event) => { e.preventDefault(); window.location.hash = '#/api'; } }, '@scriptdb/browser-client')), ' - Browser JavaScript client'),
+        li({ class: styles.pageLi }, strong(a({ href: '#/api', onclick: (e: Event) => { e.preventDefault(); window.location.hash = '#/api'; } }, '@scriptdb/client')), ' - Node.js client')
+      ),
+      p({ class: styles.pageP }, 'Visit the ', a({ href: '#/api', onclick: (e: Event) => { e.preventDefault(); window.location.hash = '#/api'; } }, 'API Documentation'), ' for detailed reference.')
     )
   );
 };

@@ -1,4 +1,5 @@
-import { header, nav, a, ul, li, type VNode } from 'elit/el';
+import { header, nav, a, ul, li } from 'elit/el';
+import type { VNode } from 'elit';
 import { router } from '../router';
 import { styles } from '../styleNames';
 
@@ -32,6 +33,7 @@ export const Header = (): VNode => {
         NavLink('Quick Start', '/quick-start'),
         NavLink('Docs', '/docs'),
         NavLink('Usage', '/usage'),
+        NavLink('API', '/api'),
         NavLink('Scripts', '/scripts')
       )
     )

@@ -7,6 +7,7 @@ import { QuickStartPage } from './pages/QuickStartPage';
 import { DocsPage } from './pages/DocsPage';
 import { UsagePage } from './pages/UsagePage';
 import { ScriptsPage } from './pages/ScriptsPage';
+import { ApiPage } from './pages/ApiPage';
 
 const routes = [
   { path: '/', component: HomePage },
@@ -14,7 +15,8 @@ const routes = [
   { path: '/quick-start', component: QuickStartPage },
   { path: '/docs', component: DocsPage },
   { path: '/usage', component: UsagePage },
-  { path: '/scripts', component: ScriptsPage }
+  { path: '/scripts', component: ScriptsPage },
+  { path: '/api', component: ApiPage }
 ];
 
 const routerOptions = {

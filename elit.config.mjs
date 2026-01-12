@@ -50,6 +50,10 @@ export default {
         {
           from: 'favicon.svg',
           to: 'favicon.svg'
+        },
+        {
+          from: './public/googleb820e1884218aee0.html',
+          to: './googleb820e1884218aee0.html'
         }
       ]
     }
