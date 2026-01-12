@@ -61,4 +61,4 @@ if [[ -n "$PROFILE_FILE" ]] && [[ -f "$PROFILE_FILE" ]]; then
 fi
 
 echo "To reinstall, run:"
-echo "  curl -fsSL https://raw.githubusercontent.com/yourusername/scriptdb/main/apps/server/scripts/install.sh | bash"
+echo "  curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/main/apps/server/scripts/install.sh | bash"

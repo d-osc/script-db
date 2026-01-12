@@ -10,7 +10,7 @@ $Arch = if ([Environment]::Is64BitOperatingSystem) { "x64" } else { "x86" }
 $BinaryName = "scriptdb-windows-$Arch.exe"
 
 # GitHub release URL (change this to your actual release URL)
-$GitHubRepo = "https://github.com/yourusername/scriptdb"
+$GitHubRepo = "https://github.com/d-osc/script-db"
 $Version = if ($env:SCRIPTDB_VERSION) { $env:SCRIPTDB_VERSION } else { "latest" }
 
 if ($Version -eq "latest") {
@@ -103,5 +103,5 @@ Write-Host "Start ScriptDB server:" -ForegroundColor Cyan
 Write-Host "  scriptdb start" -ForegroundColor White
 Write-Host ""
 Write-Host "To uninstall, run:" -ForegroundColor Cyan
-Write-Host "  irm https://raw.githubusercontent.com/yourusername/scriptdb/main/apps/server/scripts/uninstall.ps1 | iex" -ForegroundColor White
+Write-Host "  irm https://raw.githubusercontent.com/d-osc/script-db/main/apps/server/scripts/uninstall.ps1 | iex" -ForegroundColor White
 Write-Host ""

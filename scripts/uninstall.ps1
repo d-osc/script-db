@@ -64,5 +64,5 @@ if ($CurrentPath -like "*$BinDir*") {
 
 Write-Host ""
 Write-Host "To reinstall, run:" -ForegroundColor Cyan
-Write-Host "  irm https://raw.githubusercontent.com/yourusername/scriptdb/main/apps/server/scripts/install.ps1 | iex" -ForegroundColor White
+Write-Host "  irm https://raw.githubusercontent.com/d-osc/script-db/main/apps/server/scripts/install.ps1 | iex" -ForegroundColor White
 Write-Host ""

@@ -40,7 +40,7 @@ fi
 BINARY_NAME="scriptdb-${OS}-${ARCH}${LIBC}"
 
 # GitHub release URL (change this to your actual release URL)
-GITHUB_REPO="https://github.com/yourusername/scriptdb"
+GITHUB_REPO="https://github.com/d-osc/script-db"
 VERSION="${SCRIPTDB_VERSION:-latest}"
 
 if [[ "$VERSION" == "latest" ]]; then
@@ -139,4 +139,4 @@ echo "Start ScriptDB server:"
 echo "  scriptdb start"
 echo ""
 echo "To uninstall, run:"
-echo "  curl -fsSL https://raw.githubusercontent.com/yourusername/scriptdb/main/apps/server/scripts/uninstall.sh | bash"
+echo "  curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/main/apps/server/scripts/uninstall.sh | bash"
