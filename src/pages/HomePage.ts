@@ -11,30 +11,30 @@ export const HomePage = (): VNode => {
     // Hero section
     div({ class: styles.hero },
       h1({ class: styles.heroTitle }, 'ScriptDB'),
-      p({ class: styles.subtitle }, 'A lightweight script database management tool')
+      p({ class: styles.subtitle }, 'A high-performance in-memory database with real-time synchronization')
     ),
 
     // Features
     div({ class: styles.features },
       div({ class: styles.feature },
-        h3({ class: styles.featureH3 }, '📦 Easy Installation'),
-        p('Simple installation process for both Windows and Unix-based systems')
+        h3({ class: styles.featureH3 }, '🚀 High Performance'),
+        p('Sub-millisecond query response with in-memory storage')
       ),
       div({ class: styles.feature },
-        h3({ class: styles.featureH3 }, '🚀 Fast & Lightweight'),
-        p('Minimal overhead with maximum performance')
+        h3({ class: styles.featureH3 }, '🔌 WebSocket Support'),
+        p('Real-time synchronization for browser applications')
       ),
       div({ class: styles.feature },
-        h3({ class: styles.featureH3 }, '🔧 Cross-Platform'),
-        p('Works seamlessly on Windows, Linux, and macOS')
+        h3({ class: styles.featureH3 }, '💾 Persistent Storage'),
+        p('Save databases to disk with automatic snapshots')
       ),
       div({ class: styles.feature },
-        h3({ class: styles.featureH3 }, '📝 Script Management'),
-        p('Organize and manage your scripts efficiently')
+        h3({ class: styles.featureH3 }, '📝 JavaScript Querying'),
+        p('Use JavaScript for powerful data manipulation')
       ),
       div({ class: styles.feature },
         h3({ class: styles.featureH3 }, '🔒 Secure'),
-        p('Built with security best practices in mind')
+        p('Built-in authentication with HMAC signing support')
       )
     ),
 
@@ -78,9 +78,10 @@ export const HomePage = (): VNode => {
     div({ class: styles.section },
       h2({ class: styles.pageH2 }, 'Why ScriptDB?'),
       ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, strong('Simple: '), 'Easy to install and use'),
-        li({ class: styles.pageLi }, strong('Flexible: '), 'Adapts to your workflow'),
-        li({ class: styles.pageLi }, strong('Reliable: '), 'Battle-tested scripts'),
+        li({ class: styles.pageLi }, strong('Fast: '), 'In-memory storage with sub-millisecond queries'),
+        li({ class: styles.pageLi }, strong('Flexible: '), 'JavaScript-based querying language'),
+        li({ class: styles.pageLi }, strong('Reliable: '), 'Auto-reconnect with exponential backoff'),
+        li({ class: styles.pageLi }, strong('Real-time: '), 'WebSocket support for live updates'),
         li({ class: styles.pageLi }, strong('Open Source: '), 'Community-driven development')
       )
     )

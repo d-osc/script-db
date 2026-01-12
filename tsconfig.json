@@ -19,7 +19,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "build.js"
-  ],
+, "src/pages/ApiPage.ts"  ],
   "exclude": [
     "node_modules",
     "dist"

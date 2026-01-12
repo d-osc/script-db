@@ -7,7 +7,7 @@ import { QuickStartPage } from './pages/QuickStartPage';
 import { DocsPage } from './pages/DocsPage';
 import { UsagePage } from './pages/UsagePage';
 import { ScriptsPage } from './pages/ScriptsPage';
-import { ApiPage } from './pages/ApiPage';
+import { ApiPage } from './pages/ApiPage.ts';
 
 const routes = [
   { path: '/', component: HomePage },

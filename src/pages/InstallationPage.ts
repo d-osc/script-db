@@ -36,10 +36,58 @@ export const InstallationPage = (): VNode => {
     ),
 
     div({ class: styles.section },
+      h2({ class: styles.pageH2 }, 'Client Libraries'),
+      p({ class: styles.pageP }, 'After installing the server, install the client library for your application:'),
+
+      h3({ class: styles.pageH3 }, 'Browser Client'),
+      pre({ class: styles.pagePre },
+        code({ class: styles.pageCode }, 'npm install @scriptdb/browser-client')
+      ),
+      p({ class: styles.pageP }, 'For browser applications with WebSocket support.'),
+
+      h3({ class: styles.pageH3 }, 'Node.js Client'),
+      pre({ class: styles.pagePre },
+        code({ class: styles.pageCode }, 'npm install @scriptdb/client')
+      ),
+      p({ class: styles.pageP }, 'For Node.js applications with TCP connection.')
+    ),
+
+    div({ class: styles.section },
+      h2({ class: styles.pageH2 }, 'Quick Start After Installation'),
+      p({ class: styles.pageP }, 'Once ScriptDB is installed, you can start using it:'),
+
+      h3({ class: styles.pageH3 }, '1. Start the Server'),
+      pre({ class: styles.pagePre },
+        code({ class: styles.pageCode }, '# Start ScriptDB server\nscriptdb start\n\n# Start on custom port\nscriptdb start --port 8080\n\n# Start in foreground\nscriptdb start --foreground')
+      ),
+
+      h3({ class: styles.pageH3 }, '2. Create Your First Database'),
+      pre({ class: styles.pagePre },
+        code({ class: styles.pageCode }, `import ScriptDBClient from '@scriptdb/browser-client';
+
+const client = new ScriptDBClient('scriptdb://localhost:1234');
+await client.connect();
+
+// Create a database
+await client.createDatabase('mydb');
+
+// Insert data
+await client.run(
+  'db.users.insert({ name: "Alice", age: 30 })',
+  'mydb'
+);
+
+// Query data
+const users = await client.run('db.users.find()', 'mydb');
+console.log(users);`)
+      )
+    ),
+
+    div({ class: styles.section },
       h2({ class: styles.pageH2 }, 'Verify Installation'),
       p({ class: styles.pageP }, 'After installation, verify that ScriptDB is working:'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'scriptdb --help')
+        code({ class: styles.pageCode }, '# Check version\nscriptdb --version\n\n# View help\nscriptdb --help\n\n# Check status\nscriptdb status')
       )
     ),
 
