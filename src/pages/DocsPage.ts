@@ -95,6 +95,16 @@ export const DocsPage = (): VNode => {
     ),
 
     div({ class: styles.section },
+      h2({ class: styles.pageH2 }, 'Client Methods'),
+      p({ class: styles.pageP }, 'ScriptDB provides two methods for executing commands:'),
+      ul({ class: styles.pageUl },
+        li({ class: styles.pageLi }, strong(code({ class: styles.pageCode }, 'client.run(command, database)')), ' - Execute TypeScript/JavaScript commands and return results'),
+        li({ class: styles.pageLi }, strong(code({ class: styles.pageCode }, 'client.execute(command, database)')), ' - Execute TypeScript/JavaScript commands without waiting for results')
+      ),
+      p({ class: styles.pageP }, 'Both methods accept TypeScript/JavaScript code as strings for database operations.')
+    ),
+
+    div({ class: styles.section },
       h2({ class: styles.pageH2 }, 'Quick Example'),
       p({ class: styles.pageP }, 'Get started with ScriptDB in just a few lines:'),
       pre({ class: styles.pagePre },
@@ -107,13 +117,13 @@ await client.connect();
 // Create a database
 await client.createDatabase('mydb');
 
-// Insert data
+// Insert data (using TypeScript/JavaScript)
 await client.run(
   'db.users.insert({ name: "John", age: 30, status: "active" })',
   'mydb'
 );
 
-// Query data
+// Query data (using TypeScript/JavaScript)
 const users = await client.run(
   'db.users.find({ age: { $gt: 25 } })',
   'mydb'
