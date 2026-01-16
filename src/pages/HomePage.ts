@@ -1,4 +1,4 @@
-import { div, h1, h2, h3, p, pre, code, ul, li, strong, button } from 'elit/el';
+import { div, h1, h2, h3, p, pre, code, ul, li, strong, button, a } from 'elit/el';
 import type { VNode } from 'elit';
 import { createState, reactive } from 'elit/state';
 import { styles } from '../styleNames';
@@ -41,6 +41,16 @@ export const HomePage = (): VNode => {
     // Quick Start
     div({ class: styles.section },
       h2({ class: styles.pageH2 }, 'Quick Start'),
+
+      // Download GUI Button
+      div({ class: styles.downloadSection },
+        a({
+          href: 'https://github.com/d-osc/script-db/releases/download/v1.0.9/ScriptDB.Setup.1.0.9.exe',
+          class: styles.downloadButton,
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        }, 'Download ScriptDB GUI for Windows')
+      ),
 
       // Tabs
       div({ class: styles.tabs },

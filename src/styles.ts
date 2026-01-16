@@ -264,6 +264,33 @@ css.addClass('tab-content', {
   marginTop: '1rem'
 });
 
+// Download Section
+css.addClass('download-section', {
+  textAlign: 'center',
+  margin: '2rem 0'
+});
+
+css.addClass('download-button', {
+  display: 'inline-block',
+  background: '#27ae60',
+  color: 'white',
+  padding: '1rem 2rem',
+  textDecoration: 'none',
+  borderRadius: '8px',
+  fontSize: '1.1rem',
+  fontWeight: 'bold',
+  transition: 'all 0.3s',
+  border: 'none',
+  cursor: 'pointer',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+});
+
+css.addPseudoClass('hover', {
+  background: '#229954',
+  transform: 'translateY(-2px)',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+}, '.download-button');
+
 // Responsive styles
 css.mediaMaxWidth('768px', {
   '.nav': {

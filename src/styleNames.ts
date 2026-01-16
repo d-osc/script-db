@@ -29,5 +29,7 @@ export const styles = {
   tabs: 'tabs',
   tab: 'tab',
   tabActive: 'tab-active',
-  tabContent: 'tab-content'
+  tabContent: 'tab-content',
+  downloadSection: 'download-section',
+  downloadButton: 'download-button'
 };
