@@ -45,7 +45,7 @@ export const HomePage = (): VNode => {
       // Download GUI Button
       div({ class: styles.downloadSection },
         a({
-          href: 'https://github.com/d-osc/script-db/releases/download/v1.1.0/ScriptDB.Setup.1.1.0.exe',
+          href: 'https://github.com/d-osc/script-db/releases/download/v1.1.1/ScriptDB.Setup.1.1.1.exe',
           class: styles.downloadButton,
           target: '_blank',
           rel: 'noopener noreferrer'
