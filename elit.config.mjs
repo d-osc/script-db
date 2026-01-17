@@ -17,7 +17,7 @@ export default {
   build: [
     {
       entry: resolve(__dirname, 'src/main.ts'),
-      outDir: resolve(__dirname, 'dist'),
+      outDir: resolve(__dirname, 'docs'),
       outFile: 'main.js',
       minify: true,
       sourcemap: false,
