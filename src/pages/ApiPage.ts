@@ -65,10 +65,17 @@ const BrowserClientApi = (): VNode => {
         code({ class: styles.pageCode }, `import ScriptDBClient from '@scriptdb/browser-client';
 
 // Initialize client with connection URI
-const client = new ScriptDBClient('scriptdb://localhost:1234');
+const client = new ScriptDBClient('scriptdb://localhost:1234', {
+  secure: false,        // Use wss:// if true, ws:// if false
+  requestTimeout: 30000 // Request timeout in milliseconds
+});
 
 // Connect to server
 await client.connect();
+
+// List all databases
+const databases = await client.listDatabases();
+console.log('Databases:', databases);
 
 // Run code in a database
 const result = await client.run('db.users.find()', 'mydb');
@@ -496,12 +503,13 @@ const NodeClientApi = (): VNode => {
       h2({ class: styles.pageH2 }, 'Quick Start'),
       p({ class: styles.pageP }, 'ScriptDB Node.js client for managing scripts from Node.js applications.'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `import ScriptDBClient from '@scriptdb/client';
+        code({ class: styles.pageCode }, `import ScriptDB from '@scriptdb/client';
 
 async function main() {
   // Initialize client
-  const db = new ScriptDBClient('scriptdb://localhost:1234', {
-    secure: false         // Use TCP if false, TLS if true
+  const db = new ScriptDB({
+    serverUrl: 'http://localhost:8080',
+    apiKey: 'your-api-key' // optional
   });
 
   // Connect to server
@@ -529,6 +537,17 @@ async function main() {
     description: 'Script from file'
   });
 
+  // Watch file changes
+  await db.scripts.watch('./scripts', {
+    pattern: '**/*.sh',
+    onAdd: async (file) => {
+      await db.scripts.addFromFile(file, {
+        name: file.split('/').pop()?.replace('.sh', ''),
+        description: 'Auto-added from watcher'
+      });
+    }
+  });
+
   // Disconnect
   await db.disconnect();
 }
@@ -540,39 +559,38 @@ main().catch(console.error);`)
     // Constructor
     div({ class: styles.section },
       h2({ class: styles.pageH2 }, 'Constructor'),
-      h3({ class: styles.pageH3 }, 'new ScriptDBClient(uri, options?)'),
+      h3({ class: styles.pageH3 }, 'new ScriptDB(options)'),
       p({ class: styles.pageP }, 'Creates a new ScriptDB Node.js client instance.'),
       h4({ class: styles.pageH3 }, 'Parameters'),
       ul({ class: styles.pageUl },
         li({ class: styles.pageLi },
-          strong('uri '), code({ class: styles.pageCode }, 'string'), ' - Connection URI in format ', code({ class: styles.pageCode }, 'scriptdb://host:port/database')),
-        li({ class: styles.pageLi },
-          strong('options '), code({ class: styles.pageCode }, 'ClientOptions | optional'),
+          strong('options '), code({ class: styles.pageCode }, 'ScriptDBOptions'),
           ul({ class: styles.pageUl },
-            li({ class: styles.pageLi }, strong('secure '), code({ class: styles.pageCode }, 'boolean'), ' - Use TLS if true, TCP if false (default: ', code({ class: styles.pageCode }, 'true'), ')'),
-            li({ class: styles.pageLi }, strong('requestTimeout '), code({ class: styles.pageCode }, 'number'), ' - Request timeout in ms, 0 = disabled (default: ', code({ class: styles.pageCode }, '0'), ')'),
-            li({ class: styles.pageLi }, strong('socketTimeout '), code({ class: styles.pageCode }, 'number'), ' - Socket timeout in ms (default: ', code({ class: styles.pageCode }, '0'), ')'),
-            li({ class: styles.pageLi }, strong('retries '), code({ class: styles.pageCode }, 'number'), ' - Reconnection retries (default: ', code({ class: styles.pageCode }, '3'), ')'),
-            li({ class: styles.pageLi }, strong('retryDelay '), code({ class: styles.pageCode }, 'number'), ' - Initial retry delay in ms (default: ', code({ class: styles.pageCode }, '1000'), ')'),
-            li({ class: styles.pageLi }, strong('maxPending '), code({ class: styles.pageCode }, 'number'), ' - Max concurrent requests (default: ', code({ class: styles.pageCode }, '100'), ')'),
-            li({ class: styles.pageLi }, strong('maxQueue '), code({ class: styles.pageCode }, 'number'), ' - Max queued requests (default: ', code({ class: styles.pageCode }, '1000'), ')'),
-            li({ class: styles.pageLi }, strong('maxMessageSize '), code({ class: styles.pageCode }, 'number'), ' - Max message size in bytes (default: ', code({ class: styles.pageCode }, '5MB'), ')'),
-            li({ class: styles.pageLi }, strong('logger '), code({ class: styles.pageCode }, 'Logger'), ' - Custom logger { debug, info, warn, error }'),
-            li({ class: styles.pageLi }, strong('username '), code({ class: styles.pageCode }, 'string'), ' - Username for authentication'),
-            li({ class: styles.pageLi }, strong('password '), code({ class: styles.pageCode }, 'string'), ' - Password for authentication'),
-            li({ class: styles.pageLi }, strong('tokenRefresh '), code({ class: styles.pageCode }, 'function'), ' - Async function to refresh token'),
-            li({ class: styles.pageLi }, strong('signing '), code({ class: styles.pageCode }, '{ secret, algorithm }'), ' - HMAC signing configuration'),
-            li({ class: styles.pageLi }, strong('stringify '), code({ class: styles.pageCode }, 'function'), ' - Custom JSON stringify function')
+            li({ class: styles.pageLi }, strong('serverUrl '), code({ class: styles.pageCode }, 'string'), ' - ScriptDB server URL (default: ', code({ class: styles.pageCode }, 'http://localhost:8080'), ')'),
+            li({ class: styles.pageLi }, strong('apiKey '), code({ class: styles.pageCode }, 'string | undefined'), ' - Optional API key for authentication'),
+            li({ class: styles.pageLi }, strong('timeout '), code({ class: styles.pageCode }, 'number'), ' - Request timeout in milliseconds (default: ', code({ class: styles.pageCode }, '30000'), ')'),
+            li({ class: styles.pageLi }, strong('maxRetries '), code({ class: styles.pageCode }, 'number'), ' - Maximum retry attempts (default: ', code({ class: styles.pageCode }, '3'), ')'),
+            li({ class: styles.pageLi }, strong('retryDelay '), code({ class: styles.pageCode }, 'number'), ' - Retry delay in ms (default: ', code({ class: styles.pageCode }, '1000'), ')'),
+            li({ class: styles.pageLi }, strong('persistPath '), code({ class: styles.pageCode }, 'string'), ' - Path to persist local cache (default: ', code({ class: styles.pageCode }, '~/.scriptdb/cache'), ')'),
+            li({ class: styles.pageLi }, strong('logLevel '), code({ class: styles.pageCode }, "'debug' | 'info' | 'warn' | 'error'"), ' - Logging level (default: ', code({ class: styles.pageCode }, "'info'"), ')')
           )
         )
       ),
       h4({ class: styles.pageH3 }, 'Returns'),
       ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'ScriptDBClient'), ' - A new ScriptDB client instance')
+        li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'ScriptDB'), ' - A new ScriptDB client instance')
       ),
       h4({ class: styles.pageH3 }, 'Example'),
       pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `const client = new ScriptDBClient('scriptdb://localhost:1234/mydb', {\n  secure: false,\n  requestTimeout: 30000,\n  retries: 5,\n  retryDelay: 2000,\n  username: 'admin',\n  password: 'secret'\n});`)
+        code({ class: styles.pageCode }, `const db = new ScriptDB({
+  serverUrl: 'https://api.scriptdb.example.com',
+  apiKey: 'sk_live_1234567890',
+  timeout: 60000,
+  maxRetries: 5,
+  retryDelay: 2000,
+  persistPath: './cache/scriptdb',
+  logLevel: 'debug'
+});`)
       )
     ),
 
