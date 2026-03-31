@@ -29,7 +29,7 @@ export const Header = (): VNode => {
         onclick: navigate('/')
       },
       span({ class: styles.logoMark }, 
-        img({ src: '/favicon.svg', alt: 'ScriptDB Logo', width: 32, height: 32 })
+        img({ src: 'favicon.svg', alt: 'ScriptDB Logo', width: 32, height: 32 })
       ),
       span({ class: styles.logoText }, 'ScriptDB')),
       reactive(router.currentRoute, (location) =>

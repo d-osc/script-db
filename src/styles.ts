@@ -129,9 +129,7 @@ export const initStyles = () => {
       display: grid;
       place-items: center;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), #2c668f);
       color: #fff;
-      box-shadow: 0 12px 26px rgba(17, 52, 79, 0.18);
     }
 
     .logo-text {
