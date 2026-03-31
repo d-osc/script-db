@@ -1,5 +1,5 @@
 import { reactive } from 'elit/state';
-import { header, nav, a, ul, li, div, span } from 'elit/el';
+import { header, nav, a, ul, li, div, span, img } from 'elit/el';
 import type { VNode } from 'elit';
 import { externalLinks } from '../content';
 import { router } from '../router';
@@ -28,7 +28,9 @@ export const Header = (): VNode => {
         class: styles.logo,
         onclick: navigate('/')
       },
-      span({ class: styles.logoMark }, 'S'),
+      span({ class: styles.logoMark }, 
+        img({ src: '/favicon.svg', alt: 'ScriptDB Logo', width: 32, height: 32 })
+      ),
       span({ class: styles.logoText }, 'ScriptDB')),
       reactive(router.currentRoute, (location) =>
         ul({ class: styles.navLinks },
