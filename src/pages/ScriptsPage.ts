@@ -1,155 +1,121 @@
-import { div, h1, h2, h3, h4, p, pre, code, ul, li, strong } from 'elit/el';
+import { a, div, h1, h2, h3, li, p, span, ul } from 'elit/el';
 import type { VNode } from 'elit';
+import { CodeBlock } from '../components/CodeBlock';
+import {
+  directoryLayout,
+  externalLinks,
+  installCommands,
+  verifyCommands
+} from '../content';
 import { styles } from '../styleNames';
+
+const externalLink = (href: string, label: string): VNode => {
+  return a({ href, class: styles.inlineLink, target: '_blank', rel: 'noopener noreferrer' }, label);
+};
+
+const scriptFeature = (title: string, description: string): VNode => {
+  return div({ class: styles.feature },
+    h3({ class: styles.featureH3 }, title),
+    p({ class: styles.pageP }, description)
+  );
+};
 
 export const ScriptsPage = (): VNode => {
   return div(
-    h1({ class: styles.pageH1 }, 'Installation Scripts'),
-    p({ class: styles.pageP }, 'ScriptDB provides automated installation scripts for all supported platforms.'),
-
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Overview'),
-      p({ class: styles.pageP }, 'ScriptDB installation scripts handle binary download, installation, and configuration automatically. They support multiple platforms, architectures, and installation methods.'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, strong('Cross-Platform'), ' - Windows, Linux, and macOS support'),
-        li({ class: styles.pageLi }, strong('Multi-Architecture'), ' - x64, x86, ARM64, and more'),
-        li({ class: styles.pageLi }, strong('Automatic Detection'), ' - Detects OS, architecture, and dependencies'),
-        li({ class: styles.pageLi }, strong('Customizable'), ' - Environment variables for custom installations')
+    div({ class: styles.pageHero },
+      div({ class: styles.badgeRow },
+        span({ class: styles.badge }, 'PowerShell + Bash'),
+        span({ class: styles.badge }, 'Release binaries'),
+        span({ class: styles.badge }, 'Windows, Linux, macOS')
+      ),
+      p({ class: styles.heroEyebrow }, 'Install Scripts'),
+      h1({ class: styles.pageH1 }, 'Use the shipped scripts when you want a direct ScriptDB binary install.'),
+      p({ class: styles.pageLead }, 'The repository publishes platform installers that resolve the right release asset, place the binary in the standard ScriptDB folder, and handle the user-level PATH story differently for Windows and Unix-like shells.'),
+      div({ class: styles.heroActions },
+        a({ href: '#/installation', class: styles.buttonPrimary }, 'Open Installation'),
+        a({ href: externalLinks.releases, class: styles.buttonSecondary, target: '_blank', rel: 'noopener noreferrer' }, 'Release Assets')
       )
     ),
 
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Windows Installation'),
-      h3({ class: styles.pageH3 }, 'install.ps1'),
-      p({ class: styles.pageP }, 'PowerShell installation script for Windows systems.'),
-      
-      h4({ class: styles.pageH3 }, 'Usage'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '# Basic installation\nirm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex\n\n# With custom version\n$env:SCRIPTDB_VERSION="1.0.0"\nirm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex\n\n# With custom directory\n$env:SCRIPTDB_INSTALL="C:\\MyTools\\scriptdb"\nirm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex')
-      ),
-
-      h4({ class: styles.pageH3 }, 'Features'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, strong('Architecture Detection'), ' - Automatically detects x64 or x86'),
-        li({ class: styles.pageLi }, strong('Automatic Download'), ' - Fetches correct binary from GitHub releases'),
-        li({ class: styles.pageLi }, strong('PATH Configuration'), ' - Adds ScriptDB to user PATH'),
-        li({ class: styles.pageLi }, strong('Custom Directory'), ' - Supports $env:SCRIPTDB_INSTALL'),
-        li({ class: styles.pageLi }, strong('Version Selection'), ' - Use $env:SCRIPTDB_VERSION'),
-        li({ class: styles.pageLi }, strong('Installation Directory'), ' - Default: %USERPROFILE%\\.scriptdb')
+      p({ class: styles.sectionLabel }, 'What The Scripts Handle'),
+      h2({ class: styles.pageH2 }, 'The installer path is optimized for fast machine bootstrap.'),
+      p({ class: styles.pageLead }, 'The scripts are useful when you want a release binary on a host without first setting up a full JavaScript toolchain.'),
+      div({ class: styles.features },
+        scriptFeature('Release download', 'Both installers resolve a GitHub release asset instead of compiling the monorepo on the target machine.'),
+        scriptFeature('Platform detection', 'Windows chooses x64 or x86, while the Unix script selects OS, CPU architecture, and Linux libc flavor when relevant.'),
+        scriptFeature('User-scoped install', 'By default ScriptDB lands in a user-owned `.scriptdb` folder so local experimentation does not need system package manager privileges.'),
+        scriptFeature('PATH setup', 'The PowerShell installer writes the user PATH directly. The Unix installer prints the shell command you should add to bash, zsh, or fish configuration.'),
+        scriptFeature('Customizable', 'Both installers support `SCRIPTDB_VERSION` and `SCRIPTDB_INSTALL` so you can pin versions or relocate the installation.'),
+        scriptFeature('Clean removal', 'Matching uninstall scripts remove the install directory and help you clean up PATH references when necessary.')
       )
     ),
 
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Unix Installation'),
-      h3({ class: styles.pageH3 }, 'install.sh'),
-      p({ class: styles.pageP }, 'Bash installation script for Linux and macOS systems.'),
-      
-      h4({ class: styles.pageH3 }, 'Usage'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '# Basic installation\ncurl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash\n\n# With custom version\nSCRIPTDB_VERSION=1.0.0 curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash\n\n# With custom directory\nSCRIPTDB_INSTALL=/opt/scriptdb curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash')
-      ),
-
-      h4({ class: styles.pageH3 }, 'Features'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, strong('OS Detection'), ' - Supports Linux and macOS'),
-        li({ class: styles.pageLi }, strong('Architecture Detection'), ' - Handles x64 and ARM64'),
-        li({ class: styles.pageLi }, strong('LIBC Detection'), ' - Distinguishes between glibc and musl'),
-        li({ class: styles.pageLi }, strong('Multiple Downloaders'), ' - Uses curl or wget'),
-        li({ class: styles.pageLi }, strong('Shell Integration'), ' - PATH setup for bash, zsh, fish'),
-        li({ class: styles.pageLi }, strong('Installation Directory'), ' - Default: ~/.scriptdb')
+      p({ class: styles.sectionLabel }, 'Run The Installers'),
+      h2({ class: styles.pageH2 }, 'Choose the script that matches the host OS.'),
+      p({ class: styles.pageLead }, 'The website now points at the repository `scripts/` directory directly so the commands match the files that actually live in this repo.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Windows PowerShell'),
+          p({ class: styles.pageP }, 'Downloads the correct Windows release asset, installs it under the user profile, and attempts to append the binary directory to the user PATH.'),
+          CodeBlock(installCommands.windowsBinary)
+        ),
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Linux and macOS shell'),
+          p({ class: styles.pageP }, 'Detects OS, CPU architecture, and musl vs glibc on Linux before downloading the matching binary to `~/.scriptdb/bin` by default.'),
+          CodeBlock(installCommands.unixBinary)
+        )
       )
     ),
 
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Environment Variables'),
-      p({ class: styles.pageP }, 'Customize installation behavior with environment variables:'),
-      
-      h3({ class: styles.pageH3 }, 'SCRIPTDB_VERSION'),
-      p({ class: styles.pageP }, 'Specify the version to install (default: latest)'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '# Windows\n$env:SCRIPTDB_VERSION="1.0.0"\n\n# Linux/macOS\nexport SCRIPTDB_VERSION="1.0.0"')
-      ),
-
-      h3({ class: styles.pageH3 }, 'SCRIPTDB_INSTALL'),
-      p({ class: styles.pageP }, 'Set custom installation directory'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '# Windows\n$env:SCRIPTDB_INSTALL="C:\\Tools\\scriptdb"\n\n# Linux/macOS\nexport SCRIPTDB_INSTALL="/opt/scriptdb"')
+      p({ class: styles.sectionLabel }, 'Customize The Install'),
+      h2({ class: styles.pageH2 }, 'Pin a version or choose a different home directory.'),
+      p({ class: styles.pageLead }, 'These environment variables are the main customization hooks surfaced by the install scripts.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Version pinning'),
+          p({ class: styles.pageP }, 'Set `SCRIPTDB_VERSION` when you need reproducible machine images or controlled rollouts.'),
+          CodeBlock(`${installCommands.windowsVersion}\n\n${installCommands.unixVersion}`)
+        ),
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Custom install location'),
+          p({ class: styles.pageP }, 'Set `SCRIPTDB_INSTALL` when you need a shared tools directory or a non-default home layout.'),
+          CodeBlock(`${installCommands.windowsCustomDir}\n\n${installCommands.unixCustomDir}`)
+        )
       )
     ),
 
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Installation Directory Structure'),
-      p({ class: styles.pageP }, 'After installation, ScriptDB creates the following directory structure:'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `# Windows
-%USERPROFILE%\\.scriptdb/
-├── bin/
-│   └── scriptdb.exe
-└── data/
-
-# Linux/macOS
-~/.scriptdb/
-├── bin/
-│   └── scriptdb
-└── data/`)
-      ),
-
-      h3({ class: styles.pageH3 }, 'Binary Location'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, strong('Windows: '), code({ class: styles.pageCode }, '%USERPROFILE%\\.scriptdb\\bin\\scriptdb.exe')),
-        li({ class: styles.pageLi }, strong('Linux/macOS: '), code({ class: styles.pageCode }, '~/.scriptdb/bin/scriptdb'))
+      p({ class: styles.sectionLabel }, 'After Install'),
+      h2({ class: styles.pageH2 }, 'Inspect the folder layout, verify the binary, and keep uninstall commands nearby.'),
+      p({ class: styles.pageLead }, 'Local installs are intentionally predictable so support and debugging stay simple.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Expected layout'),
+          CodeBlock(directoryLayout)
+        ),
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Verification and uninstall'),
+          CodeBlock(`${verifyCommands}\n\n${installCommands.windowsUninstall}\n\n${installCommands.unixUninstall}`)
+        )
       )
     ),
 
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Uninstallation'),
-      p({ class: styles.pageP }, 'ScriptDB also provides uninstallation scripts for clean removal.'),
-
-      h3({ class: styles.pageH3 }, 'Windows'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.ps1 | iex')
-      ),
-
-      h3({ class: styles.pageH3 }, 'Linux/macOS'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.sh | bash')
+      p({ class: styles.sectionLabel }, 'Platform Support'),
+      h2({ class: styles.pageH2 }, 'The scripts are aimed at the release matrix shipped by the repository.'),
+      ul({ class: styles.pageUl },
+        li({ class: styles.pageLi }, 'Windows x64 and x86 release binaries are selected from the PowerShell installer.'),
+        li({ class: styles.pageLi }, 'Linux builds support x64 and ARM64, with musl detection for distributions that need it.'),
+        li({ class: styles.pageLi }, 'macOS builds support Intel and Apple Silicon hosts through the Unix installer flow.'),
+        li({ class: styles.pageLi }, 'The scripts are best suited to developer workstations, CI runners, and internal images that need a quick binary bootstrap.')
       )
     ),
 
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Supported Platforms'),
-      h3({ class: styles.pageH3 }, 'Windows'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, 'Windows 10/11 (x64, x86)')
-      ),
-
-      h3({ class: styles.pageH3 }, 'Linux'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, 'x64 (Intel/AMD)'),
-        li({ class: styles.pageLi }, 'ARM64 (aarch64)'),
-        li({ class: styles.pageLi }, 'glibc or musl')
-      ),
-
-      h3({ class: styles.pageH3 }, 'macOS'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, 'x64 (Intel)'),
-        li({ class: styles.pageLi }, 'ARM64 (Apple Silicon)')
-      )
-    ),
-
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Post-Installation'),
-      h3({ class: styles.pageH3 }, 'Verify Installation'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '# Check version\nscriptdb --version\n\n# View help\nscriptdb --help\n\n# Start server\nscriptdb start')
-      ),
-
-      h3({ class: styles.pageH3 }, 'Next Steps'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, 'Read the ', strong('Quick Start'), ' guide'),
-        li({ class: styles.pageLi }, 'Explore the ', strong('API Documentation'), ' for client libraries'),
-        li({ class: styles.pageLi }, 'Check ', strong('Usage'), ' examples')
-      )
+    div({ class: styles.note },
+      'If you already have Node or Bun, the global CLI package on ', externalLink(externalLinks.cliPackage, 'npm'), ' is usually the cleaner path. Use the script installers when you want release binaries directly from ', externalLink(externalLinks.releases, 'GitHub Releases'), '.'
     )
   );
 };

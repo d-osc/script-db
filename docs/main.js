@@ -1,791 +1,861 @@
-var _=typeof document<"u";function Fe(t){return t.charAt(0).toUpperCase()+t.slice(1)}function k(t){return _&&t?t.bind(x):void 0}function pe(t,s,a){t.forEach(n=>{let c=s+Fe(n);a[c]=K(n)})}var K=t=>function(s,...a){if(!arguments.length)return{tagName:t,props:{},children:[]};let n=s&&typeof s=="object"&&"value"in s&&"subscribe"in s,c=s&&typeof s=="object"&&"tagName"in s,p=typeof s!="object"||Array.isArray(s)||s===null||n||c,r=p?{}:s,d=p?[s,...a]:a;if(!d.length)return{tagName:t,props:r,children:[]};let b=[];for(let u=0,f=d.length;u<f;u++){let l=d[u];if(!(l==null||l===!1))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];m!=null&&m!==!1&&b.push(m)}else b.push(l)}return{tagName:t,props:r,children:b}},Ve=["html","head","body","title","base","link","meta","style","address","article","aside","footer","header","h1","h2","h3","h4","h5","h6","main","nav","section","blockquote","dd","div","dl","dt","figcaption","figure","hr","li","ol","p","pre","ul","a","abbr","b","bdi","bdo","br","cite","code","data","dfn","em","i","kbd","mark","q","rp","rt","ruby","s","samp","small","span","strong","sub","sup","time","u","wbr","area","audio","img","map","track","video","embed","iframe","object","param","picture","portal","source","canvas","noscript","script","del","ins","caption","col","colgroup","table","tbody","td","tfoot","th","thead","tr","button","datalist","fieldset","form","input","label","legend","meter","optgroup","option","output","progress","select","textarea","details","dialog","menu","summary","slot","template"],We=["svg","circle","rect","path","line","polyline","polygon","ellipse","g","text","tspan","defs","linearGradient","radialGradient","stop","pattern","mask","clipPath","use","symbol","marker","image","foreignObject","animate","animateTransform","animateMotion","set","filter","feBlend","feColorMatrix","feComponentTransfer","feComposite","feConvolveMatrix","feDiffuseLighting","feDisplacementMap","feFlood","feGaussianBlur","feMorphology","feOffset","feSpecularLighting","feTile","feTurbulence"],je=["math","mi","mn","mo","ms","mtext","mrow","mfrac","msqrt","mroot","msub","msup"],V={};Ve.forEach(t=>{V[t]=K(t)});pe(We,"svg",V);pe(je,"math",V);V.varElement=K("var");var{html:mt,head:ft,body:bt,title:yt,base:vt,link:Ct,meta:St,style:wt,address:Lt,article:Tt,aside:Pt,footer:$t,header:de,h1:N,h2:H,h3:P,h4:L,h5:Ht,h6:Rt,main:ue,nav:ge,section:xt,blockquote:Dt,dd:Nt,div:v,dl:kt,dt:Et,figcaption:At,figure:Mt,hr:Ut,li:o,ol:Ot,p:T,pre:S,ul:w,a:M,abbr:Bt,b:It,bdi:Ft,bdo:Vt,br:Wt,cite:jt,code:i,data:qt,dfn:Jt,em:_t,i:zt,kbd:Gt,mark:Qt,q:Kt,rp:Yt,rt:Zt,ruby:Xt,s:es,samp:ts,small:ss,span:Y,strong:g,sub:as,sup:ns,time:rs,u:is,wbr:os,area:cs,audio:ls,img:ps,map:ds,track:us,video:gs,embed:hs,iframe:ms,object:fs,param:bs,picture:ys,portal:vs,source:Cs,canvas:Ss,noscript:ws,script:Ls,del:Ts,ins:Ps,caption:$s,col:Hs,colgroup:Rs,table:xs,tbody:Ds,td:Ns,tfoot:ks,th:Es,thead:As,tr:Ms,button:Z,datalist:Us,fieldset:Os,form:Bs,input:Is,label:Fs,legend:Vs,meter:Ws,optgroup:js,option:qs,output:Js,progress:_s,select:zs,textarea:Gs,details:Qs,dialog:Ks,menu:Ys,summary:Zs,slot:Xs,template:ea,svgSvg:ta,svgCircle:sa,svgRect:aa,svgPath:na,svgLine:ra,svgPolyline:ia,svgPolygon:oa,svgEllipse:ca,svgG:la,svgText:pa,svgTspan:da,svgDefs:ua,svgLinearGradient:ga,svgRadialGradient:ha,svgStop:ma,svgPattern:fa,svgMask:ba,svgClipPath:ya,svgUse:va,svgSymbol:Ca,svgMarker:Sa,svgImage:wa,svgForeignObject:La,svgAnimate:Ta,svgAnimateTransform:Pa,svgAnimateMotion:$a,svgSet:Ha,svgFilter:Ra,svgFeBlend:xa,svgFeColorMatrix:Da,svgFeComponentTransfer:Na,svgFeComposite:ka,svgFeConvolveMatrix:Ea,svgFeDiffuseLighting:Aa,svgFeDisplacementMap:Ma,svgFeFlood:Ua,svgFeGaussianBlur:Oa,svgFeMorphology:Ba,svgFeOffset:Ia,svgFeSpecularLighting:Fa,svgFeTile:Va,svgFeTurbulence:Wa,mathMath:ja,mathMi:qa,mathMn:Ja,mathMo:_a,mathMs:za,mathMtext:Ga,mathMrow:Qa,mathMfrac:Ka,mathMsqrt:Ya,mathMroot:Za,mathMsub:Xa,mathMsup:en,varElement:tn}=V;var x=_?document:void 0,sn=k(x?.querySelector),an=k(x?.querySelectorAll),nn=k(x?.createElement),rn=_?x.createElementNS.bind(x,"http://www.w3.org/2000/svg"):void 0,on=_?x.createElementNS.bind(x,"http://www.w3.org/1998/Math/MathML"):void 0,cn=k(x?.createDocumentFragment),ln=k(x?.createTextNode),pn=k(x?.createComment),dn=k(x?.getElementById),un=k(x?.getElementsByClassName),gn=k(x?.getElementsByTagName),hn=k(x?.getElementsByName);function X(t){return typeof t=="string"?document.getElementById(t.replace("#","")):t}function ee(t,s){if(!t)throw new Error(`Element not found: ${s}`);return t}function O(t){return t==null||t===!1}function he(t){return t==null||typeof t=="boolean"||typeof t=="string"||typeof t=="number"}var qe=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(t,s={},a=[]){return{tagName:t,props:s,children:a}}renderToDOM(t,s){if(t==null||t===!1)return;if(typeof t!="object"){s.appendChild(document.createTextNode(String(t)));return}let{tagName:a,props:n,children:c}=t,p=a==="svg"||a[0]==="s"&&a[1]==="v"&&a[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",r=p?document.createElementNS("http://www.w3.org/2000/svg",a.replace("svg","").toLowerCase()||a):document.createElement(a);for(let u in n){let f=n[u];if(f==null||f===!1)continue;let l=u.charCodeAt(0);if(l===99&&(u.length<6||u[5]==="N")){let C=Array.isArray(f)?f.join(" "):f;p?r.setAttribute("class",C):r.className=C}else if(l===115&&u.length===5)if(typeof f=="string")r.style.cssText=f;else{let C=r.style;for(let y in f)C[y]=f[y]}else l===111&&u.charCodeAt(1)===110?r[u.toLowerCase()]=f:l===100&&u.length>20?r.innerHTML=f.e:l===114&&u.length===3?setTimeout(()=>{typeof f=="function"?f(r):f.current=r},0):r.setAttribute(u,f===!0?"":String(f))}let d=c.length;if(!d){s.appendChild(r);return}let b=u=>{for(let f=0;f<d;f++){let l=c[f];if(!O(l))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];!O(m)&&this.renderToDOM(m,u)}else this.renderToDOM(l,u)}};if(d>30){let u=document.createDocumentFragment();b(u),r.appendChild(u)}else b(r);s.appendChild(r)}render(t,s){let a=ee(X(t),t);if(a.innerHTML="",s.children&&s.children.length>500){let n=document.createDocumentFragment();this.renderToDOM(s,n),a.appendChild(n)}else this.renderToDOM(s,a);return a}batchRender(t,s){let a=ee(X(t),t),n=s.length;if(n>3e3){let c=document.createDocumentFragment(),p=0,r=1500,d=()=>{let b=Math.min(p+r,n);for(let u=p;u<b;u++)this.renderToDOM(s[u],c);p=b,p>=n?a.appendChild(c):requestAnimationFrame(d)};d()}else{let c=document.createDocumentFragment();for(let p=0;p<n;p++)this.renderToDOM(s[p],c);a.appendChild(c)}return a}renderChunked(t,s,a=5e3,n){let c=ee(X(t),t),p=s.length,r=0,d=()=>{let b=Math.min(r+a,p),u=document.createDocumentFragment();for(let f=r;f<b;f++)this.renderToDOM(s[f],u);c.appendChild(u),r=b,n&&n(r,p),r<p&&requestAnimationFrame(d)};return requestAnimationFrame(d),c}renderToHead(...t){let s=document.head;if(s)for(let a of t.flat())a&&this.renderToDOM(a,s);return s}addStyle(t){let s=document.createElement("style");return s.textContent=t,document.head.appendChild(s)}addMeta(t){let s=document.createElement("meta");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}addLink(t){let s=document.createElement("link");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}setTitle(t){return document.title=t}createState(t,s={}){let a=t,n=new Set,c=null,{throttle:p=0,deep:r=!1}=s,d=()=>n.forEach(u=>u(a)),b=()=>{p>0?c||(c=setTimeout(()=>{c=null,d()},p)):d()};return{get value(){return a},set value(u){(r?JSON.stringify(a)!==JSON.stringify(u):a!==u)&&(a=u,b())},subscribe(u){return n.add(u),()=>n.delete(u)},destroy(){n.clear(),c&&clearTimeout(c)}}}computed(t,s){let a=t.map(c=>c.value),n=this.createState(s(...a));return t.forEach((c,p)=>{c.subscribe(r=>{a[p]=r,n.value=s(...a)})}),n}effect(t){t()}createVirtualList(t,s,a,n=50,c=5){let p=t.clientHeight,r=s.length*n,d=0,b=()=>{let l=Math.max(0,Math.floor(d/n)-c),C=Math.min(s.length,Math.ceil((d+p)/n)+c);return{start:l,end:C}},u=()=>{let{start:l,end:C}=b(),y=document.createElement("div");y.style.cssText=`height:${r}px;position:relative`;for(let m=l;m<C;m++){let h=document.createElement("div");h.style.cssText=`position:absolute;top:${m*n}px;height:${n}px;width:100%`,this.renderToDOM(a(s[m],m),h),y.appendChild(h)}t.innerHTML="",t.appendChild(y)},f=()=>{d=t.scrollTop,requestAnimationFrame(u)};return t.addEventListener("scroll",f),u(),{render:u,destroy:()=>{t.removeEventListener("scroll",f),t.innerHTML=""}}}lazy(t){let s=null,a=!1;return async(...n)=>(!s&&!a&&(a=!0,s=await t(),a=!1),s?s(...n):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(t){let s=document.createTreeWalker(t,NodeFilter.SHOW_ELEMENT),a=[];for(;s.nextNode();){let n=s.currentNode;n.id&&n.id.startsWith("r")&&!this.elementCache.has(n)&&a.push(n)}return a.forEach(n=>n.remove()),a.length}renderToString(t,s={}){let{pretty:a=!1,indent:n=0}=s,c=a?"  ".repeat(n):"",p=a?`
-`:"",r=this.resolveStateValue(t);if(r=this.unwrapReactive(r),Array.isArray(r))return r.map(y=>this.renderToString(y,s)).join("");if(typeof r!="object"||r===null)return r==null||r===!1?"":this.escapeHtml(String(r));let{tagName:d,props:b,children:u}=r,f=this.isSelfClosingTag(d),l=`${c}<${d}`,C=this.propsToAttributes(b);if(C&&(l+=` ${C}`),f)return l+=` />${p}`,l;if(l+=">",b.dangerouslySetInnerHTML)return l+=b.dangerouslySetInnerHTML.e,l+=`</${d}>${p}`,l;if(u&&u.length>0){let y=u.map(h=>{let $=this.resolveStateValue(h);return this.unwrapReactive($)}),m=y.some(h=>typeof h=="object"&&h!==null&&!Array.isArray(h)&&"tagName"in h);if(a&&m){l+=p;for(let h of y)if(!O(h))if(Array.isArray(h))for(let $ of h)O($)||(l+=this.renderToString($,{pretty:a,indent:n+1}));else l+=this.renderToString(h,{pretty:a,indent:n+1});l+=c}else for(let h of y)if(!O(h))if(Array.isArray(h))for(let $ of h)O($)||(l+=this.renderToString($,{pretty:!1,indent:0}));else l+=this.renderToString(h,{pretty:!1,indent:0})}return l+=`</${d}>${p}`,l}resolveStateValue(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t?t.value:t}isReactiveWrapper(t){return!t||typeof t!="object"||!t.tagName?!1:t.tagName==="span"&&t.props?.id&&typeof t.props.id=="string"&&t.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(t){if(!this.isReactiveWrapper(t))return t;let s=t.children;if(!s||s.length===0)return"";if(s.length===1){let a=s[0];if(a&&typeof a=="object"&&a.tagName==="span"){let n=a.props,c=!n||Object.keys(n).length===0,p=a.children&&a.children.length===1&&typeof a.children[0]=="string";if(c&&p)return a.children[0]}return this.unwrapReactive(a)}return s.map(a=>this.unwrapReactive(a))}escapeHtml(t){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return t.replace(/[&<>"']/g,a=>s[a])}isSelfClosingTag(t){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(t.toLowerCase())}propsToAttributes(t){let s=[];for(let a in t){if(a==="children"||a==="dangerouslySetInnerHTML"||a==="ref")continue;let n=t[a];if(n=this.resolveStateValue(n),!(n==null||n===!1)&&!(a.startsWith("on")&&typeof n=="function")){if(a==="className"||a==="class"){let c=Array.isArray(n)?n.join(" "):n;c&&s.push(`class="${this.escapeHtml(String(c))}"`);continue}if(a==="style"){let c=this.styleToString(n);c&&s.push(`style="${this.escapeHtml(c)}"`);continue}if(n===!0){s.push(a);continue}s.push(`${a}="${this.escapeHtml(String(n))}"`)}}return s.join(" ")}styleToString(t){if(typeof t=="string")return t;if(typeof t=="object"&&t!==null){let s=[];for(let a in t){let n=a.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${n}:${t[a]}`)}return s.join(";")}return""}isState(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t&&typeof t.subscribe=="function"}createReactiveChild(t,s){let a=s(t.value);if(typeof window<"u"&&typeof document<"u"){let n={node:null,renderFn:s};this.reactiveNodes.set(t,n),t.subscribe(()=>{if(n.node&&n.node.parentNode){let c=s(t.value);n.node.textContent=String(c??"")}})}return a}jsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(he(t))return t;let{tag:s,attributes:a={},children:n}=t,c={};for(let r in a){let d=a[r];r==="class"?c.className=this.isState(d)?d.value:d:c[r]=this.isState(d)?d.value:d}let p=[];if(n!=null)if(Array.isArray(n))for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.jsonToVNode(r);d!=null&&d!==!1&&p.push(d)}else if(this.isState(n))p.push(this.createReactiveChild(n,r=>r));else if(typeof n=="object"&&"tag"in n){let r=this.jsonToVNode(n);r!=null&&r!==!1&&p.push(r)}else p.push(n);return{tagName:s,props:c,children:p}}vNodeJsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(he(t))return t;let{tagName:s,props:a={},children:n=[]}=t,c={};for(let r in a){let d=a[r];c[r]=this.isState(d)?d.value:d}let p=[];for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.vNodeJsonToVNode(r);d!=null&&d!==!1&&p.push(d)}return{tagName:s,props:c,children:p}}renderJson(t,s){let a=this.jsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid JSON structure");return this.render(t,a)}renderVNode(t,s){let a=this.vNodeJsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid VNode JSON structure");return this.render(t,a)}renderJsonToString(t,s={}){let a=this.jsonToVNode(t);return this.renderToString(a,s)}renderVNodeToString(t,s={}){let a=this.vNodeJsonToVNode(t);return this.renderToString(a,s)}renderToHTMLDocument(t,s={}){let{title:a="",meta:n=[],links:c=[],scripts:p=[],styles:r=[],lang:d="en",head:b="",bodyAttrs:u={},pretty:f=!1}=s,l=f?`
-`:"",C=f?"  ":"",y=f?"    ":"",m=`<!DOCTYPE html>${l}<html lang="${d}">${l}${C}<head>${l}${y}<meta charset="UTF-8">${l}${y}<meta name="viewport" content="width=device-width, initial-scale=1.0">${l}`;a&&(m+=`${y}<title>${this.escapeHtml(a)}</title>${l}`);for(let h of n){m+=`${y}<meta`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of c){m+=`${y}<link`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of r)h.href?m+=`${y}<link rel="stylesheet" href="${this.escapeHtml(h.href)}">${l}`:h.content&&(m+=`${y}<style>${h.content}</style>${l}`);b&&(m+=b+l),m+=`${C}</head>${l}${C}<body`;for(let h in u)m+=` ${h}="${this.escapeHtml(u[h])}"`;m+=`>${l}`,m+=this.renderToString(t,{pretty:f,indent:2});for(let h of p)m+=`${y}<script`,h.type&&(m+=` type="${this.escapeHtml(h.type)}"`),h.async&&(m+=" async"),h.defer&&(m+=" defer"),h.src?m+=` src="${this.escapeHtml(h.src)}"><\/script>${l}`:h.content?m+=`>${h.content}<\/script>${l}`:m+=`><\/script>${l}`;return m+=`${C}</body>${l}</html>`,m}getElementCache(){return this.elementCache}},z=new qe,Je=z.render.bind(z),fn=z.renderToString.bind(z),me=Je;function te(t){return typeof t=="string"?document.getElementById(t.replace("#","")):t}function se(t,s){if(!t)throw new Error(`Element not found: ${s}`);return t}function B(t){return t==null||t===!1}function fe(t){return t==null||typeof t=="boolean"||typeof t=="string"||typeof t=="number"}var _e=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(t,s={},a=[]){return{tagName:t,props:s,children:a}}renderToDOM(t,s){if(t==null||t===!1)return;if(typeof t!="object"){s.appendChild(document.createTextNode(String(t)));return}let{tagName:a,props:n,children:c}=t,p=a==="svg"||a[0]==="s"&&a[1]==="v"&&a[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",r=p?document.createElementNS("http://www.w3.org/2000/svg",a.replace("svg","").toLowerCase()||a):document.createElement(a);for(let u in n){let f=n[u];if(f==null||f===!1)continue;let l=u.charCodeAt(0);if(l===99&&(u.length<6||u[5]==="N")){let C=Array.isArray(f)?f.join(" "):f;p?r.setAttribute("class",C):r.className=C}else if(l===115&&u.length===5)if(typeof f=="string")r.style.cssText=f;else{let C=r.style;for(let y in f)C[y]=f[y]}else l===111&&u.charCodeAt(1)===110?r[u.toLowerCase()]=f:l===100&&u.length>20?r.innerHTML=f.e:l===114&&u.length===3?setTimeout(()=>{typeof f=="function"?f(r):f.current=r},0):r.setAttribute(u,f===!0?"":String(f))}let d=c.length;if(!d){s.appendChild(r);return}let b=u=>{for(let f=0;f<d;f++){let l=c[f];if(!B(l))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];!B(m)&&this.renderToDOM(m,u)}else this.renderToDOM(l,u)}};if(d>30){let u=document.createDocumentFragment();b(u),r.appendChild(u)}else b(r);s.appendChild(r)}render(t,s){let a=se(te(t),t);if(a.innerHTML="",s.children&&s.children.length>500){let n=document.createDocumentFragment();this.renderToDOM(s,n),a.appendChild(n)}else this.renderToDOM(s,a);return a}batchRender(t,s){let a=se(te(t),t),n=s.length;if(n>3e3){let c=document.createDocumentFragment(),p=0,r=1500,d=()=>{let b=Math.min(p+r,n);for(let u=p;u<b;u++)this.renderToDOM(s[u],c);p=b,p>=n?a.appendChild(c):requestAnimationFrame(d)};d()}else{let c=document.createDocumentFragment();for(let p=0;p<n;p++)this.renderToDOM(s[p],c);a.appendChild(c)}return a}renderChunked(t,s,a=5e3,n){let c=se(te(t),t),p=s.length,r=0,d=()=>{let b=Math.min(r+a,p),u=document.createDocumentFragment();for(let f=r;f<b;f++)this.renderToDOM(s[f],u);c.appendChild(u),r=b,n&&n(r,p),r<p&&requestAnimationFrame(d)};return requestAnimationFrame(d),c}renderToHead(...t){let s=document.head;if(s)for(let a of t.flat())a&&this.renderToDOM(a,s);return s}addStyle(t){let s=document.createElement("style");return s.textContent=t,document.head.appendChild(s)}addMeta(t){let s=document.createElement("meta");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}addLink(t){let s=document.createElement("link");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}setTitle(t){return document.title=t}createState(t,s={}){let a=t,n=new Set,c=null,{throttle:p=0,deep:r=!1}=s,d=()=>n.forEach(u=>u(a)),b=()=>{p>0?c||(c=setTimeout(()=>{c=null,d()},p)):d()};return{get value(){return a},set value(u){(r?JSON.stringify(a)!==JSON.stringify(u):a!==u)&&(a=u,b())},subscribe(u){return n.add(u),()=>n.delete(u)},destroy(){n.clear(),c&&clearTimeout(c)}}}computed(t,s){let a=t.map(c=>c.value),n=this.createState(s(...a));return t.forEach((c,p)=>{c.subscribe(r=>{a[p]=r,n.value=s(...a)})}),n}effect(t){t()}createVirtualList(t,s,a,n=50,c=5){let p=t.clientHeight,r=s.length*n,d=0,b=()=>{let l=Math.max(0,Math.floor(d/n)-c),C=Math.min(s.length,Math.ceil((d+p)/n)+c);return{start:l,end:C}},u=()=>{let{start:l,end:C}=b(),y=document.createElement("div");y.style.cssText=`height:${r}px;position:relative`;for(let m=l;m<C;m++){let h=document.createElement("div");h.style.cssText=`position:absolute;top:${m*n}px;height:${n}px;width:100%`,this.renderToDOM(a(s[m],m),h),y.appendChild(h)}t.innerHTML="",t.appendChild(y)},f=()=>{d=t.scrollTop,requestAnimationFrame(u)};return t.addEventListener("scroll",f),u(),{render:u,destroy:()=>{t.removeEventListener("scroll",f),t.innerHTML=""}}}lazy(t){let s=null,a=!1;return async(...n)=>(!s&&!a&&(a=!0,s=await t(),a=!1),s?s(...n):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(t){let s=document.createTreeWalker(t,NodeFilter.SHOW_ELEMENT),a=[];for(;s.nextNode();){let n=s.currentNode;n.id&&n.id.startsWith("r")&&!this.elementCache.has(n)&&a.push(n)}return a.forEach(n=>n.remove()),a.length}renderToString(t,s={}){let{pretty:a=!1,indent:n=0}=s,c=a?"  ".repeat(n):"",p=a?`
-`:"",r=this.resolveStateValue(t);if(r=this.unwrapReactive(r),Array.isArray(r))return r.map(y=>this.renderToString(y,s)).join("");if(typeof r!="object"||r===null)return r==null||r===!1?"":this.escapeHtml(String(r));let{tagName:d,props:b,children:u}=r,f=this.isSelfClosingTag(d),l=`${c}<${d}`,C=this.propsToAttributes(b);if(C&&(l+=` ${C}`),f)return l+=` />${p}`,l;if(l+=">",b.dangerouslySetInnerHTML)return l+=b.dangerouslySetInnerHTML.e,l+=`</${d}>${p}`,l;if(u&&u.length>0){let y=u.map(h=>{let $=this.resolveStateValue(h);return this.unwrapReactive($)}),m=y.some(h=>typeof h=="object"&&h!==null&&!Array.isArray(h)&&"tagName"in h);if(a&&m){l+=p;for(let h of y)if(!B(h))if(Array.isArray(h))for(let $ of h)B($)||(l+=this.renderToString($,{pretty:a,indent:n+1}));else l+=this.renderToString(h,{pretty:a,indent:n+1});l+=c}else for(let h of y)if(!B(h))if(Array.isArray(h))for(let $ of h)B($)||(l+=this.renderToString($,{pretty:!1,indent:0}));else l+=this.renderToString(h,{pretty:!1,indent:0})}return l+=`</${d}>${p}`,l}resolveStateValue(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t?t.value:t}isReactiveWrapper(t){return!t||typeof t!="object"||!t.tagName?!1:t.tagName==="span"&&t.props?.id&&typeof t.props.id=="string"&&t.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(t){if(!this.isReactiveWrapper(t))return t;let s=t.children;if(!s||s.length===0)return"";if(s.length===1){let a=s[0];if(a&&typeof a=="object"&&a.tagName==="span"){let n=a.props,c=!n||Object.keys(n).length===0,p=a.children&&a.children.length===1&&typeof a.children[0]=="string";if(c&&p)return a.children[0]}return this.unwrapReactive(a)}return s.map(a=>this.unwrapReactive(a))}escapeHtml(t){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return t.replace(/[&<>"']/g,a=>s[a])}isSelfClosingTag(t){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(t.toLowerCase())}propsToAttributes(t){let s=[];for(let a in t){if(a==="children"||a==="dangerouslySetInnerHTML"||a==="ref")continue;let n=t[a];if(n=this.resolveStateValue(n),!(n==null||n===!1)&&!(a.startsWith("on")&&typeof n=="function")){if(a==="className"||a==="class"){let c=Array.isArray(n)?n.join(" "):n;c&&s.push(`class="${this.escapeHtml(String(c))}"`);continue}if(a==="style"){let c=this.styleToString(n);c&&s.push(`style="${this.escapeHtml(c)}"`);continue}if(n===!0){s.push(a);continue}s.push(`${a}="${this.escapeHtml(String(n))}"`)}}return s.join(" ")}styleToString(t){if(typeof t=="string")return t;if(typeof t=="object"&&t!==null){let s=[];for(let a in t){let n=a.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${n}:${t[a]}`)}return s.join(";")}return""}isState(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t&&typeof t.subscribe=="function"}createReactiveChild(t,s){let a=s(t.value);if(typeof window<"u"&&typeof document<"u"){let n={node:null,renderFn:s};this.reactiveNodes.set(t,n),t.subscribe(()=>{if(n.node&&n.node.parentNode){let c=s(t.value);n.node.textContent=String(c??"")}})}return a}jsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(fe(t))return t;let{tag:s,attributes:a={},children:n}=t,c={};for(let r in a){let d=a[r];r==="class"?c.className=this.isState(d)?d.value:d:c[r]=this.isState(d)?d.value:d}let p=[];if(n!=null)if(Array.isArray(n))for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.jsonToVNode(r);d!=null&&d!==!1&&p.push(d)}else if(this.isState(n))p.push(this.createReactiveChild(n,r=>r));else if(typeof n=="object"&&"tag"in n){let r=this.jsonToVNode(n);r!=null&&r!==!1&&p.push(r)}else p.push(n);return{tagName:s,props:c,children:p}}vNodeJsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(fe(t))return t;let{tagName:s,props:a={},children:n=[]}=t,c={};for(let r in a){let d=a[r];c[r]=this.isState(d)?d.value:d}let p=[];for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.vNodeJsonToVNode(r);d!=null&&d!==!1&&p.push(d)}return{tagName:s,props:c,children:p}}renderJson(t,s){let a=this.jsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid JSON structure");return this.render(t,a)}renderVNode(t,s){let a=this.vNodeJsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid VNode JSON structure");return this.render(t,a)}renderJsonToString(t,s={}){let a=this.jsonToVNode(t);return this.renderToString(a,s)}renderVNodeToString(t,s={}){let a=this.vNodeJsonToVNode(t);return this.renderToString(a,s)}renderToHTMLDocument(t,s={}){let{title:a="",meta:n=[],links:c=[],scripts:p=[],styles:r=[],lang:d="en",head:b="",bodyAttrs:u={},pretty:f=!1}=s,l=f?`
-`:"",C=f?"  ":"",y=f?"    ":"",m=`<!DOCTYPE html>${l}<html lang="${d}">${l}${C}<head>${l}${y}<meta charset="UTF-8">${l}${y}<meta name="viewport" content="width=device-width, initial-scale=1.0">${l}`;a&&(m+=`${y}<title>${this.escapeHtml(a)}</title>${l}`);for(let h of n){m+=`${y}<meta`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of c){m+=`${y}<link`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of r)h.href?m+=`${y}<link rel="stylesheet" href="${this.escapeHtml(h.href)}">${l}`:h.content&&(m+=`${y}<style>${h.content}</style>${l}`);b&&(m+=b+l),m+=`${C}</head>${l}${C}<body`;for(let h in u)m+=` ${h}="${this.escapeHtml(u[h])}"`;m+=`>${l}`,m+=this.renderToString(t,{pretty:f,indent:2});for(let h of p)m+=`${y}<script`,h.type&&(m+=` type="${this.escapeHtml(h.type)}"`),h.async&&(m+=" async"),h.defer&&(m+=" defer"),h.src?m+=` src="${this.escapeHtml(h.src)}"><\/script>${l}`:h.content?m+=`>${h.content}<\/script>${l}`:m+=`><\/script>${l}`;return m+=`${C}</body>${l}</html>`,m}getElementCache(){return this.elementCache}},W=new _e,vn=W.render.bind(W),Cn=W.renderToString.bind(W);function ze(t,s){let a=t.split("/").filter(Boolean),n=s.split("/").filter(Boolean);if(t.endsWith("*")){let p=t.slice(0,-1);if(s.startsWith(p)||p==="/"||t==="*")return{"*":s.slice(p.length)}}if(a.length!==n.length)return null;let c={};for(let p=0;p<a.length;p++){let r=a[p],d=n[p];if(r.startsWith(":"))c[r.slice(1)]=decodeURIComponent(d);else if(r!==d)return null}return c}function be(t,s,a,n,c=!1){let p=t(s,a);return p===!1?!1:typeof p=="string"?(n(p,c),!1):!0}function ye(t){let{mode:s="history",base:a="",routes:n}=t,c=[],p=C=>{let y={};return new URLSearchParams(C).forEach((h,$)=>{y[$]=h}),y},r=()=>s==="hash"?window.location.hash.slice(1)||"/":window.location.pathname.replace(a,"")||"/",d=C=>{let[y,m=""]=C.split("?"),[h,$=""]=y.split("#");return{path:h||"/",params:{},query:p(m),hash:$?"#"+$:""}},b=C=>{for(let y of n){let m=ze(y.path,C);if(m!==null)return{route:y,params:m}}return null},u=W.createState(d(r())),f=(C,y=!1)=>{let m=d(C),h=b(m.path);h&&(m.params=h.params);for(let Ie of c)if(!be(Ie,m,u.value,f,y))return;if(h?.route.beforeEnter&&!be(h.route.beforeEnter,m,u.value,f,y))return;let $=s==="hash"?"#"+C:a+C;y?window.history.replaceState({path:C},"",$):window.history.pushState({path:C},"",$),u.value=m},l=()=>{let C=r(),y=d(C),m=b(y.path);m&&(y.params=m.params),u.value=y};return typeof window<"u"&&window.addEventListener("popstate",l),{currentRoute:u,navigate:f,push:C=>f(C,!1),replace:C=>f(C,!0),back:()=>window.history.back(),forward:()=>window.history.forward(),go:C=>window.history.go(C),beforeEach:C=>{c.push(C)},destroy:()=>{typeof window<"u"&&window.removeEventListener("popstate",l),u.destroy()}}}function ae(t){return typeof t=="string"?document.getElementById(t.replace("#","")):t}function ne(t,s){if(!t)throw new Error(`Element not found: ${s}`);return t}function I(t){return t==null||t===!1}function ve(t){return t==null||typeof t=="boolean"||typeof t=="string"||typeof t=="number"}var Ge=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(t,s={},a=[]){return{tagName:t,props:s,children:a}}renderToDOM(t,s){if(t==null||t===!1)return;if(typeof t!="object"){s.appendChild(document.createTextNode(String(t)));return}let{tagName:a,props:n,children:c}=t,p=a==="svg"||a[0]==="s"&&a[1]==="v"&&a[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",r=p?document.createElementNS("http://www.w3.org/2000/svg",a.replace("svg","").toLowerCase()||a):document.createElement(a);for(let u in n){let f=n[u];if(f==null||f===!1)continue;let l=u.charCodeAt(0);if(l===99&&(u.length<6||u[5]==="N")){let C=Array.isArray(f)?f.join(" "):f;p?r.setAttribute("class",C):r.className=C}else if(l===115&&u.length===5)if(typeof f=="string")r.style.cssText=f;else{let C=r.style;for(let y in f)C[y]=f[y]}else l===111&&u.charCodeAt(1)===110?r[u.toLowerCase()]=f:l===100&&u.length>20?r.innerHTML=f.e:l===114&&u.length===3?setTimeout(()=>{typeof f=="function"?f(r):f.current=r},0):r.setAttribute(u,f===!0?"":String(f))}let d=c.length;if(!d){s.appendChild(r);return}let b=u=>{for(let f=0;f<d;f++){let l=c[f];if(!I(l))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];!I(m)&&this.renderToDOM(m,u)}else this.renderToDOM(l,u)}};if(d>30){let u=document.createDocumentFragment();b(u),r.appendChild(u)}else b(r);s.appendChild(r)}render(t,s){let a=ne(ae(t),t);if(a.innerHTML="",s.children&&s.children.length>500){let n=document.createDocumentFragment();this.renderToDOM(s,n),a.appendChild(n)}else this.renderToDOM(s,a);return a}batchRender(t,s){let a=ne(ae(t),t),n=s.length;if(n>3e3){let c=document.createDocumentFragment(),p=0,r=1500,d=()=>{let b=Math.min(p+r,n);for(let u=p;u<b;u++)this.renderToDOM(s[u],c);p=b,p>=n?a.appendChild(c):requestAnimationFrame(d)};d()}else{let c=document.createDocumentFragment();for(let p=0;p<n;p++)this.renderToDOM(s[p],c);a.appendChild(c)}return a}renderChunked(t,s,a=5e3,n){let c=ne(ae(t),t),p=s.length,r=0,d=()=>{let b=Math.min(r+a,p),u=document.createDocumentFragment();for(let f=r;f<b;f++)this.renderToDOM(s[f],u);c.appendChild(u),r=b,n&&n(r,p),r<p&&requestAnimationFrame(d)};return requestAnimationFrame(d),c}renderToHead(...t){let s=document.head;if(s)for(let a of t.flat())a&&this.renderToDOM(a,s);return s}addStyle(t){let s=document.createElement("style");return s.textContent=t,document.head.appendChild(s)}addMeta(t){let s=document.createElement("meta");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}addLink(t){let s=document.createElement("link");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}setTitle(t){return document.title=t}createState(t,s={}){let a=t,n=new Set,c=null,{throttle:p=0,deep:r=!1}=s,d=()=>n.forEach(u=>u(a)),b=()=>{p>0?c||(c=setTimeout(()=>{c=null,d()},p)):d()};return{get value(){return a},set value(u){(r?JSON.stringify(a)!==JSON.stringify(u):a!==u)&&(a=u,b())},subscribe(u){return n.add(u),()=>n.delete(u)},destroy(){n.clear(),c&&clearTimeout(c)}}}computed(t,s){let a=t.map(c=>c.value),n=this.createState(s(...a));return t.forEach((c,p)=>{c.subscribe(r=>{a[p]=r,n.value=s(...a)})}),n}effect(t){t()}createVirtualList(t,s,a,n=50,c=5){let p=t.clientHeight,r=s.length*n,d=0,b=()=>{let l=Math.max(0,Math.floor(d/n)-c),C=Math.min(s.length,Math.ceil((d+p)/n)+c);return{start:l,end:C}},u=()=>{let{start:l,end:C}=b(),y=document.createElement("div");y.style.cssText=`height:${r}px;position:relative`;for(let m=l;m<C;m++){let h=document.createElement("div");h.style.cssText=`position:absolute;top:${m*n}px;height:${n}px;width:100%`,this.renderToDOM(a(s[m],m),h),y.appendChild(h)}t.innerHTML="",t.appendChild(y)},f=()=>{d=t.scrollTop,requestAnimationFrame(u)};return t.addEventListener("scroll",f),u(),{render:u,destroy:()=>{t.removeEventListener("scroll",f),t.innerHTML=""}}}lazy(t){let s=null,a=!1;return async(...n)=>(!s&&!a&&(a=!0,s=await t(),a=!1),s?s(...n):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(t){let s=document.createTreeWalker(t,NodeFilter.SHOW_ELEMENT),a=[];for(;s.nextNode();){let n=s.currentNode;n.id&&n.id.startsWith("r")&&!this.elementCache.has(n)&&a.push(n)}return a.forEach(n=>n.remove()),a.length}renderToString(t,s={}){let{pretty:a=!1,indent:n=0}=s,c=a?"  ".repeat(n):"",p=a?`
-`:"",r=this.resolveStateValue(t);if(r=this.unwrapReactive(r),Array.isArray(r))return r.map(y=>this.renderToString(y,s)).join("");if(typeof r!="object"||r===null)return r==null||r===!1?"":this.escapeHtml(String(r));let{tagName:d,props:b,children:u}=r,f=this.isSelfClosingTag(d),l=`${c}<${d}`,C=this.propsToAttributes(b);if(C&&(l+=` ${C}`),f)return l+=` />${p}`,l;if(l+=">",b.dangerouslySetInnerHTML)return l+=b.dangerouslySetInnerHTML.e,l+=`</${d}>${p}`,l;if(u&&u.length>0){let y=u.map(h=>{let $=this.resolveStateValue(h);return this.unwrapReactive($)}),m=y.some(h=>typeof h=="object"&&h!==null&&!Array.isArray(h)&&"tagName"in h);if(a&&m){l+=p;for(let h of y)if(!I(h))if(Array.isArray(h))for(let $ of h)I($)||(l+=this.renderToString($,{pretty:a,indent:n+1}));else l+=this.renderToString(h,{pretty:a,indent:n+1});l+=c}else for(let h of y)if(!I(h))if(Array.isArray(h))for(let $ of h)I($)||(l+=this.renderToString($,{pretty:!1,indent:0}));else l+=this.renderToString(h,{pretty:!1,indent:0})}return l+=`</${d}>${p}`,l}resolveStateValue(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t?t.value:t}isReactiveWrapper(t){return!t||typeof t!="object"||!t.tagName?!1:t.tagName==="span"&&t.props?.id&&typeof t.props.id=="string"&&t.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(t){if(!this.isReactiveWrapper(t))return t;let s=t.children;if(!s||s.length===0)return"";if(s.length===1){let a=s[0];if(a&&typeof a=="object"&&a.tagName==="span"){let n=a.props,c=!n||Object.keys(n).length===0,p=a.children&&a.children.length===1&&typeof a.children[0]=="string";if(c&&p)return a.children[0]}return this.unwrapReactive(a)}return s.map(a=>this.unwrapReactive(a))}escapeHtml(t){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return t.replace(/[&<>"']/g,a=>s[a])}isSelfClosingTag(t){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(t.toLowerCase())}propsToAttributes(t){let s=[];for(let a in t){if(a==="children"||a==="dangerouslySetInnerHTML"||a==="ref")continue;let n=t[a];if(n=this.resolveStateValue(n),!(n==null||n===!1)&&!(a.startsWith("on")&&typeof n=="function")){if(a==="className"||a==="class"){let c=Array.isArray(n)?n.join(" "):n;c&&s.push(`class="${this.escapeHtml(String(c))}"`);continue}if(a==="style"){let c=this.styleToString(n);c&&s.push(`style="${this.escapeHtml(c)}"`);continue}if(n===!0){s.push(a);continue}s.push(`${a}="${this.escapeHtml(String(n))}"`)}}return s.join(" ")}styleToString(t){if(typeof t=="string")return t;if(typeof t=="object"&&t!==null){let s=[];for(let a in t){let n=a.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${n}:${t[a]}`)}return s.join(";")}return""}isState(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t&&typeof t.subscribe=="function"}createReactiveChild(t,s){let a=s(t.value);if(typeof window<"u"&&typeof document<"u"){let n={node:null,renderFn:s};this.reactiveNodes.set(t,n),t.subscribe(()=>{if(n.node&&n.node.parentNode){let c=s(t.value);n.node.textContent=String(c??"")}})}return a}jsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(ve(t))return t;let{tag:s,attributes:a={},children:n}=t,c={};for(let r in a){let d=a[r];r==="class"?c.className=this.isState(d)?d.value:d:c[r]=this.isState(d)?d.value:d}let p=[];if(n!=null)if(Array.isArray(n))for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.jsonToVNode(r);d!=null&&d!==!1&&p.push(d)}else if(this.isState(n))p.push(this.createReactiveChild(n,r=>r));else if(typeof n=="object"&&"tag"in n){let r=this.jsonToVNode(n);r!=null&&r!==!1&&p.push(r)}else p.push(n);return{tagName:s,props:c,children:p}}vNodeJsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(ve(t))return t;let{tagName:s,props:a={},children:n=[]}=t,c={};for(let r in a){let d=a[r];c[r]=this.isState(d)?d.value:d}let p=[];for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.vNodeJsonToVNode(r);d!=null&&d!==!1&&p.push(d)}return{tagName:s,props:c,children:p}}renderJson(t,s){let a=this.jsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid JSON structure");return this.render(t,a)}renderVNode(t,s){let a=this.vNodeJsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid VNode JSON structure");return this.render(t,a)}renderJsonToString(t,s={}){let a=this.jsonToVNode(t);return this.renderToString(a,s)}renderVNodeToString(t,s={}){let a=this.vNodeJsonToVNode(t);return this.renderToString(a,s)}renderToHTMLDocument(t,s={}){let{title:a="",meta:n=[],links:c=[],scripts:p=[],styles:r=[],lang:d="en",head:b="",bodyAttrs:u={},pretty:f=!1}=s,l=f?`
-`:"",C=f?"  ":"",y=f?"    ":"",m=`<!DOCTYPE html>${l}<html lang="${d}">${l}${C}<head>${l}${y}<meta charset="UTF-8">${l}${y}<meta name="viewport" content="width=device-width, initial-scale=1.0">${l}`;a&&(m+=`${y}<title>${this.escapeHtml(a)}</title>${l}`);for(let h of n){m+=`${y}<meta`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of c){m+=`${y}<link`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of r)h.href?m+=`${y}<link rel="stylesheet" href="${this.escapeHtml(h.href)}">${l}`:h.content&&(m+=`${y}<style>${h.content}</style>${l}`);b&&(m+=b+l),m+=`${C}</head>${l}${C}<body`;for(let h in u)m+=` ${h}="${this.escapeHtml(u[h])}"`;m+=`>${l}`,m+=this.renderToString(t,{pretty:f,indent:2});for(let h of p)m+=`${y}<script`,h.type&&(m+=` type="${this.escapeHtml(h.type)}"`),h.async&&(m+=" async"),h.defer&&(m+=" defer"),h.src?m+=` src="${this.escapeHtml(h.src)}"><\/script>${l}`:h.content?m+=`>${h.content}<\/script>${l}`:m+=`><\/script>${l}`;return m+=`${C}</body>${l}</html>`,m}getElementCache(){return this.elementCache}},U=new Ge,Ln=U.render.bind(U),Tn=U.renderToString.bind(U),j=(t,s)=>U.createState(t,s);var Qe=class{constructor(t,s,a){this.key=t,this.wsUrl=a,this.ws=null,this.pendingUpdates=[],this.localState=j(s),this.previousValue=s,this.connect()}get value(){return this.localState.value}set value(t){this.previousValue=this.localState.value,this.localState.value=t,this.sendToServer(t)}get state(){return this.localState}onChange(t){return this.localState.subscribe(s=>{let a=this.previousValue;this.previousValue=s,t(s,a)})}update(t){this.value=t(this.value)}connect(){if(typeof window>"u")return;let t=this.wsUrl||`ws://${location.host}`;this.ws=new WebSocket(t),this.ws.addEventListener("open",()=>{for(this.subscribe();this.pendingUpdates.length>0;){let s=this.pendingUpdates.shift();this.sendToServer(s)}}),this.ws.addEventListener("message",s=>{this.handleMessage(s.data)}),this.ws.addEventListener("close",()=>{setTimeout(()=>this.connect(),1e3)}),this.ws.addEventListener("error",s=>{console.error("[SharedState] WebSocket error:",s)})}subscribe(){!this.ws||this.ws.readyState!==WebSocket.OPEN||this.ws.send(JSON.stringify({type:"state:subscribe",key:this.key}))}handleMessage(t){try{let s=JSON.parse(t);if(s.key!==this.key)return;(s.type==="state:init"||s.type==="state:update")&&(this.localState.value=s.value)}catch{}}sendToServer(t){if(this.ws){if(this.ws.readyState!==WebSocket.OPEN){this.pendingUpdates.push(t);return}this.ws.send(JSON.stringify({type:"state:change",key:this.key,value:t}))}}disconnect(){this.ws&&(this.ws.close(),this.ws=null)}destroy(){this.disconnect(),this.localState.destroy()}};var Ke=class{constructor(){this.states=new Map}create(t,s,a){if(this.states.has(t))return this.states.get(t);let n=new Qe(t,s,a);return this.states.set(t,n),n}get(t){return this.states.get(t)}delete(t){let s=this.states.get(t);return s?(s.destroy(),this.states.delete(t)):!1}clear(){this.states.forEach(t=>t.destroy()),this.states.clear()}},Pn=new Ke,Ye=(t,s)=>(t&&cancelAnimationFrame(t),requestAnimationFrame(()=>{s()})),Ze=(t,s)=>{let a=document.createDocumentFragment();if(s&&t&&typeof t=="object"&&"tagName"in t){let{children:n}=t;for(let c of n)U.renderToDOM(c,a)}else U.renderToDOM(t,a);return a},Xe=(t,s)=>{for(let a in s){let n=s[a];if(a!=="ref")if(a==="class"||a==="className")t.className=Array.isArray(n)?n.join(" "):n||"";else if(a==="style"&&typeof n=="object"){let c=t.style;for(let p in n)c[p]=n[p]}else a.startsWith("on")?t[a.toLowerCase()]=n:n!=null&&n!==!1?t.setAttribute(a,String(n===!0?"":n)):t.removeAttribute(a)}},E=(t,s)=>{let a=null,n=null,c=null,p=!0,r=s(t.value),d=r&&typeof r=="object"&&"tagName"in r,b=r==null||r===!1,u=()=>{if(!n&&!c)return;let l=s(t.value);if(l==null||l===!1)p&&n&&(c=document.createComment("reactive"),n.parentNode?.replaceChild(c,n),p=!1);else if(!p&&c&&n&&(c.parentNode?.replaceChild(n,c),c=null,p=!0),n){let y=!!(d&&l&&typeof l=="object"&&"tagName"in l);if(y){let{props:h}=l;Xe(n,h)}let m=Ze(l,y);n.textContent="",n.appendChild(m),U.getElementCache().set(n,!0)}};t.subscribe(()=>{a=Ye(a,()=>{u(),a=null})});let f=l=>{n=l,b&&l.parentNode&&(c=document.createComment("reactive"),l.parentNode.replaceChild(c,l),p=!1)};if(d){let l=r;return{tagName:l.tagName,props:{...l.props,ref:f},children:l.children}}return{tagName:"span",props:{ref:f},children:[r]}};var e={appContainer:"app-container",container:"container",header:"header",nav:"nav",logo:"logo",navLinks:"nav-links",navLink:"nav-link",navLinkActive:"nav-link-active",mainContent:"main-content",page:"page",pageH1:"page-h1",pageH2:"page-h2",pageH3:"page-h3",pageP:"page-p",pageUl:"page-ul",pageLi:"page-li",pagePre:"page-pre",pageCode:"page-code",hero:"hero",heroTitle:"hero-title",subtitle:"subtitle",features:"features",feature:"feature",featureH3:"feature-h3",section:"section",footer:"footer",tabs:"tabs",tab:"tab",tabActive:"tab-active",tabContent:"tab-content",downloadSection:"download-section",downloadButton:"download-button"};var Ce=()=>{let t=j("windows");return v(v({class:e.hero},N({class:e.heroTitle},"ScriptDB"),T({class:e.subtitle},"A high-performance in-memory database with real-time synchronization")),v({class:e.features},v({class:e.feature},P({class:e.featureH3},"\u{1F680} High Performance"),T("Sub-millisecond query response with in-memory storage")),v({class:e.feature},P({class:e.featureH3},"\u{1F50C} WebSocket Support"),T("Real-time synchronization for browser applications")),v({class:e.feature},P({class:e.featureH3},"\u{1F4BE} Persistent Storage"),T("Save databases to disk with automatic snapshots")),v({class:e.feature},P({class:e.featureH3},"\u{1F4DD} JavaScript Querying"),T("Use JavaScript for powerful data manipulation")),v({class:e.feature},P({class:e.featureH3},"\u{1F512} Secure"),T("Built-in authentication with HMAC signing support"))),v({class:e.section},H({class:e.pageH2},"Quick Start"),v({class:e.downloadSection},M({href:"https://github.com/d-osc/script-db/releases/download/v1.1.2/ScriptDB.Setup.1.1.2.exe",class:e.downloadButton,target:"_blank",rel:"noopener noreferrer"},"Download ScriptDB GUI for Windows")),v({class:e.tabs},E(t,s=>Z({class:s==="windows"?e.tabActive:e.tab,onclick:()=>t.value="windows"},"Windows (PowerShell)")),E(t,s=>Z({class:s==="linux"?e.tabActive:e.tab,onclick:()=>t.value="linux"},"Linux/macOS (Bash)"))),v({class:e.tabContent},E(t,s=>s==="windows"?S({class:e.pagePre},i({class:e.pageCode},"irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex")):S({class:e.pagePre},i({class:e.pageCode},"curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash"))))),v({class:e.section},H({class:e.pageH2},"Why ScriptDB?"),w({class:e.pageUl},o({class:e.pageLi},g("Fast: "),"In-memory storage with sub-millisecond queries"),o({class:e.pageLi},g("Flexible: "),"JavaScript-based querying language"),o({class:e.pageLi},g("Reliable: "),"Auto-reconnect with exponential backoff"),o({class:e.pageLi},g("Real-time: "),"WebSocket support for live updates"),o({class:e.pageLi},g("Open Source: "),"Community-driven development"))))};var Se=()=>v(N({class:e.pageH1},"Installation"),T({class:e.pageP},"ScriptDB can be installed on Windows, Linux, and macOS. Choose the installation method that works best for your platform."),v({class:e.section},H({class:e.pageH2},"Windows"),P({class:e.pageH3},"PowerShell Installation"),T({class:e.pageP},"Open PowerShell and run:"),S({class:e.pagePre},i({class:e.pageCode},"irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex")),P({class:e.pageH3},"Custom Installation Directory"),S({class:e.pagePre},i({class:e.pageCode},`$env:SCRIPTDB_INSTALL = "C:\\your\\custom\\path"
-irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex`))),v({class:e.section},H({class:e.pageH2},"Linux & macOS"),P({class:e.pageH3},"Bash Installation"),T({class:e.pageP},"Open your terminal and run:"),S({class:e.pagePre},i({class:e.pageCode},"curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash")),P({class:e.pageH3},"Custom Installation Directory"),S({class:e.pagePre},i({class:e.pageCode},`export SCRIPTDB_INSTALL="/your/custom/path"
-curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash`))),v({class:e.section},H({class:e.pageH2},"Client Libraries"),T({class:e.pageP},"After installing the server, install the client library for your application:"),P({class:e.pageH3},"Browser Client"),S({class:e.pagePre},i({class:e.pageCode},"npm install @scriptdb/browser-client")),T({class:e.pageP},"For browser applications with WebSocket support."),P({class:e.pageH3},"Node.js Client"),S({class:e.pagePre},i({class:e.pageCode},"npm install @scriptdb/client")),T({class:e.pageP},"For Node.js applications with TCP connection.")),v({class:e.section},H({class:e.pageH2},"Quick Start After Installation"),T({class:e.pageP},"Once ScriptDB is installed, you can start using it:"),P({class:e.pageH3},"1. Start the Server"),S({class:e.pagePre},i({class:e.pageCode},`# Start ScriptDB server
+var ee=typeof document<"u";function nt(e){return e.charAt(0).toUpperCase()+e.slice(1)}function M(e){return ee&&e?e.bind(A):void 0}function Se(e,s,r){e.forEach(a=>{let l=s+nt(a);r[l]=ce(a)})}var ce=e=>function(s,...r){if(!arguments.length)return{tagName:e,props:{},children:[]};let a=s&&typeof s=="object"&&"value"in s&&"subscribe"in s,l=s&&typeof s=="object"&&"tagName"in s,c=typeof s!="object"||Array.isArray(s)||s===null||a||l,n=c?{}:s,d=c?[s,...r]:r;if(!d.length)return{tagName:e,props:n,children:[]};let y=[];for(let p=0,g=d.length;p<g;p++){let i=d[p];if(!(i==null||i===!1))if(Array.isArray(i))for(let b=0,f=i.length;b<f;b++){let m=i[b];m!=null&&m!==!1&&y.push(m)}else y.push(i)}return{tagName:e,props:n,children:y}},ot=["html","head","body","title","base","link","meta","style","address","article","aside","footer","header","h1","h2","h3","h4","h5","h6","main","nav","section","blockquote","dd","div","dl","dt","figcaption","figure","hr","li","ol","p","pre","ul","a","abbr","b","bdi","bdo","br","cite","code","data","dfn","em","i","kbd","mark","q","rp","rt","ruby","s","samp","small","span","strong","sub","sup","time","u","wbr","area","audio","img","map","track","video","embed","iframe","object","param","picture","portal","source","canvas","noscript","script","del","ins","caption","col","colgroup","table","tbody","td","tfoot","th","thead","tr","button","datalist","fieldset","form","input","label","legend","meter","optgroup","option","output","progress","select","textarea","details","dialog","menu","summary","slot","template"],it=["svg","circle","rect","path","line","polyline","polygon","ellipse","g","text","tspan","defs","linearGradient","radialGradient","stop","pattern","mask","clipPath","use","symbol","marker","image","foreignObject","animate","animateTransform","animateMotion","set","filter","feBlend","feColorMatrix","feComponentTransfer","feComposite","feConvolveMatrix","feDiffuseLighting","feDisplacementMap","feFlood","feGaussianBlur","feMorphology","feOffset","feSpecularLighting","feTile","feTurbulence"],lt=["math","mi","mn","mo","ms","mtext","mrow","mfrac","msqrt","mroot","msub","msup"],Q={};ot.forEach(e=>{Q[e]=ce(e)});Se(it,"svg",Q);Se(lt,"math",Q);Q.varElement=ce("var");var{html:Tt,head:Ct,body:Lt,title:Nt,base:$t,link:Pt,meta:At,style:Dt,address:It,article:Et,aside:Mt,footer:ke,header:Te,h1:D,h2:k,h3:w,h4:Vt,h5:Ht,h6:Bt,main:Ce,nav:Le,section:Rt,blockquote:Ut,dd:Ot,div:o,dl:Gt,dt:jt,figcaption:Ft,figure:qt,hr:Wt,li:$,ol:Jt,p:h,pre:Ne,ul:I,a:S,abbr:zt,b:_t,bdi:Qt,bdo:Yt,br:Kt,cite:Zt,code:E,data:Xt,dfn:es,em:ts,i:ss,kbd:rs,mark:as,q:ns,rp:os,rt:is,ruby:ls,s:cs,samp:ds,small:ps,span:C,strong:hs,sub:us,sup:ms,time:gs,u:fs,wbr:bs,area:ys,audio:ws,img:vs,map:xs,track:Ss,video:ks,embed:Ts,iframe:Cs,object:Ls,param:Ns,picture:$s,portal:Ps,source:As,canvas:Ds,noscript:Is,script:Es,del:Ms,ins:Vs,caption:Hs,col:Bs,colgroup:Rs,table:Us,tbody:Os,td:Gs,tfoot:js,th:Fs,thead:qs,tr:Ws,button:V,datalist:Js,fieldset:zs,form:_s,input:Qs,label:Ys,legend:Ks,meter:Zs,optgroup:Xs,option:er,output:tr,progress:sr,select:rr,textarea:ar,details:nr,dialog:or,menu:ir,summary:lr,slot:cr,template:dr,svgSvg:pr,svgCircle:hr,svgRect:ur,svgPath:mr,svgLine:gr,svgPolyline:fr,svgPolygon:br,svgEllipse:yr,svgG:wr,svgText:vr,svgTspan:xr,svgDefs:Sr,svgLinearGradient:kr,svgRadialGradient:Tr,svgStop:Cr,svgPattern:Lr,svgMask:Nr,svgClipPath:$r,svgUse:Pr,svgSymbol:Ar,svgMarker:Dr,svgImage:Ir,svgForeignObject:Er,svgAnimate:Mr,svgAnimateTransform:Vr,svgAnimateMotion:Hr,svgSet:Br,svgFilter:Rr,svgFeBlend:Ur,svgFeColorMatrix:Or,svgFeComponentTransfer:Gr,svgFeComposite:jr,svgFeConvolveMatrix:Fr,svgFeDiffuseLighting:qr,svgFeDisplacementMap:Wr,svgFeFlood:Jr,svgFeGaussianBlur:zr,svgFeMorphology:_r,svgFeOffset:Qr,svgFeSpecularLighting:Yr,svgFeTile:Kr,svgFeTurbulence:Zr,mathMath:Xr,mathMi:ea,mathMn:ta,mathMo:sa,mathMs:ra,mathMtext:aa,mathMrow:na,mathMfrac:oa,mathMsqrt:ia,mathMroot:la,mathMsub:ca,mathMsup:da,varElement:pa}=Q;var A=ee?document:void 0,ha=M(A?.querySelector),ua=M(A?.querySelectorAll),ma=M(A?.createElement),ga=ee?A.createElementNS.bind(A,"http://www.w3.org/2000/svg"):void 0,fa=ee?A.createElementNS.bind(A,"http://www.w3.org/1998/Math/MathML"):void 0,ba=M(A?.createDocumentFragment),ya=M(A?.createTextNode),wa=M(A?.createComment),va=M(A?.getElementById),xa=M(A?.getElementsByClassName),Sa=M(A?.getElementsByTagName),ka=M(A?.getElementsByName);function de(e){return typeof e=="string"?document.getElementById(e.replace("#","")):e}function pe(e,s){if(!e)throw new Error(`Element not found: ${s}`);return e}function O(e){return e==null||e===!1}function $e(e){return e==null||typeof e=="boolean"||typeof e=="string"||typeof e=="number"}var ct=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(e,s={},r=[]){return{tagName:e,props:s,children:r}}renderToDOM(e,s){if(e==null||e===!1)return;if(typeof e!="object"){s.appendChild(document.createTextNode(String(e)));return}let{tagName:r,props:a,children:l}=e,c=r==="svg"||r[0]==="s"&&r[1]==="v"&&r[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",n=c?document.createElementNS("http://www.w3.org/2000/svg",r.replace("svg","").toLowerCase()||r):document.createElement(r);for(let p in a){let g=a[p];if(g==null||g===!1)continue;let i=p.charCodeAt(0);if(i===99&&(p.length<6||p[5]==="N")){let b=Array.isArray(g)?g.join(" "):g;c?n.setAttribute("class",b):n.className=b}else if(i===115&&p.length===5)if(typeof g=="string")n.style.cssText=g;else{let b=n.style;for(let f in g)b[f]=g[f]}else i===111&&p.charCodeAt(1)===110?n[p.toLowerCase()]=g:i===100&&p.length>20?n.innerHTML=g.e:i===114&&p.length===3?setTimeout(()=>{typeof g=="function"?g(n):g.current=n},0):n.setAttribute(p,g===!0?"":String(g))}let d=l.length;if(!d){s.appendChild(n);return}let y=p=>{for(let g=0;g<d;g++){let i=l[g];if(!O(i))if(Array.isArray(i))for(let b=0,f=i.length;b<f;b++){let m=i[b];!O(m)&&this.renderToDOM(m,p)}else this.renderToDOM(i,p)}};if(d>30){let p=document.createDocumentFragment();y(p),n.appendChild(p)}else y(n);s.appendChild(n)}render(e,s){let r=pe(de(e),e);if(r.innerHTML="",s.children&&s.children.length>500){let a=document.createDocumentFragment();this.renderToDOM(s,a),r.appendChild(a)}else this.renderToDOM(s,r);return r}batchRender(e,s){let r=pe(de(e),e),a=s.length;if(a>3e3){let l=document.createDocumentFragment(),c=0,n=1500,d=()=>{let y=Math.min(c+n,a);for(let p=c;p<y;p++)this.renderToDOM(s[p],l);c=y,c>=a?r.appendChild(l):requestAnimationFrame(d)};d()}else{let l=document.createDocumentFragment();for(let c=0;c<a;c++)this.renderToDOM(s[c],l);r.appendChild(l)}return r}renderChunked(e,s,r=5e3,a){let l=pe(de(e),e),c=s.length,n=0,d=()=>{let y=Math.min(n+r,c),p=document.createDocumentFragment();for(let g=n;g<y;g++)this.renderToDOM(s[g],p);l.appendChild(p),n=y,a&&a(n,c),n<c&&requestAnimationFrame(d)};return requestAnimationFrame(d),l}renderToHead(...e){let s=document.head;if(s)for(let r of e.flat())r&&this.renderToDOM(r,s);return s}addStyle(e){let s=document.createElement("style");return s.textContent=e,document.head.appendChild(s)}addMeta(e){let s=document.createElement("meta");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}addLink(e){let s=document.createElement("link");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}setTitle(e){return document.title=e}createState(e,s={}){let r=e,a=new Set,l=null,{throttle:c=0,deep:n=!1}=s,d=()=>a.forEach(p=>p(r)),y=()=>{c>0?l||(l=setTimeout(()=>{l=null,d()},c)):d()};return{get value(){return r},set value(p){(n?JSON.stringify(r)!==JSON.stringify(p):r!==p)&&(r=p,y())},subscribe(p){return a.add(p),()=>a.delete(p)},destroy(){a.clear(),l&&clearTimeout(l)}}}computed(e,s){let r=e.map(l=>l.value),a=this.createState(s(...r));return e.forEach((l,c)=>{l.subscribe(n=>{r[c]=n,a.value=s(...r)})}),a}effect(e){e()}createVirtualList(e,s,r,a=50,l=5){let c=e.clientHeight,n=s.length*a,d=0,y=()=>{let i=Math.max(0,Math.floor(d/a)-l),b=Math.min(s.length,Math.ceil((d+c)/a)+l);return{start:i,end:b}},p=()=>{let{start:i,end:b}=y(),f=document.createElement("div");f.style.cssText=`height:${n}px;position:relative`;for(let m=i;m<b;m++){let u=document.createElement("div");u.style.cssText=`position:absolute;top:${m*a}px;height:${a}px;width:100%`,this.renderToDOM(r(s[m],m),u),f.appendChild(u)}e.innerHTML="",e.appendChild(f)},g=()=>{d=e.scrollTop,requestAnimationFrame(p)};return e.addEventListener("scroll",g),p(),{render:p,destroy:()=>{e.removeEventListener("scroll",g),e.innerHTML=""}}}lazy(e){let s=null,r=!1;return async(...a)=>(!s&&!r&&(r=!0,s=await e(),r=!1),s?s(...a):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(e){let s=document.createTreeWalker(e,NodeFilter.SHOW_ELEMENT),r=[];for(;s.nextNode();){let a=s.currentNode;a.id&&a.id.startsWith("r")&&!this.elementCache.has(a)&&r.push(a)}return r.forEach(a=>a.remove()),r.length}renderToString(e,s={}){let{pretty:r=!1,indent:a=0}=s,l=r?"  ".repeat(a):"",c=r?`
+`:"",n=this.resolveStateValue(e);if(n=this.unwrapReactive(n),Array.isArray(n))return n.map(f=>this.renderToString(f,s)).join("");if(typeof n!="object"||n===null)return n==null||n===!1?"":this.escapeHtml(String(n));let{tagName:d,props:y,children:p}=n,g=this.isSelfClosingTag(d),i=`${l}<${d}`,b=this.propsToAttributes(y);if(b&&(i+=` ${b}`),g)return i+=` />${c}`,i;if(i+=">",y.dangerouslySetInnerHTML)return i+=y.dangerouslySetInnerHTML.e,i+=`</${d}>${c}`,i;if(p&&p.length>0){let f=p.map(u=>{let x=this.resolveStateValue(u);return this.unwrapReactive(x)}),m=f.some(u=>typeof u=="object"&&u!==null&&!Array.isArray(u)&&"tagName"in u);if(r&&m){i+=c;for(let u of f)if(!O(u))if(Array.isArray(u))for(let x of u)O(x)||(i+=this.renderToString(x,{pretty:r,indent:a+1}));else i+=this.renderToString(u,{pretty:r,indent:a+1});i+=l}else for(let u of f)if(!O(u))if(Array.isArray(u))for(let x of u)O(x)||(i+=this.renderToString(x,{pretty:!1,indent:0}));else i+=this.renderToString(u,{pretty:!1,indent:0})}return i+=`</${d}>${c}`,i}resolveStateValue(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e?e.value:e}isReactiveWrapper(e){return!e||typeof e!="object"||!e.tagName?!1:e.tagName==="span"&&e.props?.id&&typeof e.props.id=="string"&&e.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(e){if(!this.isReactiveWrapper(e))return e;let s=e.children;if(!s||s.length===0)return"";if(s.length===1){let r=s[0];if(r&&typeof r=="object"&&r.tagName==="span"){let a=r.props,l=!a||Object.keys(a).length===0,c=r.children&&r.children.length===1&&typeof r.children[0]=="string";if(l&&c)return r.children[0]}return this.unwrapReactive(r)}return s.map(r=>this.unwrapReactive(r))}escapeHtml(e){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return e.replace(/[&<>"']/g,r=>s[r])}isSelfClosingTag(e){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(e.toLowerCase())}propsToAttributes(e){let s=[];for(let r in e){if(r==="children"||r==="dangerouslySetInnerHTML"||r==="ref")continue;let a=e[r];if(a=this.resolveStateValue(a),!(a==null||a===!1)&&!(r.startsWith("on")&&typeof a=="function")){if(r==="className"||r==="class"){let l=Array.isArray(a)?a.join(" "):a;l&&s.push(`class="${this.escapeHtml(String(l))}"`);continue}if(r==="style"){let l=this.styleToString(a);l&&s.push(`style="${this.escapeHtml(l)}"`);continue}if(a===!0){s.push(r);continue}s.push(`${r}="${this.escapeHtml(String(a))}"`)}}return s.join(" ")}styleToString(e){if(typeof e=="string")return e;if(typeof e=="object"&&e!==null){let s=[];for(let r in e){let a=r.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${a}:${e[r]}`)}return s.join(";")}return""}isState(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e&&typeof e.subscribe=="function"}createReactiveChild(e,s){let r=s(e.value);if(typeof window<"u"&&typeof document<"u"){let a={node:null,renderFn:s};this.reactiveNodes.set(e,a),e.subscribe(()=>{if(a.node&&a.node.parentNode){let l=s(e.value);a.node.textContent=String(l??"")}})}return r}jsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if($e(e))return e;let{tag:s,attributes:r={},children:a}=e,l={};for(let n in r){let d=r[n];n==="class"?l.className=this.isState(d)?d.value:d:l[n]=this.isState(d)?d.value:d}let c=[];if(a!=null)if(Array.isArray(a))for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.jsonToVNode(n);d!=null&&d!==!1&&c.push(d)}else if(this.isState(a))c.push(this.createReactiveChild(a,n=>n));else if(typeof a=="object"&&"tag"in a){let n=this.jsonToVNode(a);n!=null&&n!==!1&&c.push(n)}else c.push(a);return{tagName:s,props:l,children:c}}vNodeJsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if($e(e))return e;let{tagName:s,props:r={},children:a=[]}=e,l={};for(let n in r){let d=r[n];l[n]=this.isState(d)?d.value:d}let c=[];for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.vNodeJsonToVNode(n);d!=null&&d!==!1&&c.push(d)}return{tagName:s,props:l,children:c}}renderJson(e,s){let r=this.jsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid JSON structure");return this.render(e,r)}renderVNode(e,s){let r=this.vNodeJsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid VNode JSON structure");return this.render(e,r)}renderJsonToString(e,s={}){let r=this.jsonToVNode(e);return this.renderToString(r,s)}renderVNodeToString(e,s={}){let r=this.vNodeJsonToVNode(e);return this.renderToString(r,s)}renderToHTMLDocument(e,s={}){let{title:r="",meta:a=[],links:l=[],scripts:c=[],styles:n=[],lang:d="en",head:y="",bodyAttrs:p={},pretty:g=!1}=s,i=g?`
+`:"",b=g?"  ":"",f=g?"    ":"",m=`<!DOCTYPE html>${i}<html lang="${d}">${i}${b}<head>${i}${f}<meta charset="UTF-8">${i}${f}<meta name="viewport" content="width=device-width, initial-scale=1.0">${i}`;r&&(m+=`${f}<title>${this.escapeHtml(r)}</title>${i}`);for(let u of a){m+=`${f}<meta`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of l){m+=`${f}<link`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of n)u.href?m+=`${f}<link rel="stylesheet" href="${this.escapeHtml(u.href)}">${i}`:u.content&&(m+=`${f}<style>${u.content}</style>${i}`);y&&(m+=y+i),m+=`${b}</head>${i}${b}<body`;for(let u in p)m+=` ${u}="${this.escapeHtml(p[u])}"`;m+=`>${i}`,m+=this.renderToString(e,{pretty:g,indent:2});for(let u of c)m+=`${f}<script`,u.type&&(m+=` type="${this.escapeHtml(u.type)}"`),u.async&&(m+=" async"),u.defer&&(m+=" defer"),u.src?m+=` src="${this.escapeHtml(u.src)}"><\/script>${i}`:u.content?m+=`>${u.content}<\/script>${i}`:m+=`><\/script>${i}`;return m+=`${b}</body>${i}</html>`,m}getElementCache(){return this.elementCache}},te=new ct,dt=te.render.bind(te),Ca=te.renderToString.bind(te),Pe=dt;function he(e){return typeof e=="string"?document.getElementById(e.replace("#","")):e}function ue(e,s){if(!e)throw new Error(`Element not found: ${s}`);return e}function G(e){return e==null||e===!1}function Ae(e){return e==null||typeof e=="boolean"||typeof e=="string"||typeof e=="number"}var pt=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(e,s={},r=[]){return{tagName:e,props:s,children:r}}renderToDOM(e,s){if(e==null||e===!1)return;if(typeof e!="object"){s.appendChild(document.createTextNode(String(e)));return}let{tagName:r,props:a,children:l}=e,c=r==="svg"||r[0]==="s"&&r[1]==="v"&&r[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",n=c?document.createElementNS("http://www.w3.org/2000/svg",r.replace("svg","").toLowerCase()||r):document.createElement(r);for(let p in a){let g=a[p];if(g==null||g===!1)continue;let i=p.charCodeAt(0);if(i===99&&(p.length<6||p[5]==="N")){let b=Array.isArray(g)?g.join(" "):g;c?n.setAttribute("class",b):n.className=b}else if(i===115&&p.length===5)if(typeof g=="string")n.style.cssText=g;else{let b=n.style;for(let f in g)b[f]=g[f]}else i===111&&p.charCodeAt(1)===110?n[p.toLowerCase()]=g:i===100&&p.length>20?n.innerHTML=g.e:i===114&&p.length===3?setTimeout(()=>{typeof g=="function"?g(n):g.current=n},0):n.setAttribute(p,g===!0?"":String(g))}let d=l.length;if(!d){s.appendChild(n);return}let y=p=>{for(let g=0;g<d;g++){let i=l[g];if(!G(i))if(Array.isArray(i))for(let b=0,f=i.length;b<f;b++){let m=i[b];!G(m)&&this.renderToDOM(m,p)}else this.renderToDOM(i,p)}};if(d>30){let p=document.createDocumentFragment();y(p),n.appendChild(p)}else y(n);s.appendChild(n)}render(e,s){let r=ue(he(e),e);if(r.innerHTML="",s.children&&s.children.length>500){let a=document.createDocumentFragment();this.renderToDOM(s,a),r.appendChild(a)}else this.renderToDOM(s,r);return r}batchRender(e,s){let r=ue(he(e),e),a=s.length;if(a>3e3){let l=document.createDocumentFragment(),c=0,n=1500,d=()=>{let y=Math.min(c+n,a);for(let p=c;p<y;p++)this.renderToDOM(s[p],l);c=y,c>=a?r.appendChild(l):requestAnimationFrame(d)};d()}else{let l=document.createDocumentFragment();for(let c=0;c<a;c++)this.renderToDOM(s[c],l);r.appendChild(l)}return r}renderChunked(e,s,r=5e3,a){let l=ue(he(e),e),c=s.length,n=0,d=()=>{let y=Math.min(n+r,c),p=document.createDocumentFragment();for(let g=n;g<y;g++)this.renderToDOM(s[g],p);l.appendChild(p),n=y,a&&a(n,c),n<c&&requestAnimationFrame(d)};return requestAnimationFrame(d),l}renderToHead(...e){let s=document.head;if(s)for(let r of e.flat())r&&this.renderToDOM(r,s);return s}addStyle(e){let s=document.createElement("style");return s.textContent=e,document.head.appendChild(s)}addMeta(e){let s=document.createElement("meta");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}addLink(e){let s=document.createElement("link");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}setTitle(e){return document.title=e}createState(e,s={}){let r=e,a=new Set,l=null,{throttle:c=0,deep:n=!1}=s,d=()=>a.forEach(p=>p(r)),y=()=>{c>0?l||(l=setTimeout(()=>{l=null,d()},c)):d()};return{get value(){return r},set value(p){(n?JSON.stringify(r)!==JSON.stringify(p):r!==p)&&(r=p,y())},subscribe(p){return a.add(p),()=>a.delete(p)},destroy(){a.clear(),l&&clearTimeout(l)}}}computed(e,s){let r=e.map(l=>l.value),a=this.createState(s(...r));return e.forEach((l,c)=>{l.subscribe(n=>{r[c]=n,a.value=s(...r)})}),a}effect(e){e()}createVirtualList(e,s,r,a=50,l=5){let c=e.clientHeight,n=s.length*a,d=0,y=()=>{let i=Math.max(0,Math.floor(d/a)-l),b=Math.min(s.length,Math.ceil((d+c)/a)+l);return{start:i,end:b}},p=()=>{let{start:i,end:b}=y(),f=document.createElement("div");f.style.cssText=`height:${n}px;position:relative`;for(let m=i;m<b;m++){let u=document.createElement("div");u.style.cssText=`position:absolute;top:${m*a}px;height:${a}px;width:100%`,this.renderToDOM(r(s[m],m),u),f.appendChild(u)}e.innerHTML="",e.appendChild(f)},g=()=>{d=e.scrollTop,requestAnimationFrame(p)};return e.addEventListener("scroll",g),p(),{render:p,destroy:()=>{e.removeEventListener("scroll",g),e.innerHTML=""}}}lazy(e){let s=null,r=!1;return async(...a)=>(!s&&!r&&(r=!0,s=await e(),r=!1),s?s(...a):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(e){let s=document.createTreeWalker(e,NodeFilter.SHOW_ELEMENT),r=[];for(;s.nextNode();){let a=s.currentNode;a.id&&a.id.startsWith("r")&&!this.elementCache.has(a)&&r.push(a)}return r.forEach(a=>a.remove()),r.length}renderToString(e,s={}){let{pretty:r=!1,indent:a=0}=s,l=r?"  ".repeat(a):"",c=r?`
+`:"",n=this.resolveStateValue(e);if(n=this.unwrapReactive(n),Array.isArray(n))return n.map(f=>this.renderToString(f,s)).join("");if(typeof n!="object"||n===null)return n==null||n===!1?"":this.escapeHtml(String(n));let{tagName:d,props:y,children:p}=n,g=this.isSelfClosingTag(d),i=`${l}<${d}`,b=this.propsToAttributes(y);if(b&&(i+=` ${b}`),g)return i+=` />${c}`,i;if(i+=">",y.dangerouslySetInnerHTML)return i+=y.dangerouslySetInnerHTML.e,i+=`</${d}>${c}`,i;if(p&&p.length>0){let f=p.map(u=>{let x=this.resolveStateValue(u);return this.unwrapReactive(x)}),m=f.some(u=>typeof u=="object"&&u!==null&&!Array.isArray(u)&&"tagName"in u);if(r&&m){i+=c;for(let u of f)if(!G(u))if(Array.isArray(u))for(let x of u)G(x)||(i+=this.renderToString(x,{pretty:r,indent:a+1}));else i+=this.renderToString(u,{pretty:r,indent:a+1});i+=l}else for(let u of f)if(!G(u))if(Array.isArray(u))for(let x of u)G(x)||(i+=this.renderToString(x,{pretty:!1,indent:0}));else i+=this.renderToString(u,{pretty:!1,indent:0})}return i+=`</${d}>${c}`,i}resolveStateValue(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e?e.value:e}isReactiveWrapper(e){return!e||typeof e!="object"||!e.tagName?!1:e.tagName==="span"&&e.props?.id&&typeof e.props.id=="string"&&e.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(e){if(!this.isReactiveWrapper(e))return e;let s=e.children;if(!s||s.length===0)return"";if(s.length===1){let r=s[0];if(r&&typeof r=="object"&&r.tagName==="span"){let a=r.props,l=!a||Object.keys(a).length===0,c=r.children&&r.children.length===1&&typeof r.children[0]=="string";if(l&&c)return r.children[0]}return this.unwrapReactive(r)}return s.map(r=>this.unwrapReactive(r))}escapeHtml(e){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return e.replace(/[&<>"']/g,r=>s[r])}isSelfClosingTag(e){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(e.toLowerCase())}propsToAttributes(e){let s=[];for(let r in e){if(r==="children"||r==="dangerouslySetInnerHTML"||r==="ref")continue;let a=e[r];if(a=this.resolveStateValue(a),!(a==null||a===!1)&&!(r.startsWith("on")&&typeof a=="function")){if(r==="className"||r==="class"){let l=Array.isArray(a)?a.join(" "):a;l&&s.push(`class="${this.escapeHtml(String(l))}"`);continue}if(r==="style"){let l=this.styleToString(a);l&&s.push(`style="${this.escapeHtml(l)}"`);continue}if(a===!0){s.push(r);continue}s.push(`${r}="${this.escapeHtml(String(a))}"`)}}return s.join(" ")}styleToString(e){if(typeof e=="string")return e;if(typeof e=="object"&&e!==null){let s=[];for(let r in e){let a=r.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${a}:${e[r]}`)}return s.join(";")}return""}isState(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e&&typeof e.subscribe=="function"}createReactiveChild(e,s){let r=s(e.value);if(typeof window<"u"&&typeof document<"u"){let a={node:null,renderFn:s};this.reactiveNodes.set(e,a),e.subscribe(()=>{if(a.node&&a.node.parentNode){let l=s(e.value);a.node.textContent=String(l??"")}})}return r}jsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if(Ae(e))return e;let{tag:s,attributes:r={},children:a}=e,l={};for(let n in r){let d=r[n];n==="class"?l.className=this.isState(d)?d.value:d:l[n]=this.isState(d)?d.value:d}let c=[];if(a!=null)if(Array.isArray(a))for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.jsonToVNode(n);d!=null&&d!==!1&&c.push(d)}else if(this.isState(a))c.push(this.createReactiveChild(a,n=>n));else if(typeof a=="object"&&"tag"in a){let n=this.jsonToVNode(a);n!=null&&n!==!1&&c.push(n)}else c.push(a);return{tagName:s,props:l,children:c}}vNodeJsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if(Ae(e))return e;let{tagName:s,props:r={},children:a=[]}=e,l={};for(let n in r){let d=r[n];l[n]=this.isState(d)?d.value:d}let c=[];for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.vNodeJsonToVNode(n);d!=null&&d!==!1&&c.push(d)}return{tagName:s,props:l,children:c}}renderJson(e,s){let r=this.jsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid JSON structure");return this.render(e,r)}renderVNode(e,s){let r=this.vNodeJsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid VNode JSON structure");return this.render(e,r)}renderJsonToString(e,s={}){let r=this.jsonToVNode(e);return this.renderToString(r,s)}renderVNodeToString(e,s={}){let r=this.vNodeJsonToVNode(e);return this.renderToString(r,s)}renderToHTMLDocument(e,s={}){let{title:r="",meta:a=[],links:l=[],scripts:c=[],styles:n=[],lang:d="en",head:y="",bodyAttrs:p={},pretty:g=!1}=s,i=g?`
+`:"",b=g?"  ":"",f=g?"    ":"",m=`<!DOCTYPE html>${i}<html lang="${d}">${i}${b}<head>${i}${f}<meta charset="UTF-8">${i}${f}<meta name="viewport" content="width=device-width, initial-scale=1.0">${i}`;r&&(m+=`${f}<title>${this.escapeHtml(r)}</title>${i}`);for(let u of a){m+=`${f}<meta`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of l){m+=`${f}<link`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of n)u.href?m+=`${f}<link rel="stylesheet" href="${this.escapeHtml(u.href)}">${i}`:u.content&&(m+=`${f}<style>${u.content}</style>${i}`);y&&(m+=y+i),m+=`${b}</head>${i}${b}<body`;for(let u in p)m+=` ${u}="${this.escapeHtml(p[u])}"`;m+=`>${i}`,m+=this.renderToString(e,{pretty:g,indent:2});for(let u of c)m+=`${f}<script`,u.type&&(m+=` type="${this.escapeHtml(u.type)}"`),u.async&&(m+=" async"),u.defer&&(m+=" defer"),u.src?m+=` src="${this.escapeHtml(u.src)}"><\/script>${i}`:u.content?m+=`>${u.content}<\/script>${i}`:m+=`><\/script>${i}`;return m+=`${b}</body>${i}</html>`,m}getElementCache(){return this.elementCache}},Y=new pt,$a=Y.render.bind(Y),Pa=Y.renderToString.bind(Y);function ht(e,s){let r=e.split("/").filter(Boolean),a=s.split("/").filter(Boolean);if(e.endsWith("*")){let c=e.slice(0,-1);if(s.startsWith(c)||c==="/"||e==="*")return{"*":s.slice(c.length)}}if(r.length!==a.length)return null;let l={};for(let c=0;c<r.length;c++){let n=r[c],d=a[c];if(n.startsWith(":"))l[n.slice(1)]=decodeURIComponent(d);else if(n!==d)return null}return l}function De(e,s,r,a,l=!1){let c=e(s,r);return c===!1?!1:typeof c=="string"?(a(c,l),!1):!0}function Ie(e){let{mode:s="history",base:r="",routes:a}=e,l=[],c=b=>{let f={};return new URLSearchParams(b).forEach((u,x)=>{f[x]=u}),f},n=()=>s==="hash"?window.location.hash.slice(1)||"/":window.location.pathname.replace(r,"")||"/",d=b=>{let[f,m=""]=b.split("?"),[u,x=""]=f.split("#");return{path:u||"/",params:{},query:c(m),hash:x?"#"+x:""}},y=b=>{for(let f of a){let m=ht(f.path,b);if(m!==null)return{route:f,params:m}}return null},p=Y.createState(d(n())),g=(b,f=!1)=>{let m=d(b),u=y(m.path);u&&(m.params=u.params);for(let at of l)if(!De(at,m,p.value,g,f))return;if(u?.route.beforeEnter&&!De(u.route.beforeEnter,m,p.value,g,f))return;let x=s==="hash"?"#"+b:r+b;f?window.history.replaceState({path:b},"",x):window.history.pushState({path:b},"",x),p.value=m},i=()=>{let b=n(),f=d(b),m=y(f.path);m&&(f.params=m.params),p.value=f};return typeof window<"u"&&window.addEventListener("popstate",i),{currentRoute:p,navigate:g,push:b=>g(b,!1),replace:b=>g(b,!0),back:()=>window.history.back(),forward:()=>window.history.forward(),go:b=>window.history.go(b),beforeEach:b=>{l.push(b)},destroy:()=>{typeof window<"u"&&window.removeEventListener("popstate",i),p.destroy()}}}function me(e){return typeof e=="string"?document.getElementById(e.replace("#","")):e}function ge(e,s){if(!e)throw new Error(`Element not found: ${s}`);return e}function j(e){return e==null||e===!1}function Ee(e){return e==null||typeof e=="boolean"||typeof e=="string"||typeof e=="number"}var ut=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(e,s={},r=[]){return{tagName:e,props:s,children:r}}renderToDOM(e,s){if(e==null||e===!1)return;if(typeof e!="object"){s.appendChild(document.createTextNode(String(e)));return}let{tagName:r,props:a,children:l}=e,c=r==="svg"||r[0]==="s"&&r[1]==="v"&&r[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",n=c?document.createElementNS("http://www.w3.org/2000/svg",r.replace("svg","").toLowerCase()||r):document.createElement(r);for(let p in a){let g=a[p];if(g==null||g===!1)continue;let i=p.charCodeAt(0);if(i===99&&(p.length<6||p[5]==="N")){let b=Array.isArray(g)?g.join(" "):g;c?n.setAttribute("class",b):n.className=b}else if(i===115&&p.length===5)if(typeof g=="string")n.style.cssText=g;else{let b=n.style;for(let f in g)b[f]=g[f]}else i===111&&p.charCodeAt(1)===110?n[p.toLowerCase()]=g:i===100&&p.length>20?n.innerHTML=g.e:i===114&&p.length===3?setTimeout(()=>{typeof g=="function"?g(n):g.current=n},0):n.setAttribute(p,g===!0?"":String(g))}let d=l.length;if(!d){s.appendChild(n);return}let y=p=>{for(let g=0;g<d;g++){let i=l[g];if(!j(i))if(Array.isArray(i))for(let b=0,f=i.length;b<f;b++){let m=i[b];!j(m)&&this.renderToDOM(m,p)}else this.renderToDOM(i,p)}};if(d>30){let p=document.createDocumentFragment();y(p),n.appendChild(p)}else y(n);s.appendChild(n)}render(e,s){let r=ge(me(e),e);if(r.innerHTML="",s.children&&s.children.length>500){let a=document.createDocumentFragment();this.renderToDOM(s,a),r.appendChild(a)}else this.renderToDOM(s,r);return r}batchRender(e,s){let r=ge(me(e),e),a=s.length;if(a>3e3){let l=document.createDocumentFragment(),c=0,n=1500,d=()=>{let y=Math.min(c+n,a);for(let p=c;p<y;p++)this.renderToDOM(s[p],l);c=y,c>=a?r.appendChild(l):requestAnimationFrame(d)};d()}else{let l=document.createDocumentFragment();for(let c=0;c<a;c++)this.renderToDOM(s[c],l);r.appendChild(l)}return r}renderChunked(e,s,r=5e3,a){let l=ge(me(e),e),c=s.length,n=0,d=()=>{let y=Math.min(n+r,c),p=document.createDocumentFragment();for(let g=n;g<y;g++)this.renderToDOM(s[g],p);l.appendChild(p),n=y,a&&a(n,c),n<c&&requestAnimationFrame(d)};return requestAnimationFrame(d),l}renderToHead(...e){let s=document.head;if(s)for(let r of e.flat())r&&this.renderToDOM(r,s);return s}addStyle(e){let s=document.createElement("style");return s.textContent=e,document.head.appendChild(s)}addMeta(e){let s=document.createElement("meta");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}addLink(e){let s=document.createElement("link");for(let r in e)s.setAttribute(r,e[r]);return document.head.appendChild(s)}setTitle(e){return document.title=e}createState(e,s={}){let r=e,a=new Set,l=null,{throttle:c=0,deep:n=!1}=s,d=()=>a.forEach(p=>p(r)),y=()=>{c>0?l||(l=setTimeout(()=>{l=null,d()},c)):d()};return{get value(){return r},set value(p){(n?JSON.stringify(r)!==JSON.stringify(p):r!==p)&&(r=p,y())},subscribe(p){return a.add(p),()=>a.delete(p)},destroy(){a.clear(),l&&clearTimeout(l)}}}computed(e,s){let r=e.map(l=>l.value),a=this.createState(s(...r));return e.forEach((l,c)=>{l.subscribe(n=>{r[c]=n,a.value=s(...r)})}),a}effect(e){e()}createVirtualList(e,s,r,a=50,l=5){let c=e.clientHeight,n=s.length*a,d=0,y=()=>{let i=Math.max(0,Math.floor(d/a)-l),b=Math.min(s.length,Math.ceil((d+c)/a)+l);return{start:i,end:b}},p=()=>{let{start:i,end:b}=y(),f=document.createElement("div");f.style.cssText=`height:${n}px;position:relative`;for(let m=i;m<b;m++){let u=document.createElement("div");u.style.cssText=`position:absolute;top:${m*a}px;height:${a}px;width:100%`,this.renderToDOM(r(s[m],m),u),f.appendChild(u)}e.innerHTML="",e.appendChild(f)},g=()=>{d=e.scrollTop,requestAnimationFrame(p)};return e.addEventListener("scroll",g),p(),{render:p,destroy:()=>{e.removeEventListener("scroll",g),e.innerHTML=""}}}lazy(e){let s=null,r=!1;return async(...a)=>(!s&&!r&&(r=!0,s=await e(),r=!1),s?s(...a):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(e){let s=document.createTreeWalker(e,NodeFilter.SHOW_ELEMENT),r=[];for(;s.nextNode();){let a=s.currentNode;a.id&&a.id.startsWith("r")&&!this.elementCache.has(a)&&r.push(a)}return r.forEach(a=>a.remove()),r.length}renderToString(e,s={}){let{pretty:r=!1,indent:a=0}=s,l=r?"  ".repeat(a):"",c=r?`
+`:"",n=this.resolveStateValue(e);if(n=this.unwrapReactive(n),Array.isArray(n))return n.map(f=>this.renderToString(f,s)).join("");if(typeof n!="object"||n===null)return n==null||n===!1?"":this.escapeHtml(String(n));let{tagName:d,props:y,children:p}=n,g=this.isSelfClosingTag(d),i=`${l}<${d}`,b=this.propsToAttributes(y);if(b&&(i+=` ${b}`),g)return i+=` />${c}`,i;if(i+=">",y.dangerouslySetInnerHTML)return i+=y.dangerouslySetInnerHTML.e,i+=`</${d}>${c}`,i;if(p&&p.length>0){let f=p.map(u=>{let x=this.resolveStateValue(u);return this.unwrapReactive(x)}),m=f.some(u=>typeof u=="object"&&u!==null&&!Array.isArray(u)&&"tagName"in u);if(r&&m){i+=c;for(let u of f)if(!j(u))if(Array.isArray(u))for(let x of u)j(x)||(i+=this.renderToString(x,{pretty:r,indent:a+1}));else i+=this.renderToString(u,{pretty:r,indent:a+1});i+=l}else for(let u of f)if(!j(u))if(Array.isArray(u))for(let x of u)j(x)||(i+=this.renderToString(x,{pretty:!1,indent:0}));else i+=this.renderToString(u,{pretty:!1,indent:0})}return i+=`</${d}>${c}`,i}resolveStateValue(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e?e.value:e}isReactiveWrapper(e){return!e||typeof e!="object"||!e.tagName?!1:e.tagName==="span"&&e.props?.id&&typeof e.props.id=="string"&&e.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(e){if(!this.isReactiveWrapper(e))return e;let s=e.children;if(!s||s.length===0)return"";if(s.length===1){let r=s[0];if(r&&typeof r=="object"&&r.tagName==="span"){let a=r.props,l=!a||Object.keys(a).length===0,c=r.children&&r.children.length===1&&typeof r.children[0]=="string";if(l&&c)return r.children[0]}return this.unwrapReactive(r)}return s.map(r=>this.unwrapReactive(r))}escapeHtml(e){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return e.replace(/[&<>"']/g,r=>s[r])}isSelfClosingTag(e){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(e.toLowerCase())}propsToAttributes(e){let s=[];for(let r in e){if(r==="children"||r==="dangerouslySetInnerHTML"||r==="ref")continue;let a=e[r];if(a=this.resolveStateValue(a),!(a==null||a===!1)&&!(r.startsWith("on")&&typeof a=="function")){if(r==="className"||r==="class"){let l=Array.isArray(a)?a.join(" "):a;l&&s.push(`class="${this.escapeHtml(String(l))}"`);continue}if(r==="style"){let l=this.styleToString(a);l&&s.push(`style="${this.escapeHtml(l)}"`);continue}if(a===!0){s.push(r);continue}s.push(`${r}="${this.escapeHtml(String(a))}"`)}}return s.join(" ")}styleToString(e){if(typeof e=="string")return e;if(typeof e=="object"&&e!==null){let s=[];for(let r in e){let a=r.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${a}:${e[r]}`)}return s.join(";")}return""}isState(e){return e&&typeof e=="object"&&"value"in e&&"subscribe"in e&&typeof e.subscribe=="function"}createReactiveChild(e,s){let r=s(e.value);if(typeof window<"u"&&typeof document<"u"){let a={node:null,renderFn:s};this.reactiveNodes.set(e,a),e.subscribe(()=>{if(a.node&&a.node.parentNode){let l=s(e.value);a.node.textContent=String(l??"")}})}return r}jsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if(Ee(e))return e;let{tag:s,attributes:r={},children:a}=e,l={};for(let n in r){let d=r[n];n==="class"?l.className=this.isState(d)?d.value:d:l[n]=this.isState(d)?d.value:d}let c=[];if(a!=null)if(Array.isArray(a))for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.jsonToVNode(n);d!=null&&d!==!1&&c.push(d)}else if(this.isState(a))c.push(this.createReactiveChild(a,n=>n));else if(typeof a=="object"&&"tag"in a){let n=this.jsonToVNode(a);n!=null&&n!==!1&&c.push(n)}else c.push(a);return{tagName:s,props:l,children:c}}vNodeJsonToVNode(e){if(this.isState(e))return this.createReactiveChild(e,n=>n);if(Ee(e))return e;let{tagName:s,props:r={},children:a=[]}=e,l={};for(let n in r){let d=r[n];l[n]=this.isState(d)?d.value:d}let c=[];for(let n of a)if(this.isState(n))c.push(this.createReactiveChild(n,d=>d));else{let d=this.vNodeJsonToVNode(n);d!=null&&d!==!1&&c.push(d)}return{tagName:s,props:l,children:c}}renderJson(e,s){let r=this.jsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid JSON structure");return this.render(e,r)}renderVNode(e,s){let r=this.vNodeJsonToVNode(s);if(!r||typeof r!="object"||!("tagName"in r))throw new Error("Invalid VNode JSON structure");return this.render(e,r)}renderJsonToString(e,s={}){let r=this.jsonToVNode(e);return this.renderToString(r,s)}renderVNodeToString(e,s={}){let r=this.vNodeJsonToVNode(e);return this.renderToString(r,s)}renderToHTMLDocument(e,s={}){let{title:r="",meta:a=[],links:l=[],scripts:c=[],styles:n=[],lang:d="en",head:y="",bodyAttrs:p={},pretty:g=!1}=s,i=g?`
+`:"",b=g?"  ":"",f=g?"    ":"",m=`<!DOCTYPE html>${i}<html lang="${d}">${i}${b}<head>${i}${f}<meta charset="UTF-8">${i}${f}<meta name="viewport" content="width=device-width, initial-scale=1.0">${i}`;r&&(m+=`${f}<title>${this.escapeHtml(r)}</title>${i}`);for(let u of a){m+=`${f}<meta`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of l){m+=`${f}<link`;for(let x in u)m+=` ${x}="${this.escapeHtml(u[x])}"`;m+=`>${i}`}for(let u of n)u.href?m+=`${f}<link rel="stylesheet" href="${this.escapeHtml(u.href)}">${i}`:u.content&&(m+=`${f}<style>${u.content}</style>${i}`);y&&(m+=y+i),m+=`${b}</head>${i}${b}<body`;for(let u in p)m+=` ${u}="${this.escapeHtml(p[u])}"`;m+=`>${i}`,m+=this.renderToString(e,{pretty:g,indent:2});for(let u of c)m+=`${f}<script`,u.type&&(m+=` type="${this.escapeHtml(u.type)}"`),u.async&&(m+=" async"),u.defer&&(m+=" defer"),u.src?m+=` src="${this.escapeHtml(u.src)}"><\/script>${i}`:u.content?m+=`>${u.content}<\/script>${i}`:m+=`><\/script>${i}`;return m+=`${b}</body>${i}</html>`,m}getElementCache(){return this.elementCache}},H=new ut,Ia=H.render.bind(H),Ea=H.renderToString.bind(H),U=(e,s)=>H.createState(e,s);var mt=class{constructor(e,s,r){this.key=e,this.wsUrl=r,this.ws=null,this.pendingUpdates=[],this.localState=U(s),this.previousValue=s,this.connect()}get value(){return this.localState.value}set value(e){this.previousValue=this.localState.value,this.localState.value=e,this.sendToServer(e)}get state(){return this.localState}onChange(e){return this.localState.subscribe(s=>{let r=this.previousValue;this.previousValue=s,e(s,r)})}update(e){this.value=e(this.value)}connect(){if(typeof window>"u")return;let e=this.wsUrl||`ws://${location.host}`;this.ws=new WebSocket(e),this.ws.addEventListener("open",()=>{for(this.subscribe();this.pendingUpdates.length>0;){let s=this.pendingUpdates.shift();this.sendToServer(s)}}),this.ws.addEventListener("message",s=>{this.handleMessage(s.data)}),this.ws.addEventListener("close",()=>{setTimeout(()=>this.connect(),1e3)}),this.ws.addEventListener("error",s=>{console.error("[SharedState] WebSocket error:",s)})}subscribe(){!this.ws||this.ws.readyState!==WebSocket.OPEN||this.ws.send(JSON.stringify({type:"state:subscribe",key:this.key}))}handleMessage(e){try{let s=JSON.parse(e);if(s.key!==this.key)return;(s.type==="state:init"||s.type==="state:update")&&(this.localState.value=s.value)}catch{}}sendToServer(e){if(this.ws){if(this.ws.readyState!==WebSocket.OPEN){this.pendingUpdates.push(e);return}this.ws.send(JSON.stringify({type:"state:change",key:this.key,value:e}))}}disconnect(){this.ws&&(this.ws.close(),this.ws=null)}destroy(){this.disconnect(),this.localState.destroy()}};var gt=class{constructor(){this.states=new Map}create(e,s,r){if(this.states.has(e))return this.states.get(e);let a=new mt(e,s,r);return this.states.set(e,a),a}get(e){return this.states.get(e)}delete(e){let s=this.states.get(e);return s?(s.destroy(),this.states.delete(e)):!1}clear(){this.states.forEach(e=>e.destroy()),this.states.clear()}},Ma=new gt,ft=(e,s)=>(e&&cancelAnimationFrame(e),requestAnimationFrame(()=>{s()})),bt=(e,s)=>{let r=document.createDocumentFragment();if(s&&e&&typeof e=="object"&&"tagName"in e){let{children:a}=e;for(let l of a)H.renderToDOM(l,r)}else H.renderToDOM(e,r);return r},yt=(e,s)=>{for(let r in s){let a=s[r];if(r!=="ref")if(r==="class"||r==="className")e.className=Array.isArray(a)?a.join(" "):a||"";else if(r==="style"&&typeof a=="object"){let l=e.style;for(let c in a)l[c]=a[c]}else r.startsWith("on")?e[r.toLowerCase()]=a:a!=null&&a!==!1?e.setAttribute(r,String(a===!0?"":a)):e.removeAttribute(r)}},P=(e,s)=>{let r=null,a=null,l=null,c=!0,n=s(e.value),d=n&&typeof n=="object"&&"tagName"in n,y=n==null||n===!1,p=()=>{if(!a&&!l)return;let i=s(e.value);if(i==null||i===!1)c&&a&&(l=document.createComment("reactive"),a.parentNode?.replaceChild(l,a),c=!1);else if(!c&&l&&a&&(l.parentNode?.replaceChild(a,l),l=null,c=!0),a){let f=!!(d&&i&&typeof i=="object"&&"tagName"in i);if(f){let{props:u}=i;yt(a,u)}let m=bt(i,f);a.textContent="",a.appendChild(m),H.getElementCache().set(a,!0)}};e.subscribe(()=>{r=ft(r,()=>{p(),r=null})});let g=i=>{a=i,y&&i.parentNode&&(l=document.createComment("reactive"),i.parentNode.replaceChild(l,i),c=!1)};if(d){let i=n;return{tagName:i.tagName,props:{...i.props,ref:g},children:i.children}}return{tagName:"span",props:{ref:g},children:[n]}};var t={appContainer:"app-container",container:"container",header:"header",nav:"nav",logo:"logo",logoMark:"logo-mark",logoText:"logo-text",navLinks:"nav-links",navLink:"nav-link",navLinkActive:"nav-link-active",navActions:"nav-actions",navButton:"nav-button",mainContent:"main-content",page:"page",pageHero:"page-hero",heroEyebrow:"hero-eyebrow",heroTitle:"hero-title",subtitle:"subtitle",heroActions:"hero-actions",buttonPrimary:"button-primary",buttonSecondary:"button-secondary",badgeRow:"badge-row",badge:"badge",statGrid:"stat-grid",statCard:"stat-card",statValue:"stat-value",statLabel:"stat-label",section:"section",sectionLabel:"section-label",pageH1:"page-h1",pageLead:"page-lead",pageH2:"page-h2",pageH3:"page-h3",pageP:"page-p",pageUl:"page-ul",pageLi:"page-li",pagePre:"page-pre",pageCode:"page-code",features:"features",feature:"feature",featureH3:"feature-h3",splitGrid:"split-grid",card:"card",cardTitle:"card-title",tabs:"tabs",tab:"tab",tabActive:"tab-active",tabContent:"tab-content",stepGrid:"step-grid",stepCard:"step-card",stepNumber:"step-number",note:"note",inlineLink:"inline-link",footer:"footer",footerGrid:"footer-grid",footerBrand:"footer-brand",footerLinks:"footer-links",footerHeading:"footer-heading",footerSmall:"footer-small"};var v=e=>Ne({class:t.pagePre},E({class:t.pageCode},e));var se="1.1.3",L={repository:"https://github.com/d-osc/script-db",releases:"https://github.com/d-osc/script-db/releases",cliPackage:"https://www.npmjs.com/package/@scriptdb/cli",browserClient:"https://www.npmjs.com/package/@scriptdb/browser-client",nodeClient:"https://www.npmjs.com/package/@scriptdb/client",docsSite:"https://d-osc.github.io/script-db/"},N={npmGlobal:"npm install -g @scriptdb/cli",bunGlobal:"bun add -g @scriptdb/cli",windowsBinary:String.raw`irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex`,unixBinary:String.raw`curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash`,windowsCustomDir:String.raw`$env:SCRIPTDB_INSTALL = "C:\Tools\scriptdb"
+irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex`,unixCustomDir:String.raw`export SCRIPTDB_INSTALL="/opt/scriptdb"
+curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash`,windowsVersion:String.raw`$env:SCRIPTDB_VERSION = "v1.1.3"
+irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex`,unixVersion:String.raw`export SCRIPTDB_VERSION="v1.1.3"
+curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash`,windowsUninstall:String.raw`irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.ps1 | iex`,unixUninstall:String.raw`curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.sh | bash`},Me=String.raw`git clone https://github.com/d-osc/script-db.git
+cd script-db
+bun install
+bun run build
+npm link`,F=String.raw`# Start the server in the foreground
 scriptdb start
 
-# Start on custom port
-scriptdb start --port 8080
+# Run it in the background with PM2
+scriptdb start -d
 
-# Start in foreground
-scriptdb start --foreground`)),P({class:e.pageH3},"2. Create Your First Database"),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/browser-client';
-
-const client = new ScriptDBClient('scriptdb://localhost:1234');
-await client.connect();
-
-// Create a database
-await client.createDatabase('mydb');
-
-// Insert data
-await client.run(
-  'db.users.insert({ name: "Alice", age: 30 })',
-  'mydb'
-);
-
-// Query data
-const users = await client.run('db.users.find()', 'mydb');
-console.log(users);`))),v({class:e.section},H({class:e.pageH2},"Verify Installation"),T({class:e.pageP},"After installation, verify that ScriptDB is working:"),S({class:e.pagePre},i({class:e.pageCode},`# Check version
-scriptdb --version
-
-# View help
-scriptdb --help
-
-# Check status
-scriptdb status`))),v({class:e.section},H({class:e.pageH2},"Uninstallation"),T({class:e.pageP},"To uninstall ScriptDB:"),P({class:e.pageH3},"Windows"),S({class:e.pagePre},i({class:e.pageCode},"irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.ps1 | iex")),P({class:e.pageH3},"Linux/macOS"),S({class:e.pagePre},i({class:e.pageCode},"curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.sh | bash"))));var we=()=>v(N({class:e.pageH1},"Quick Start"),T({class:e.pageP},"Get up and running with ScriptDB in minutes!"),v({class:e.section},H({class:e.pageH2},"1. Installation"),T({class:e.pageP},"First, install ScriptDB for your platform:"),P({class:e.pageH3},"Windows"),S({class:e.pagePre},i({class:e.pageCode},"irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex")),P({class:e.pageH3},"Linux/macOS"),S({class:e.pagePre},i({class:e.pageCode},"curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash"))),v({class:e.section},H({class:e.pageH2},"2. Start the Server"),S({class:e.pagePre},i({class:e.pageCode},`# Start ScriptDB server (default port: 1234)
-scriptdb start
-
-# Start with custom port
-scriptdb start --port 8080
-
-# Start in foreground
-scriptdb start --foreground`))),v({class:e.section},H({class:e.pageH2},"3. Install Client Library"),S({class:e.pagePre},i({class:e.pageCode},`# For browser applications
-npm install @scriptdb/browser-client
-
-# For Node.js applications
-npm install @scriptdb/client`))),v({class:e.section},H({class:e.pageH2},"4. Connect and Query"),P({class:e.pageH3},"Browser Example"),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/browser-client';
-
-// Connect to server
-const client = new ScriptDBClient('scriptdb://localhost:1234');
-await client.connect();
-
-// Create a database
-await client.createDatabase('mydb');
-
-// Insert some data
-await client.run(
-  'db.users.insert({ name: "John", age: 30 })',
-  'mydb'
-);
-
-// Query the data
-const users = await client.run(
-  'db.users.find({ age: { $gt: 25 } })',
-  'mydb'
-);
-
-console.log('Found users:', users);
-
-// Save to disk
-await client.saveDatabase('mydb');`))),v({class:e.section},H({class:e.pageH2},"5. What's Next?"),w({class:e.pageUl},o({class:e.pageLi},g("Documentation")," - Read detailed API documentation"),o({class:e.pageLi},g("Usage Examples")," - Explore advanced usage patterns"),o({class:e.pageLi},g("CLI Reference")," - Learn command-line interface"),o({class:e.pageLi},g("Authentication")," - Set up secure connections"),o({class:e.pageLi},g("Real-Time Sync")," - Enable WebSocket synchronization"))));var Le=()=>v(N({class:e.pageH1},"Documentation"),T({class:e.pageP},"Welcome to the ScriptDB documentation."),v({class:e.section},H({class:e.pageH2},"What is ScriptDB?"),T({class:e.pageP},"ScriptDB is a high-performance in-memory database with JavaScript-based querying and real-time synchronization capabilities. It provides sub-millisecond query response times and supports both browser and Node.js environments.")),v({class:e.section},H({class:e.pageH2},"Core Concepts"),P({class:e.pageH3},"In-Memory Database"),T({class:e.pageP},"ScriptDB stores data in memory for ultra-fast access:"),w({class:e.pageUl},o({class:e.pageLi},"Sub-millisecond query response times"),o({class:e.pageLi},"JavaScript-based querying language"),o({class:e.pageLi},"Multiple isolated databases"),o({class:e.pageLi},"Persistent snapshots to disk")),P({class:e.pageH3},"Real-Time Synchronization"),T({class:e.pageP},"WebSocket support for real-time updates:"),w({class:e.pageUl},o({class:e.pageLi},"Browser client with WebSocket connection"),o({class:e.pageLi},"Node.js client with TCP connection"),o({class:e.pageLi},"Automatic reconnection with exponential backoff"),o({class:e.pageLi},"Request queue management for high concurrency")),P({class:e.pageH3},"Cross-Platform Support"),T({class:e.pageP},"ScriptDB works seamlessly on:"),w({class:e.pageUl},o({class:e.pageLi},g("Windows")," (x64, x86)"),o({class:e.pageLi},g("Linux")," (x64, arm64, with glibc or musl)"),o({class:e.pageLi},g("macOS")," (x64, arm64/Apple Silicon)"))),v({class:e.section},H({class:e.pageH2},"Server Architecture"),P({class:e.pageH3},"Protocol"),T({class:e.pageP},"ScriptDB uses a custom protocol over TCP and WebSocket:"),w({class:e.pageUl},o({class:e.pageLi},"Connection URI: ",i({class:e.pageCode},"scriptdb://host:port/database")),o({class:e.pageLi},"WebSocket port: TCP port + 1"),o({class:e.pageLi},"JSON message format with optional HMAC signing"),o({class:e.pageLi},"Token-based authentication")),P({class:e.pageH3},"Installation Directories"),T({class:e.pageP},"Default installation locations:"),w({class:e.pageUl},o({class:e.pageLi},g("Windows: "),i({class:e.pageCode},"%USERPROFILE%\\.scriptdb")),o({class:e.pageLi},g("Linux/macOS: "),i({class:e.pageCode},"~/.scriptdb")))),v({class:e.section},H({class:e.pageH2},"Environment Variables"),w({class:e.pageUl},o({class:e.pageLi},g("SCRIPTDB_PORT")," - Server port (default: 1234)"),o({class:e.pageLi},g("SCRIPTDB_HOST")," - Server host (default: 0.0.0.0)"),o({class:e.pageLi},g("SCRIPTDB_DATA_DIR")," - Data directory path"),o({class:e.pageLi},g("SCRIPTDB_LOG_LEVEL")," - Logging level (debug, info, warn, error)"))),v({class:e.section},H({class:e.pageH2},"Key Features"),w({class:e.pageUl},o({class:e.pageLi},g("High Performance")," - In-memory storage with sub-millisecond queries"),o({class:e.pageLi},g("WebSocket Support")," - Real-time synchronization for browsers"),o({class:e.pageLi},g("Persistent Storage")," - Save databases to disk at any time"),o({class:e.pageLi},g("Authentication")," - Built-in username/password with token sessions"),o({class:e.pageLi},g("HMAC Signing")," - Optional message signing for enhanced security"),o({class:e.pageLi},g("JavaScript Querying")," - Use JavaScript for powerful data manipulation"),o({class:e.pageLi},g("Multiple Databases")," - Manage multiple isolated database contexts"),o({class:e.pageLi},g("Auto-Reconnect")," - Automatic reconnection with exponential backoff"))),v({class:e.section},H({class:e.pageH2},"Client Libraries"),T({class:e.pageP},"ScriptDB provides official client libraries for different environments:"),w({class:e.pageUl},o({class:e.pageLi},g(M({href:"#/api",onclick:t=>{t.preventDefault(),window.location.hash="#/api"}},"@scriptdb/browser-client"))," - WebSocket client for browser applications"),o({class:e.pageLi},g(M({href:"#/api",onclick:t=>{t.preventDefault(),window.location.hash="#/api"}},"@scriptdb/client"))," - TCP client for Node.js applications")),T({class:e.pageP},"Visit the ",M({href:"#/api",onclick:t=>{t.preventDefault(),window.location.hash="#/api"}},"API Documentation")," page for detailed reference and examples.")),v({class:e.section},H({class:e.pageH2},"Client Methods"),T({class:e.pageP},"ScriptDB provides two methods for executing commands:"),w({class:e.pageUl},o({class:e.pageLi},g(i({class:e.pageCode},"client.run(command, database)"))," - Execute TypeScript/JavaScript commands and return results"),o({class:e.pageLi},g(i({class:e.pageCode},"client.execute(command, database)"))," - Execute TypeScript/JavaScript commands without waiting for results")),T({class:e.pageP},"Both methods accept TypeScript/JavaScript code as strings for database operations.")),v({class:e.section},H({class:e.pageH2},"Quick Example"),T({class:e.pageP},"Get started with ScriptDB in just a few lines:"),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/browser-client';
-
-// Connect to server
-const client = new ScriptDBClient('scriptdb://localhost:1234');
-await client.connect();
-
-// Create a database
-await client.createDatabase('mydb');
-
-// Insert data (using TypeScript/JavaScript)
-await client.run(
-  'db.users.insert({ name: "John", age: 30, status: "active" })',
-  'mydb'
-);
-
-// Query data (using TypeScript/JavaScript)
-const users = await client.run(
-  'db.users.find({ age: { $gt: 25 } })',
-  'mydb'
-);
-console.log(users);
-
-// Save to disk
-await client.saveDatabase('mydb');`))));var Te=()=>v(N({class:e.pageH1},"Usage"),T({class:e.pageP},"Learn how to use ScriptDB effectively with practical examples."),v({class:e.section},H({class:e.pageH2},"Server Management"),P({class:e.pageH3},"Starting ScriptDB"),S({class:e.pagePre},i({class:e.pageCode},`# Start the server (default port: 1234)
-scriptdb start
-
-# Start with custom port
-scriptdb start --port 8080
-
-# Start in foreground
-scriptdb start --foreground`)),P({class:e.pageH3},"Managing the Server"),S({class:e.pagePre},i({class:e.pageCode},`# Check server status
+# Inspect health and logs
 scriptdb status
+scriptdb logs
 
-# Stop the server
+# Stop or restart when you change configuration
 scriptdb stop
+scriptdb restart -d`,q=String.raw`scriptdb --help
+scriptdb status
+scriptdb shell`,W=String.raw`import BrowserClient from '@scriptdb/browser-client';
 
-# Stop with force
-scriptdb stop --force`))),v({class:e.section},H({class:e.pageH2},"Using the Browser Client"),T({class:e.pageP},"Connect to ScriptDB from your browser application:"),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/browser-client';
-
-// Connect to server
-const client = new ScriptDBClient('scriptdb://localhost:1234', {
+const client = new BrowserClient({
+  host: 'localhost',
+  port: 1234,
+  username: 'admin',
+  password: 'admin123',
   secure: false,
   requestTimeout: 30000
 });
 
 await client.connect();
 
-// Create database
-await client.createDatabase('mydb');
-
-// Insert data
-await client.run(
-  'db.users.insert({ name: "John", age: 30, email: "john@example.com" })',
-  'mydb'
-);
-
-// Query data
-const users = await client.run(
-  'db.users.find({ age: { $gt: 25 } })',
-  'mydb'
-);
-console.log(users);
-
-// Save database
-await client.saveDatabase('mydb');`))),v({class:e.section},H({class:e.pageH2},"Using the Node.js Client"),T({class:e.pageP},"Connect to ScriptDB from your Node.js application:"),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/client';
-
-const client = new ScriptDBClient('scriptdb://localhost:1234');
-await client.connect();
-
-// List all databases
-const databases = await client.listDatabases();
+const { databases } = await client.listDatabases();
 console.log('Databases:', databases);
 
-// Run queries
-const result = await client.run('db.users.find()', 'mydb');
-console.log(result);`))),v({class:e.section},H({class:e.pageH2},"Query Examples"),P({class:e.pageH3},"Basic CRUD Operations"),S({class:e.pagePre},i({class:e.pageCode},`// Create/Insert
-await client.run(\`
-  db.users.insert({
-    name: 'Alice',
-    age: 28,
-    status: 'active',
-    created: new Date()
-  })
-\`, 'mydb');
+await client.createDatabase('my-scripts');
 
-// Read/Find
-const activeUsers = await client.run(
-  'db.users.find({ status: "active" })',
-  'mydb'
+const result = await client.run(
+  [
+    "export const greet = (name: string) => 'Hello, ' + name + '!';",
+    "export const jobs = ['lint', 'build', 'deploy'];"
+  ].join('\n'),
+  'my-scripts'
 );
 
-// Update
-await client.run(\`
-  db.users.update(
-    { name: 'Alice' },
-    { $set: { age: 29, verified: true } }
-  )
-\`, 'mydb');
+console.log(result);
+await client.saveDatabase('my-scripts');
+await client.disconnect();`,J=String.raw`import { ScriptDBClient } from '@scriptdb/client';
 
-// Delete
-await client.run(
-  'db.users.remove({ status: "inactive" })',
-  'mydb'
-);`)),P({class:e.pageH3},"Advanced Queries"),S({class:e.pagePre},i({class:e.pageCode},`// Find with comparison operators
-const result = await client.run(\`
-  db.users.find({
-    age: { $gt: 18, $lte: 65 },
-    status: { $in: ['active', 'pending'] }
-  })
-\`, 'mydb');
-
-// Sort and limit
-const sorted = await client.run(\`
-  db.users.find()
-    .sort({ age: -1, name: 1 })
-    .limit(10)
-\`, 'mydb');
-
-// Aggregation
-const stats = await client.run(\`
-  db.users.aggregate([
-    { $group: { 
-        _id: '$status', 
-        count: { $sum: 1 },
-        avgAge: { $avg: '$age' }
-      }
-    },
-    { $sort: { count: -1 } }
-  ])
-\`, 'mydb');`))),v({class:e.section},H({class:e.pageH2},"Common Use Cases"),P({class:e.pageH3},"1. Web Application Backend"),S({class:e.pagePre},i({class:e.pageCode},`// Fast in-memory database for web apps
-const app = express();
-const db = new ScriptDBClient('scriptdb://localhost:1234');
-
-app.get('/users', async (req, res) => {
-  const users = await db.run('db.users.find()', 'appdb');
-  res.json(users);
-});
-
-app.post('/users', async (req, res) => {
-  await db.run(
-    \`db.users.insert(\${JSON.stringify(req.body)})\`,
-    'appdb'
-  );
-  res.status(201).json({ success: true });
-});`)),P({class:e.pageH3},"2. Real-Time Data Sync"),S({class:e.pagePre},i({class:e.pageCode},`// Browser client with auto-reconnect
-const client = new ScriptDBClient('scriptdb://localhost:1234', {
-  retries: 5,
-  retryDelay: 2000
-});
-
-await client.connect();
-
-// Poll for updates
-setInterval(async () => {
-  const updates = await client.run(
-    'db.updates.find({ processed: false })',
-    'realtime-db'
-  );
-  
-  if (updates.length > 0) {
-    console.log('New updates:', updates);
-    // Process updates...
-  }
-}, 1000);`)),P({class:e.pageH3},"3. Caching Layer"),S({class:e.pagePre},i({class:e.pageCode},`// Use ScriptDB as a fast cache
-const cache = new ScriptDBClient('scriptdb://localhost:1234');
-await cache.connect();
-
-// Set cache
-await cache.run(
-  \`db.cache.insert({
-    key: 'user:123',
-    value: userData,
-    expires: Date.now() + 3600000
-  })\`,
-  'cache-db'
-);
-
-// Get from cache
-const cached = await cache.run(
-  'db.cache.findOne({ key: "user:123", expires: { $gt: Date.now() } })',
-  'cache-db'
-);
-
-if (cached) {
-  console.log('Cache hit:', cached.value);
-} else {
-  console.log('Cache miss - fetch from database');
-}`))),v({class:e.section},H({class:e.pageH2},"Authentication & Security"),P({class:e.pageH3},"Authenticated Connection"),S({class:e.pagePre},i({class:e.pageCode},`const client = new ScriptDBClient('scriptdb://localhost:1234', {
+const client = new ScriptDBClient('scriptdb://localhost:1234/my-scripts', {
+  secure: false,
   username: 'admin',
-  password: 'secret123'
+  password: 'admin123',
+  requestTimeout: 30000,
+  retries: 3,
+  retryDelay: 1000
+});
+
+await client.connect();
+await client.createDatabase('my-scripts');
+
+const info = await client.getInfo();
+console.log('Server info:', info);
+
+const result = await client.run(
+  [
+    "export const answer = 2 + 2;",
+    "export const tags = ['server', 'cli', 'gui'];"
+  ].join('\n'),
+  'my-scripts'
+);
+
+console.log(result);
+await client.saveDatabase('my-scripts');
+client.close();`,Ve=String.raw`const client = new BrowserClient({
+  host: 'localhost',
+  port: 1234,
+  username: 'admin',
+  password: 'admin123',
+  secure: false,
+  requestTimeout: 30000
+});`,He=String.raw`const client = new ScriptDBClient('scriptdb://localhost:1234/my-scripts', {
+  secure: false,
+  username: 'admin',
+  password: 'admin123',
+  requestTimeout: 30000,
+  socketTimeout: 0,
+  retries: 3,
+  retryDelay: 1000,
+  maxPending: 100,
+  maxQueue: 1000
+});`,Be=String.raw`const response = await client.execute({
+  action: 'script-code',
+  data: {
+    databaseName: 'my-scripts',
+    code: "export const answer = 42;"
+  }
+});`,Re=String.raw`const response = await client.execute({
+  action: 'script-code',
+  data: {
+    databaseName: 'my-scripts',
+    code: "export const answer = 42;"
+  }
+});`,re=String.raw`const client = new ScriptDBClient('scriptdb://localhost:1234/my-scripts', {
+  secure: false,
+  username: 'admin',
+  password: 'change-me'
 });
 
 await client.connect();
 
-// Or authenticate after connecting
-await client.login('admin', 'secret123');`)),P({class:e.pageH3},"HMAC Message Signing"),S({class:e.pagePre},i({class:e.pageCode},`const client = new ScriptDBClient('scriptdb://localhost:1234', {
+// You can also re-authenticate explicitly.
+await client.login('admin', 'change-me');`,ae=String.raw`const client = new ScriptDBClient('scriptdb://localhost:1234/my-scripts', {
+  secure: true,
   signing: {
-    secret: process.env.SIGNING_SECRET,
+    secret: process.env.SCRIPTDB_SIGNING_SECRET || 'replace-me',
     algorithm: 'sha256'
   }
 });
 
-await client.connect();
+await client.connect();`,B=String.raw`scriptdb shell
 
-// All messages will be signed with HMAC
-const result = await client.run('db.data.find()', 'mydb');`))),v({class:e.section},H({class:e.pageH2},"Best Practices"),w({class:e.pageUl},o({class:e.pageLi},g("Use Connection Pooling")," - Reuse client instances instead of creating new ones"),o({class:e.pageLi},g("Enable Auto-Reconnect")," - Set retries > 0 for production environments"),o({class:e.pageLi},g("Monitor Memory Usage")," - Save databases to disk periodically"),o({class:e.pageLi},g("Use Indexes")," - Create indexes on frequently queried fields"),o({class:e.pageLi},g("Handle Errors")," - Always wrap operations in try-catch blocks"),o({class:e.pageLi},g("Secure Connections")," - Use secure WebSocket (wss://) in production"))));var Pe=()=>v(N({class:e.pageH1},"Installation Scripts"),T({class:e.pageP},"ScriptDB provides automated installation scripts for all supported platforms."),v({class:e.section},H({class:e.pageH2},"Overview"),T({class:e.pageP},"ScriptDB installation scripts handle binary download, installation, and configuration automatically. They support multiple platforms, architectures, and installation methods."),w({class:e.pageUl},o({class:e.pageLi},g("Cross-Platform")," - Windows, Linux, and macOS support"),o({class:e.pageLi},g("Multi-Architecture")," - x64, x86, ARM64, and more"),o({class:e.pageLi},g("Automatic Detection")," - Detects OS, architecture, and dependencies"),o({class:e.pageLi},g("Customizable")," - Environment variables for custom installations"))),v({class:e.section},H({class:e.pageH2},"Windows Installation"),P({class:e.pageH3},"install.ps1"),T({class:e.pageP},"PowerShell installation script for Windows systems."),L({class:e.pageH3},"Usage"),S({class:e.pagePre},i({class:e.pageCode},`# Basic installation
-irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex
+> .dbs
+> .create my-scripts
+> .use my-scripts
+> const build = ['lint', 'test', 'ship']
+> build.map((step) => step.toUpperCase())`,ne=String.raw`# Install packages into ~/.scriptdb/packages
+scriptdb add lodash
+scriptdb add axios express
 
-# With custom version
-$env:SCRIPTDB_VERSION="1.0.0"
-irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex
+# Install packages into the current directory
+scriptdb add --local lodash
 
-# With custom directory
-$env:SCRIPTDB_INSTALL="C:\\MyTools\\scriptdb"
-irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.ps1 | iex`)),L({class:e.pageH3},"Features"),w({class:e.pageUl},o({class:e.pageLi},g("Architecture Detection")," - Automatically detects x64 or x86"),o({class:e.pageLi},g("Automatic Download")," - Fetches correct binary from GitHub releases"),o({class:e.pageLi},g("PATH Configuration")," - Adds ScriptDB to user PATH"),o({class:e.pageLi},g("Custom Directory")," - Supports $env:SCRIPTDB_INSTALL"),o({class:e.pageLi},g("Version Selection")," - Use $env:SCRIPTDB_VERSION"),o({class:e.pageLi},g("Installation Directory")," - Default: %USERPROFILE%\\.scriptdb"))),v({class:e.section},H({class:e.pageH2},"Unix Installation"),P({class:e.pageH3},"install.sh"),T({class:e.pageP},"Bash installation script for Linux and macOS systems."),L({class:e.pageH3},"Usage"),S({class:e.pagePre},i({class:e.pageCode},`# Basic installation
-curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash
-
-# With custom version
-SCRIPTDB_VERSION=1.0.0 curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash
-
-# With custom directory
-SCRIPTDB_INSTALL=/opt/scriptdb curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/install.sh | bash`)),L({class:e.pageH3},"Features"),w({class:e.pageUl},o({class:e.pageLi},g("OS Detection")," - Supports Linux and macOS"),o({class:e.pageLi},g("Architecture Detection")," - Handles x64 and ARM64"),o({class:e.pageLi},g("LIBC Detection")," - Distinguishes between glibc and musl"),o({class:e.pageLi},g("Multiple Downloaders")," - Uses curl or wget"),o({class:e.pageLi},g("Shell Integration")," - PATH setup for bash, zsh, fish"),o({class:e.pageLi},g("Installation Directory")," - Default: ~/.scriptdb"))),v({class:e.section},H({class:e.pageH2},"Environment Variables"),T({class:e.pageP},"Customize installation behavior with environment variables:"),P({class:e.pageH3},"SCRIPTDB_VERSION"),T({class:e.pageP},"Specify the version to install (default: latest)"),S({class:e.pagePre},i({class:e.pageCode},`# Windows
-$env:SCRIPTDB_VERSION="1.0.0"
-
-# Linux/macOS
-export SCRIPTDB_VERSION="1.0.0"`)),P({class:e.pageH3},"SCRIPTDB_INSTALL"),T({class:e.pageP},"Set custom installation directory"),S({class:e.pagePre},i({class:e.pageCode},`# Windows
-$env:SCRIPTDB_INSTALL="C:\\Tools\\scriptdb"
-
-# Linux/macOS
-export SCRIPTDB_INSTALL="/opt/scriptdb"`))),v({class:e.section},H({class:e.pageH2},"Installation Directory Structure"),T({class:e.pageP},"After installation, ScriptDB creates the following directory structure:"),S({class:e.pagePre},i({class:e.pageCode},`# Windows
-%USERPROFILE%\\.scriptdb/
-\u251C\u2500\u2500 bin/
-\u2502   \u2514\u2500\u2500 scriptdb.exe
-\u2514\u2500\u2500 data/
+# Remove packages again
+scriptdb remove lodash
+scriptdb remove --local lodash`,oe=String.raw`{
+  "host": "localhost",
+  "port": 1234,
+  "users": [
+    {
+      "username": "admin",
+      "password": "your-password",
+      "hash": false
+    }
+  ],
+  "folder": "databases",
+  "secure": false
+}`,ie=String.raw`# Windows
+%USERPROFILE%\.scriptdb/
+├── bin/
+│   └── scriptdb.exe
+├── config.json
+├── databases/
+└── packages/
 
 # Linux/macOS
 ~/.scriptdb/
-\u251C\u2500\u2500 bin/
-\u2502   \u2514\u2500\u2500 scriptdb
-\u2514\u2500\u2500 data/`)),P({class:e.pageH3},"Binary Location"),w({class:e.pageUl},o({class:e.pageLi},g("Windows: "),i({class:e.pageCode},"%USERPROFILE%\\.scriptdb\\bin\\scriptdb.exe")),o({class:e.pageLi},g("Linux/macOS: "),i({class:e.pageCode},"~/.scriptdb/bin/scriptdb")))),v({class:e.section},H({class:e.pageH2},"Uninstallation"),T({class:e.pageP},"ScriptDB also provides uninstallation scripts for clean removal."),P({class:e.pageH3},"Windows"),S({class:e.pagePre},i({class:e.pageCode},"irm https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.ps1 | iex")),P({class:e.pageH3},"Linux/macOS"),S({class:e.pagePre},i({class:e.pageCode},"curl -fsSL https://raw.githubusercontent.com/d-osc/script-db/refs/heads/main/scripts/uninstall.sh | bash"))),v({class:e.section},H({class:e.pageH2},"Supported Platforms"),P({class:e.pageH3},"Windows"),w({class:e.pageUl},o({class:e.pageLi},"Windows 10/11 (x64, x86)")),P({class:e.pageH3},"Linux"),w({class:e.pageUl},o({class:e.pageLi},"x64 (Intel/AMD)"),o({class:e.pageLi},"ARM64 (aarch64)"),o({class:e.pageLi},"glibc or musl")),P({class:e.pageH3},"macOS"),w({class:e.pageUl},o({class:e.pageLi},"x64 (Intel)"),o({class:e.pageLi},"ARM64 (Apple Silicon)"))),v({class:e.section},H({class:e.pageH2},"Post-Installation"),P({class:e.pageH3},"Verify Installation"),S({class:e.pagePre},i({class:e.pageCode},`# Check version
-scriptdb --version
+├── bin/
+│   └── scriptdb
+├── config.json
+├── databases/
+├── ecosystem.config.js
+├── packages/
+└── pm2-*.log`,Ue=String.raw`Connection URI: scriptdb://[username:password@]host:port/database
+Node Transport: TCP on the configured ScriptDB port
+Browser Transport: WebSocket proxy on port + 1
+Authentication: username/password with token sessions
+Security: optional TLS plus optional HMAC signing in the Node client`,Oe=["create(name, code)","update(name, code)","remove(name)","save(name, code)","read(name)"];var Ge=(e,s,r)=>S({href:`#${e}`,class:r},s),fe=(e,s,r)=>S({href:e,class:r,target:"_blank",rel:"noopener noreferrer"},s),be=(e,s)=>o({class:t.statCard},C({class:t.statValue},e),h({class:t.statLabel},s)),z=(e,s)=>o({class:t.feature},w({class:t.featureH3},e),h({class:t.pageP},s)),je=()=>{let e=U("browser");return o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},`Version ${se}`),C({class:t.badge},"CLI + GUI"),C({class:t.badge},"Browser + Node clients"),C({class:t.badge},"TypeScript sandbox")),h({class:t.heroEyebrow},"Script Database Platform"),D({class:t.heroTitle},"Store, version, and run your scripts from one ScriptDB server."),h({class:t.subtitle},"ScriptDB combines a CLI, browser GUI, browser client, and Node client so teams can manage TypeScript or JavaScript databases, execute code in a controlled runtime, and keep workflows close to their tooling."),o({class:t.heroActions},Ge("/installation","Install ScriptDB",t.buttonPrimary),Ge("/quick-start","Quick Start",t.buttonSecondary),fe(L.repository,"GitHub",t.buttonSecondary)),o({class:t.statGrid},be("2 apps","CLI and GUI apps sit alongside the server and package workspace."),be("7 packages","Clients, storage, VM, server, and system modules share one monorepo."),be("1234 + 1","The TCP server listens on the configured port and the browser proxy uses port + 1."))),o({class:t.section},h({class:t.sectionLabel},"Why Teams Use It"),k({class:t.pageH2},"One workflow for code storage, execution, and tooling."),h({class:t.pageLead},"The main ScriptDB monorepo ships the server, a browser GUI, a CLI, a WebSocket browser client, a TCP Node client, system modules, storage, and the sandbox runtime in one place."),o({class:t.features},z("Secure script runtime","Run TypeScript or JavaScript in a sandboxed VM instead of pushing script execution responsibilities into ad hoc glue code."),z("Git-backed storage","Treat ScriptDB databases like code assets with versioned storage and update flows that fit engineering teams."),z("CLI-first operations","Start, stop, inspect, shell into, and monitor the server with the official @scriptdb/cli package."),z("Browser GUI","The GUI app brings Monaco-powered editing, database browsing, and output inspection to the same backend."),z("Official clients","Use the browser client over WebSocket or the Node client over TCP with matching high-level operations."),z("Typed workflows","The monorepo is built around TypeScript with typed packages and generated definitions for runtime interactions."))),o({class:t.section},h({class:t.sectionLabel},"Install"),k({class:t.pageH2},"Choose the install path that matches your environment."),h({class:t.pageLead},"Most teams start with the CLI package, while local machines and internal images can use the binary install scripts published from this repo."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Recommended: global CLI package"),h({class:t.pageP},"Install the CLI from npm or Bun when you want `scriptdb` available in your normal JavaScript toolchain."),v(`${N.npmGlobal}
+${N.bunGlobal}`),h({class:t.pageP},"This is the cleanest route when you already manage Node or Bun on the host."),fe(L.cliPackage,"Open @scriptdb/cli on npm",t.inlineLink)),o({class:t.card},w({class:t.cardTitle},"Binary install scripts"),h({class:t.pageP},"Use the shipped PowerShell or shell scripts to pull a release binary into the standard ScriptDB folder and add it to PATH."),v(`${N.windowsBinary}
 
-# View help
-scriptdb --help
+${N.unixBinary}`),h({class:t.pageP},"This route is useful for disposable environments, CI images, and hosts where you want a direct binary install."),fe(L.releases,"Browse release assets",t.inlineLink)))),o({class:t.section},h({class:t.sectionLabel},"Use The Clients"),k({class:t.pageH2},"The browser and Node clients cover the same core workflow."),h({class:t.pageLead},"Both official clients let you connect, authenticate, create databases, run code, and save results. The browser client talks to the WebSocket proxy and the Node client talks to the TCP server directly."),o({class:t.tabs},P(e,s=>V({class:s==="browser"?t.tabActive:t.tab,onclick:()=>e.value="browser"},"Browser Client")),P(e,s=>V({class:s==="node"?t.tabActive:t.tab,onclick:()=>e.value="node"},"Node Client"))),o({class:t.tabContent},P(e,s=>s==="browser"?o({class:t.card},w({class:t.cardTitle},"@scriptdb/browser-client"),h({class:t.pageP},"Use this when your app runs in the browser and reaches ScriptDB through the WebSocket proxy on `port + 1`."),v(W)):o({class:t.card},w({class:t.cardTitle},"@scriptdb/client"),h({class:t.pageP},"Use this for services, workers, CLIs, and server-side tools that can connect over the native TCP transport."),v(J))))),o({class:t.section},h({class:t.sectionLabel},"Operate"),k({class:t.pageH2},"Run the server, inspect it, and work interactively."),h({class:t.pageLead},"ScriptDB is built to be operated from the CLI first. You can run it in the foreground, daemonize it with PM2, inspect logs, or drop into the interactive shell."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Server lifecycle"),h({class:t.pageP},"These are the core commands you will use when provisioning or managing a ScriptDB instance."),v(F)),o({class:t.card},w({class:t.cardTitle},"Interactive shell"),h({class:t.pageP},"Use the shell for quick inspection, creating databases, and trying code paths without wiring a client app first."),v(B)))))};var ye=(e,s)=>S({href:e,class:t.inlineLink,target:"_blank",rel:"noopener noreferrer"},s),Fe=()=>o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"CLI package"),C({class:t.badge},"Binary installers"),C({class:t.badge},"Source build")),h({class:t.heroEyebrow},"Installation"),D({class:t.pageH1},"Install ScriptDB the way your environment expects."),h({class:t.pageLead},"You can install the CLI globally from npm or Bun, use the platform install scripts that pull release binaries, or build the monorepo from source when you need the full workspace."),o({class:t.heroActions},S({href:"#/quick-start",class:t.buttonPrimary},"Open Quick Start"),S({href:L.releases,class:t.buttonSecondary,target:"_blank",rel:"noopener noreferrer"},"View Releases"))),o({class:t.section},h({class:t.sectionLabel},"Recommended Path"),k({class:t.pageH2},"Install the CLI globally if you already have Node or Bun."),h({class:t.pageLead},"The global CLI package is the smoothest path for most developers because it matches the monorepo tooling and keeps upgrades in the normal package manager flow."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"npm"),h({class:t.pageP},"Use npm when you want the CLI available system-wide and already manage your JavaScript toolchain with Node."),v(N.npmGlobal),h({class:t.pageP},"This installs the `scriptdb` binary from the official ",ye(L.cliPackage,"@scriptdb/cli")," package.")),o({class:t.card},w({class:t.cardTitle},"Bun"),h({class:t.pageP},"Use Bun for the same CLI package when your environment already standardizes on Bun for package management."),v(N.bunGlobal),h({class:t.pageP},"This path is especially convenient when you plan to build or work inside the ScriptDB monorepo later.")))),o({class:t.section},h({class:t.sectionLabel},"Binary Installers"),k({class:t.pageH2},"Use the repository install scripts for direct binary setup."),h({class:t.pageLead},"The install scripts download the correct release asset for the host platform and put ScriptDB into the standard user-level install directory."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Windows PowerShell"),h({class:t.pageP},"The PowerShell installer targets the Windows binary and updates the user PATH after installation."),v(N.windowsBinary)),o({class:t.card},w({class:t.cardTitle},"Linux and macOS shell"),h({class:t.pageP},"The shell installer detects OS and architecture, then downloads the matching ScriptDB binary into `~/.scriptdb/bin`."),v(N.unixBinary))),o({class:t.note},"Use the binary installers when you want a release artifact without first installing the CLI package globally.")),o({class:t.section},h({class:t.sectionLabel},"Advanced Options"),k({class:t.pageH2},"Pin a release or change the install directory."),h({class:t.pageLead},"The install scripts expose two useful environment variables: `SCRIPTDB_VERSION` for version pinning and `SCRIPTDB_INSTALL` for custom install locations."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Version pinning"),h({class:t.pageP},"Lock to a known release when you want reproducible machine images or controlled upgrades."),v(`${N.windowsVersion}
 
-# Start server
-scriptdb start`)),P({class:e.pageH3},"Next Steps"),w({class:e.pageUl},o({class:e.pageLi},"Read the ",g("Quick Start")," guide"),o({class:e.pageLi},"Explore the ",g("API Documentation")," for client libraries"),o({class:e.pageLi},"Check ",g("Usage")," examples"))));var $e=()=>{let t=j("browser");return v(N({class:e.pageH1},"API Documentation"),T({class:e.pageP},"Complete API reference for ScriptDB client libraries."),v({class:e.tabs},E(t,s=>Y({class:s==="browser"?e.tabActive:e.tab,style:"cursor: pointer; padding: 0.75rem 1.5rem;",onclick:()=>t.value="browser"},"@scriptdb/browser-client")),E(t,s=>Y({class:s==="node"?e.tabActive:e.tab,style:"cursor: pointer; padding: 0.75rem 1.5rem;",onclick:()=>t.value="node"},"@scriptdb/client"))),v({class:e.tabContent},E(t,s=>s==="browser"?et():tt())))},et=()=>v(v({class:e.section},H({class:e.pageH2},"Installation"),S({class:e.pagePre},i({class:e.pageCode},"npm install @scriptdb/browser-client")),T({class:e.pageP},"Or use CDN:"),S({class:e.pagePre},i({class:e.pageCode},`<script type="module">
-  import ScriptDBClient from 'https://cdn.jsdelivr.net/npm/@scriptdb/browser-client/+esm';
-<\/script>`))),v({class:e.section},H({class:e.pageH2},"Quick Start"),T({class:e.pageP},"ScriptDB Browser Client is a WebSocket client for connecting to ScriptDB servers from browser applications."),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDBClient from '@scriptdb/browser-client';
+${N.unixVersion}`)),o({class:t.card},w({class:t.cardTitle},"Custom install folders"),h({class:t.pageP},"Point the installer at a custom path when your environment uses shared tools directories or non-default home layouts."),v(`${N.windowsCustomDir}
 
-// Initialize client with connection URI
-const client = new ScriptDBClient('scriptdb://localhost:1234', {
-  secure: false,        // Use wss:// if true, ws:// if false
-  requestTimeout: 30000 // Request timeout in milliseconds
-});
+${N.unixCustomDir}`)))),o({class:t.section},h({class:t.sectionLabel},"Source Build"),k({class:t.pageH2},"Build the workspace when you need the full monorepo."),h({class:t.pageLead},"This is the path to take if you want the GUI app, shared packages, and development scripts exactly as they live in the source tree."),v(Me)),o({class:t.section},h({class:t.sectionLabel},"Verify And Remove"),k({class:t.pageH2},"Validate the install, then keep an uninstall path handy."),h({class:t.pageLead},"Whether you installed from npm or via release scripts, a quick check right away saves time before you wire the server into larger workflows."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Verification"),h({class:t.pageP},"These commands confirm that the CLI is available and that the server shell can be reached."),v(q)),o({class:t.card},w({class:t.cardTitle},"Uninstall scripts"),h({class:t.pageP},"If you used the binary install scripts, the uninstall scripts remove the installed files from the ScriptDB home folder."),v(`${N.windowsUninstall}
 
-// Connect to server
-await client.connect();
+${N.unixUninstall}`)))),o({class:t.section},h({class:t.sectionLabel},"Client Packages"),k({class:t.pageH2},"Install the package that matches where your code runs."),h({class:t.pageLead},"ScriptDB ships dedicated clients for browser and Node runtimes. They expose matching high-level operations for creating databases, running code, and saving results."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"@scriptdb/browser-client"),h({class:t.pageP},"Use this in browser apps through the WebSocket proxy that listens on the ScriptDB port plus one."),v("npm install @scriptdb/browser-client"),h({class:t.pageP},"Package: ",ye(L.browserClient,"@scriptdb/browser-client"))),o({class:t.card},w({class:t.cardTitle},"@scriptdb/client"),h({class:t.pageP},"Use this in Node services, workers, and CLIs that connect directly over the native TCP transport."),v("npm install @scriptdb/client"),h({class:t.pageP},"Package: ",ye(L.nodeClient,"@scriptdb/client"))))));var K=(e,s,r)=>o({class:t.stepCard},C({class:t.stepNumber},e),w({class:t.cardTitle},s),h({class:t.pageP},r)),qe=()=>{let e=U("browser");return o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"5 steps"),C({class:t.badge},"CLI workflow"),C({class:t.badge},"Browser and Node examples")),h({class:t.heroEyebrow},"Quick Start"),D({class:t.pageH1},"Get a ScriptDB server running and execute your first database code path."),h({class:t.pageLead},"This page is the shortest path from a clean machine to a running server, a created database, and a client that can execute TypeScript or JavaScript against it."),o({class:t.heroActions},S({href:"#/installation",class:t.buttonPrimary},"Installation Options"),S({href:"#/api",class:t.buttonSecondary},"Client API"))),o({class:t.section},h({class:t.sectionLabel},"Workflow"),k({class:t.pageH2},"A complete first run in five small steps."),o({class:t.stepGrid},K("1","Install the CLI","Install @scriptdb/cli globally or use the release install scripts if you want a direct binary."),K("2","Start the server","Bring ScriptDB up in the foreground or daemonize it with PM2 depending on the environment."),K("3","Connect a client","Pick the browser client for web apps or the Node client for services and scripts."),K("4","Create a database","Create a database and run code that exports functions or values you want ScriptDB to store."),K("5","Inspect and persist","Use the shell, status, logs, and save operations to verify the result and keep it around."))),o({class:t.section},h({class:t.sectionLabel},"Install And Start"),k({class:t.pageH2},"Install the CLI, then boot the server."),h({class:t.pageLead},"If you already have Node or Bun, install the CLI package. If not, the repository also publishes direct binary install scripts for Windows, Linux, and macOS."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Install command"),v(`${N.npmGlobal}
+${N.bunGlobal}
 
-// List all databases
-const databases = await client.listDatabases();
-console.log('Databases:', databases);
+${N.windowsBinary}
 
-// Run code in a database
-const result = await client.run('db.users.find()', 'mydb');
-console.log('Query result:', result);
+${N.unixBinary}`)),o({class:t.card},w({class:t.cardTitle},"Start and inspect"),v(F)))),o({class:t.section},h({class:t.sectionLabel},"Connect A Client"),k({class:t.pageH2},"Run the same high-level flow from browser or Node."),h({class:t.pageLead},"Both clients let you connect, create databases, run code, and save your work. Choose the browser client when your app runs in a browser and the Node client when it runs alongside backend services or automation."),o({class:t.tabs},P(e,s=>V({class:s==="browser"?t.tabActive:t.tab,onclick:()=>e.value="browser"},"Browser Client")),P(e,s=>V({class:s==="node"?t.tabActive:t.tab,onclick:()=>e.value="node"},"Node Client"))),o({class:t.tabContent},P(e,s=>s==="browser"?o({class:t.card},w({class:t.cardTitle},"Browser example"),h({class:t.pageP},"The browser client connects over the WebSocket proxy on `port + 1`, so local development usually runs with `secure: false`."),v(W)):o({class:t.card},w({class:t.cardTitle},"Node example"),h({class:t.pageP},"The Node client connects directly over the ScriptDB TCP port and exposes the same high-level operations."),v(J)))),o({class:t.note},"Use secure transport and production credentials when you move the client examples beyond local development.")),o({class:t.section},h({class:t.sectionLabel},"Inspect And Extend"),k({class:t.pageH2},"Use the shell and then move into deeper docs."),h({class:t.pageLead},"The interactive shell is the fastest place to verify a new server, create databases, and sanity-check code paths before you wire ScriptDB into an app or service."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Interactive shell"),v(B)),o({class:t.card},w({class:t.cardTitle},"Where to go next"),h({class:t.pageP},"Move to the documentation page for architecture, the usage page for day-to-day workflows, and the API page for client constructors and method reference."),h({class:t.pageP},S({href:"#/docs",class:t.inlineLink},"Read the docs")," to understand the monorepo shape and runtime model."),h({class:t.pageP},S({href:"#/usage",class:t.inlineLink},"Open usage")," for CLI operations, package management, and security patterns."),h({class:t.pageP},S({href:"#/api",class:t.inlineLink},"Open API reference")," for browser and Node client examples based on the current source.")))))};var we=(e,s)=>S({href:`#${e}`,class:t.inlineLink},s),ve=(e,s)=>S({href:e,class:t.inlineLink,target:"_blank",rel:"noopener noreferrer"},s),xe=(e,s,r)=>o({class:t.card},w({class:t.cardTitle},e),h({class:t.pageP},s),I({class:t.pageUl},...r.map(a=>$({class:t.pageLi},a)))),We=()=>o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"Monorepo docs"),C({class:t.badge},"CLI + GUI + server"),C({class:t.badge},"Source-aligned reference")),h({class:t.heroEyebrow},"Documentation"),D({class:t.pageH1},"How ScriptDB is put together and how the pieces fit."),h({class:t.pageLead},"This site now describes ScriptDB as it exists in the current monorepo: a server with official browser and Node clients, a CLI, a browser GUI, shared storage and VM packages, and system modules used inside executed code."),o({class:t.heroActions},S({href:"#/usage",class:t.buttonPrimary},"Open Usage"),S({href:"#/api",class:t.buttonSecondary},"API Reference"),ve(L.repository,"Monorepo Source"))),o({class:t.section},h({class:t.sectionLabel},"Platform Shape"),k({class:t.pageH2},"The website now maps to the real ScriptDB workspace."),h({class:t.pageLead},"ScriptDB is not just a single binary. The repository ships application surfaces for humans, transport clients for apps, and lower-level packages that handle storage, execution, and shared modules."),o({class:t.features},xe("Apps","The repo includes the pieces operators touch directly during development and maintenance.",["The CLI starts, stops, monitors, and shells into the server.","The browser GUI provides Monaco-based editing and database inspection.","The server owns the TCP endpoint and browser-facing proxy flow."]),xe("Packages","The monorepo packages are split by transport and runtime responsibility.",["@scriptdb/client for TCP connections from Node and automation.","@scriptdb/browser-client for browser access through the proxy on port + 1.","server, storage, system-modules, and vm packages support the runtime."]),xe("Workflow","The happy path is intentionally simple even though the platform is modular.",["Install the CLI or release binary.","Start the server and create a database.","Run TypeScript or JavaScript, then save the database when you want persistence."]))),o({class:t.section},h({class:t.sectionLabel},"Transport"),k({class:t.pageH2},"There is one database model with two client transports."),h({class:t.pageLead},"The Node client talks directly to the configured TCP port. The browser client talks to the WebSocket proxy on the next port, but both clients expose nearly the same high-level database operations."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Protocol summary"),h({class:t.pageP},"This is the transport contract the docs now assume throughout the site."),v(Ue)),o({class:t.card},w({class:t.cardTitle},"Database lifecycle"),h({class:t.pageP},"Databases are named execution contexts on the server. Clients create them, run code inside them, optionally update metadata, and persist them with ",E({class:t.pageCode},"saveDatabase()")," when the in-memory state should be written to disk."),I({class:t.pageUl},$({class:t.pageLi},E({class:t.pageCode},"run(code, databaseName)")," sends TypeScript or JavaScript for evaluation."),$({class:t.pageLi},E({class:t.pageCode},"updateDatabase(databaseName, data)")," updates metadata about the database."),$({class:t.pageLi},E({class:t.pageCode},"scriptdb shell")," is the quickest way to smoke test a server before wiring a full client app."))))),o({class:t.section},h({class:t.sectionLabel},"Filesystem"),k({class:t.pageH2},"Local installs create a predictable ScriptDB home folder."),h({class:t.pageLead},"The install scripts and CLI expect a user-scoped `.scriptdb` folder that holds the binary, configuration, databases, package workspace, and PM2 artifacts when you run daemonized processes."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Directory layout"),v(ie)),o({class:t.card},w({class:t.cardTitle},"Minimal configuration"),h({class:t.pageP},"The current docs assume a JSON config file in the ScriptDB home directory. Keep credentials and secure settings aligned with the environment you are deploying into."),v(oe)))),o({class:t.section},h({class:t.sectionLabel},"Packages Inside ScriptDB"),k({class:t.pageH2},"Package management and system modules are part of the product story."),h({class:t.pageLead},"ScriptDB is built for running code, so the docs need to cover both the package workspace and the system modules that are available to executed scripts."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Package workspace"),h({class:t.pageP},"Use the CLI to install packages into the shared ScriptDB package directory or the current folder when you want project-local resolution."),v(ne)),o({class:t.card},w({class:t.cardTitle},"System modules"),h({class:t.pageP},"The monorepo also ships a system modules package for common file-style operations from executed code."),I({class:t.pageUl},...Oe.map(e=>$({class:t.pageLi},E({class:t.pageCode},e))))))),o({class:t.section},h({class:t.sectionLabel},"Inspection"),k({class:t.pageH2},"The shell remains the fastest way to understand a live instance."),h({class:t.pageLead},"For first-contact debugging and database inspection, the shell is still the shortest feedback loop."),v(B),o({class:t.note},"Use ",we("/installation","Installation")," to set up a machine, ",we("/usage","Usage")," for operational workflows, and ",we("/api","API reference")," for the current client surfaces. Package pages are also available on ",ve(L.browserClient,"npm")," and ",ve(L.nodeClient,"npm"),".")));var Je=(e,s)=>S({href:`#${e}`,class:t.inlineLink},s),Z=(e,s)=>$({class:t.pageLi},E({class:t.pageCode},e)," - ",s),ze=()=>o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"Operations"),C({class:t.badge},"Security"),C({class:t.badge},"Persistence")),h({class:t.heroEyebrow},"Usage"),D({class:t.pageH1},"Operate ScriptDB as a server-backed code workflow, not a generic data store."),h({class:t.pageLead},"The key daily tasks are starting the server, inspecting it from the shell, managing the package workspace, connecting the right client for the runtime, and deciding when to persist database state."),o({class:t.heroActions},S({href:"#/api",class:t.buttonPrimary},"Client API"),S({href:"#/scripts",class:t.buttonSecondary},"Install Scripts"))),o({class:t.section},h({class:t.sectionLabel},"Server Operations"),k({class:t.pageH2},"Bring the server up first, then use the shell for fast feedback."),h({class:t.pageLead},"Most operational work starts in the CLI. You can keep the process in the foreground locally, daemonize it with PM2, inspect logs and health, and drop into the shell whenever you need to inspect a live database quickly."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Lifecycle commands"),v(F)),o({class:t.card},w({class:t.cardTitle},"Interactive shell"),h({class:t.pageP},"The shell is the shortest path to validating that a new environment is wired correctly."),v(B)))),o({class:t.section},h({class:t.sectionLabel},"Packages And Config"),k({class:t.pageH2},"ScriptDB has its own package workspace and runtime configuration."),h({class:t.pageLead},"If the executed code depends on npm packages, install them into ScriptDB\u2019s shared package area or locally next to the project. Keep the server config small and explicit so it is easy to audit and reproduce."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Package management"),h({class:t.pageP},"These commands target the package workspace ScriptDB uses during execution."),v(ne)),o({class:t.card},w({class:t.cardTitle},"Configuration"),h({class:t.pageP},"A minimal config is enough for local development. Tighten credentials and secure settings before production use."),v(oe)))),o({class:t.section},h({class:t.sectionLabel},"Authentication"),k({class:t.pageH2},"Use explicit credentials and signing where the runtime supports it."),h({class:t.pageLead},"The Node client source exposes the strongest transport options today, including signing and richer retry controls. Browser flows still authenticate against the proxy, but backend and automation tasks should prefer the TCP client when you need tighter security controls."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Username and password"),v(re)),o({class:t.card},w({class:t.cardTitle},"Message signing in the Node client"),v(ae)))),o({class:t.section},h({class:t.sectionLabel},"Smoke Tests"),k({class:t.pageH2},"Verify the environment before you start writing larger workflows."),h({class:t.pageLead},"A short verification sequence catches most broken installs or missing PATH changes before you spend time debugging application code."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Verification commands"),v(q)),o({class:t.card},w({class:t.cardTitle},"Operational habits that pay off"),I({class:t.pageUl},Z("scriptdb status","Confirm the server is really up before attaching clients."),Z("saveDatabase()","Persist important state deliberately instead of assuming memory should be durable."),Z("scriptdb add","Install runtime dependencies into ScriptDB rather than embedding ad hoc import hacks."),Z("username/password in options","Prefer explicit credentials in client options over embedding them in connection URIs."),Z("Node client for automation","Use the TCP client for scripts, workers, and services that need richer transport options."))))),o({class:t.note},"Use ",Je("/quick-start","Quick Start")," when you need the shortest working path, and move to ",Je("/api","API reference")," when you are ready to wire the browser or Node client into real code."));var _e=(e,s)=>S({href:e,class:t.inlineLink,target:"_blank",rel:"noopener noreferrer"},s),_=(e,s)=>o({class:t.feature},w({class:t.featureH3},e),h({class:t.pageP},s)),Qe=()=>o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"PowerShell + Bash"),C({class:t.badge},"Release binaries"),C({class:t.badge},"Windows, Linux, macOS")),h({class:t.heroEyebrow},"Install Scripts"),D({class:t.pageH1},"Use the shipped scripts when you want a direct ScriptDB binary install."),h({class:t.pageLead},"The repository publishes platform installers that resolve the right release asset, place the binary in the standard ScriptDB folder, and handle the user-level PATH story differently for Windows and Unix-like shells."),o({class:t.heroActions},S({href:"#/installation",class:t.buttonPrimary},"Open Installation"),S({href:L.releases,class:t.buttonSecondary,target:"_blank",rel:"noopener noreferrer"},"Release Assets"))),o({class:t.section},h({class:t.sectionLabel},"What The Scripts Handle"),k({class:t.pageH2},"The installer path is optimized for fast machine bootstrap."),h({class:t.pageLead},"The scripts are useful when you want a release binary on a host without first setting up a full JavaScript toolchain."),o({class:t.features},_("Release download","Both installers resolve a GitHub release asset instead of compiling the monorepo on the target machine."),_("Platform detection","Windows chooses x64 or x86, while the Unix script selects OS, CPU architecture, and Linux libc flavor when relevant."),_("User-scoped install","By default ScriptDB lands in a user-owned `.scriptdb` folder so local experimentation does not need system package manager privileges."),_("PATH setup","The PowerShell installer writes the user PATH directly. The Unix installer prints the shell command you should add to bash, zsh, or fish configuration."),_("Customizable","Both installers support `SCRIPTDB_VERSION` and `SCRIPTDB_INSTALL` so you can pin versions or relocate the installation."),_("Clean removal","Matching uninstall scripts remove the install directory and help you clean up PATH references when necessary."))),o({class:t.section},h({class:t.sectionLabel},"Run The Installers"),k({class:t.pageH2},"Choose the script that matches the host OS."),h({class:t.pageLead},"The website now points at the repository `scripts/` directory directly so the commands match the files that actually live in this repo."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Windows PowerShell"),h({class:t.pageP},"Downloads the correct Windows release asset, installs it under the user profile, and attempts to append the binary directory to the user PATH."),v(N.windowsBinary)),o({class:t.card},w({class:t.cardTitle},"Linux and macOS shell"),h({class:t.pageP},"Detects OS, CPU architecture, and musl vs glibc on Linux before downloading the matching binary to `~/.scriptdb/bin` by default."),v(N.unixBinary)))),o({class:t.section},h({class:t.sectionLabel},"Customize The Install"),k({class:t.pageH2},"Pin a version or choose a different home directory."),h({class:t.pageLead},"These environment variables are the main customization hooks surfaced by the install scripts."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Version pinning"),h({class:t.pageP},"Set `SCRIPTDB_VERSION` when you need reproducible machine images or controlled rollouts."),v(`${N.windowsVersion}
 
-// Disconnect
-await client.disconnect();`))),v({class:e.section},H({class:e.pageH2},"Constructor"),P({class:e.pageH3},"new ScriptDBClient(uri, options?)"),T({class:e.pageP},"Creates a new ScriptDB browser client instance."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("uri "),i({class:e.pageCode},"string")," - Connection URI in format ",i({class:e.pageCode},"scriptdb://host:port/database")),o({class:e.pageLi},g("options "),i({class:e.pageCode},"ClientOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("secure "),i({class:e.pageCode},"boolean")," - Use wss:// if true, ws:// if false (default: ",i({class:e.pageCode},"true"),")"),o({class:e.pageLi},g("requestTimeout "),i({class:e.pageCode},"number")," - Request timeout in ms, 0 = disabled (default: ",i({class:e.pageCode},"0"),")"),o({class:e.pageLi},g("socketTimeout "),i({class:e.pageCode},"number")," - Socket timeout in ms (default: ",i({class:e.pageCode},"0"),")"),o({class:e.pageLi},g("retries "),i({class:e.pageCode},"number")," - Reconnection retries (default: ",i({class:e.pageCode},"3"),")"),o({class:e.pageLi},g("retryDelay "),i({class:e.pageCode},"number")," - Initial retry delay in ms (default: ",i({class:e.pageCode},"1000"),")"),o({class:e.pageLi},g("maxPending "),i({class:e.pageCode},"number")," - Max concurrent requests (default: ",i({class:e.pageCode},"100"),")"),o({class:e.pageLi},g("maxQueue "),i({class:e.pageCode},"number")," - Max queued requests (default: ",i({class:e.pageCode},"1000"),")"),o({class:e.pageLi},g("maxMessageSize "),i({class:e.pageCode},"number")," - Max message size in bytes (default: ",i({class:e.pageCode},"5MB"),")"),o({class:e.pageLi},g("logger "),i({class:e.pageCode},"Logger")," - Custom logger { debug, info, warn, error }"),o({class:e.pageLi},g("username "),i({class:e.pageCode},"string")," - Username for authentication"),o({class:e.pageLi},g("password "),i({class:e.pageCode},"string")," - Password for authentication"),o({class:e.pageLi},g("tokenRefresh "),i({class:e.pageCode},"function")," - Async function to refresh token"),o({class:e.pageLi},g("signing "),i({class:e.pageCode},"{ secret, algorithm }")," - HMAC signing configuration"),o({class:e.pageLi},g("stringify "),i({class:e.pageCode},"function")," - Custom JSON stringify function")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"ScriptDBClient")," - A new ScriptDB client instance")),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const client = new ScriptDBClient('scriptdb://localhost:1234/mydb', {
-  secure: false,
-  requestTimeout: 30000,
-  retries: 5,
-  retryDelay: 2000,
-  username: 'admin',
-  password: 'secret'
-});`))),v({class:e.section},H({class:e.pageH2},"Connection Methods"),v({class:e.section},P({class:e.pageH3},"db.connect()"),T({class:e.pageP},"Connects to the ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"await db.connect();"))),v({class:e.section},P({class:e.pageH3},"db.disconnect()"),T({class:e.pageP},"Disconnects from the ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"await db.disconnect();"))),v({class:e.section},P({class:e.pageH3},"db.isConnected"),T({class:e.pageP},"Returns the connection status."),L({class:e.pageH3},"Type"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"boolean"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`if (db.isConnected) {
-  console.log('Connected to server');
-}`)))),v({class:e.section},H({class:e.pageH2},"Scripts API"),T({class:e.pageP},"Manage scripts through the ",i({class:e.pageCode},"db.scripts")," interface."),v({class:e.section},P({class:e.pageH3},"db.scripts.add(script)"),T({class:e.pageP},"Adds a new script to the database."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("script "),i({class:e.pageCode},"ScriptData"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name/identifier"),o({class:e.pageLi},g("content "),i({class:e.pageCode},"string")," - Script content/code"),o({class:e.pageLi},g("description "),i({class:e.pageCode},"string | optional")," - Script description"),o({class:e.pageLi},g("tags "),i({class:e.pageCode},"string[] | optional")," - Array of tags"),o({class:e.pageLi},g("metadata "),i({class:e.pageCode},"Record<string, any> | optional")," - Additional metadata")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const script = await db.scripts.add({
-  name: 'deploy.sh',
-  content: '#!/bin/bash\\ndeploy-app',
-  description: 'Deploy application to production',
-  tags: ['deployment', 'production'],
-  metadata: {
-    author: 'DevOps Team',
-    version: '1.0.0'
-  }
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.get(name)"),T({class:e.pageP},"Retrieves a script by name."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script | null>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const script = await db.scripts.get('deploy.sh');
-if (script) {
-  console.log(script.content);
-}`))),v({class:e.section},P({class:e.pageH3},"db.scripts.list(options?)"),T({class:e.pageP},"Lists all scripts with optional filtering."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("options "),i({class:e.pageCode},"ListOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("tag "),i({class:e.pageCode},"string")," - Filter by tag"),o({class:e.pageLi},g("verbose "),i({class:e.pageCode},"boolean")," - Include full details"),o({class:e.pageLi},g("limit "),i({class:e.pageCode},"number")," - Maximum number of results"),o({class:e.pageLi},g("offset "),i({class:e.pageCode},"number")," - Pagination offset")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script[]>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`// List all scripts
-const allScripts = await db.scripts.list();
+${N.unixVersion}`)),o({class:t.card},w({class:t.cardTitle},"Custom install location"),h({class:t.pageP},"Set `SCRIPTDB_INSTALL` when you need a shared tools directory or a non-default home layout."),v(`${N.windowsCustomDir}
 
-// Filter by tag
-const prodScripts = await db.scripts.list({ tag: 'production' });
+${N.unixCustomDir}`)))),o({class:t.section},h({class:t.sectionLabel},"After Install"),k({class:t.pageH2},"Inspect the folder layout, verify the binary, and keep uninstall commands nearby."),h({class:t.pageLead},"Local installs are intentionally predictable so support and debugging stay simple."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Expected layout"),v(ie)),o({class:t.card},w({class:t.cardTitle},"Verification and uninstall"),v(`${q}
 
-// Pagination
-const page = await db.scripts.list({ limit: 10, offset: 20 });`))),v({class:e.section},P({class:e.pageH3},"db.scripts.update(name, updates)"),T({class:e.pageP},"Updates an existing script."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("updates "),i({class:e.pageCode},"Partial<ScriptData>"),w({class:e.pageUl},o({class:e.pageLi},g("content "),i({class:e.pageCode},"string | optional")," - Updated content"),o({class:e.pageLi},g("description "),i({class:e.pageCode},"string | optional")," - Updated description"),o({class:e.pageLi},g("tags "),i({class:e.pageCode},"string[] | optional")," - Updated tags"),o({class:e.pageLi},g("metadata "),i({class:e.pageCode},"Record<string, any> | optional")," - Updated metadata")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const updated = await db.scripts.update('deploy.sh', {
-  description: 'Updated deployment script',
-  tags: ['deployment', 'production', 'v2']
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.remove(name)"),T({class:e.pageP},"Removes a script from the database."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},'await db.scripts.remove("old-script.sh");'))),v({class:e.section},P({class:e.pageH3},"db.scripts.run(name, options?)"),T({class:e.pageP},"Executes a script on the server."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"RunOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("args "),i({class:e.pageCode},"string[]")," - Command line arguments"),o({class:e.pageLi},g("env "),i({class:e.pageCode},"Record<string, string>")," - Environment variables"),o({class:e.pageLi},g("dryRun "),i({class:e.pageCode},"boolean")," - Preview without executing"),o({class:e.pageLi},g("timeout "),i({class:e.pageCode},"number")," - Execution timeout in ms")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ScriptResult>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const result = await db.scripts.run('deploy.sh', {
-  args: ['--env', 'production'],
-  env: { DEPLOY_MODE: 'production' },
-  timeout: 300000
-});
+${N.windowsUninstall}
 
-console.log('Exit code:', result.exitCode);
-console.log('Output:', result.stdout);`))),v({class:e.section},P({class:e.pageH3},"db.scripts.history(name, options?)"),T({class:e.pageP},"Gets execution history for a script."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"HistoryOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("limit "),i({class:e.pageCode},"number")," - Maximum history entries"),o({class:e.pageLi},g("offset "),i({class:e.pageCode},"number")," - Pagination offset")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ScriptHistory[]>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"const history = await db.scripts.history('deploy.sh', { limit: 10 });\nhistory.forEach(entry => {\n  console.log(`${entry.timestamp}: ${entry.exitCode}`);\n});")))),v({class:e.section},H({class:e.pageH2},"Events"),T({class:e.pageP},"The browser client emits events that you can listen to."),v({class:e.section},P({class:e.pageH3},"db.on(event, callback)"),T({class:e.pageP},"Subscribe to client events."),L({class:e.pageH3},"Events"),w({class:e.pageUl},o({class:e.pageLi},g("connected")," - Fired when connected to server",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("connected", () => {
-  console.log("Connected to server");
-});`))),o({class:e.pageLi},g("disconnected")," - Fired when disconnected",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("disconnected", () => {
-  console.log("Disconnected from server");
-});`))),o({class:e.pageLi},g("error")," - Fired on errors",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("error", (error) => {
-  console.error("Error:", error.message);
-});`))),o({class:e.pageLi},g("script:added")," - Fired when a script is added",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:added", (script) => {
-  console.log("Script added:", script.name);
-});`))),o({class:e.pageLi},g("script:updated")," - Fired when a script is updated",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:updated", (script) => {
-  console.log("Script updated:", script.name);
-});`))),o({class:e.pageLi},g("script:removed")," - Fired when a script is removed",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:removed", (name) => {
-  console.log("Script removed:", name);
-});`))),o({class:e.pageLi},g("script:executed")," - Fired when a script finishes execution",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:executed", (result) => {
-  console.log("Script executed:", result.name, result.exitCode);
-});`)))),v({class:e.section},P({class:e.pageH3},"db.off(event, callback)"),T({class:e.pageP},"Unsubscribe from events."),S({class:e.pagePre},i({class:e.pageCode},`const handler = () => console.log('Connected');
-db.on('connected', handler);
+${N.unixUninstall}`)))),o({class:t.section},h({class:t.sectionLabel},"Platform Support"),k({class:t.pageH2},"The scripts are aimed at the release matrix shipped by the repository."),I({class:t.pageUl},$({class:t.pageLi},"Windows x64 and x86 release binaries are selected from the PowerShell installer."),$({class:t.pageLi},"Linux builds support x64 and ARM64, with musl detection for distributions that need it."),$({class:t.pageLi},"macOS builds support Intel and Apple Silicon hosts through the Unix installer flow."),$({class:t.pageLi},"The scripts are best suited to developer workstations, CI runners, and internal images that need a quick binary bootstrap."))),o({class:t.note},"If you already have Node or Bun, the global CLI package on ",_e(L.cliPackage,"npm")," is usually the cleaner path. Use the script installers when you want release binaries directly from ",_e(L.releases,"GitHub Releases"),"."));var X=(e,s)=>S({href:e,class:t.inlineLink,target:"_blank",rel:"noopener noreferrer"},s),T=(e,s)=>$({class:t.pageLi},E({class:t.pageCode},e)," - ",s),R=(e,s,r)=>o({class:t.card},w({class:t.cardTitle},e),h({class:t.pageP},s),I({class:t.pageUl},...r)),Ye=()=>{let e=U("browser");return o(o({class:t.pageHero},o({class:t.badgeRow},C({class:t.badge},"API reference"),C({class:t.badge},"@scriptdb/browser-client 1.1.3"),C({class:t.badge},"@scriptdb/client 1.1.3")),h({class:t.heroEyebrow},"API"),D({class:t.pageH1},"Client reference based on the current source, not the old placeholder docs."),h({class:t.pageLead},"The previous API page described a different product. This version is narrowed to the public surfaces exposed today by `packages/browser-client/src/index.ts` and `packages/client/src/index.ts` in the ScriptDB monorepo."),o({class:t.heroActions},X(L.browserClient,"Browser Package"),X(L.nodeClient,"Node Package"),X(L.repository,"Monorepo"))),o({class:t.tabs},P(e,s=>V({class:s==="browser"?t.tabActive:t.tab,onclick:()=>e.value="browser"},"@scriptdb/browser-client")),P(e,s=>V({class:s==="node"?t.tabActive:t.tab,onclick:()=>e.value="node"},"@scriptdb/client"))),o({class:t.tabContent},P(e,s=>s==="browser"?wt():vt())))},wt=()=>o(o({class:t.section},h({class:t.sectionLabel},"Browser Client"),k({class:t.pageH2},"The browser client uses an options object and talks to the proxy on port + 1."),h({class:t.pageLead},"The current source exports `BrowserClient` and a default export. Unlike the older placeholder docs, the constructor in source takes a configuration object with `host`, `port`, `username`, `password`, `requestTimeout`, `secure`, and an optional logger."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Install"),v("npm install @scriptdb/browser-client"),h({class:t.pageP},"Package: ",X(L.browserClient,"@scriptdb/browser-client"))),o({class:t.card},w({class:t.cardTitle},"Constructor"),h({class:t.pageP},"The source currently builds the WebSocket endpoint from `host` and `port`, then connects to the proxy on `port + 1`."),v(Ve)))),o({class:t.section},h({class:t.sectionLabel},"Public Surface"),k({class:t.pageH2},"The main browser methods are small and focused."),h({class:t.pageLead},"The browser client stays intentionally lean: connect, authenticate, manage databases, run code, and fall back to raw actions when needed."),o({class:t.features},R("Connection and auth","Use these to establish or inspect the browser session.",[T("connected","Getter that reports whether the WebSocket session is currently open."),T("connect()","Opens the WebSocket connection and sends the login request."),T("login(username, password)","Authenticates explicitly after construction if needed."),T("logout()","Ends the authenticated session on the server side."),T("disconnect() / close()","Close the browser connection and reject pending requests.")]),R("Database lifecycle","These methods manipulate named databases on the server.",[T("listDatabases()","Fetches the available database names from the server."),T("createDatabase(name)","Creates a new database context."),T("removeDatabase(name)","Deletes a database from the server."),T("renameDatabase(oldName, newName)","Renames an existing database."),T("getDatabase(name)","Fetches the stored content for a database."),T("updateDatabase(databaseName, data)","Sends metadata updates for a database.")]),R("Execution and persistence","This is the high-level workflow most browser apps will use.",[T("run(code, databaseName)","Executes TypeScript or JavaScript in the named database."),T("saveDatabase(databaseName, code?)","Persists the current database state to disk, optionally with code."),T("getInfo()","Retrieves server metadata and status information."),T("executeShell(command)","Sends a shell command request through the server interface.")]),R("Low-level actions","Drop down to raw actions when you need to send a custom payload.",[T("execute({ action, data })","Sends a raw action payload like `script-code`, `save-db`, or `get-info`."),T("sendRequest(action, data)","Convenience wrapper that forwards to the raw execute path."),T("requestTimeout","Configured in the constructor and enforced per in-flight request.")]))),o({class:t.section},h({class:t.sectionLabel},"Examples"),k({class:t.pageH2},"Use the high-level API first, then drop to raw actions only when necessary."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Quick start"),v(W)),o({class:t.card},w({class:t.cardTitle},"Raw execute"),v(Be)))),o({class:t.note},"Source note: this client currently documents a constructor that takes an options object rather than a URI string. That difference is intentional here because the page follows the source implementation.")),vt=()=>o(o({class:t.section},h({class:t.sectionLabel},"Node Client"),k({class:t.pageH2},"The Node client is the richer transport surface for services and automation."),h({class:t.pageLead},"The current source exports `ScriptDBClient` with a `scriptdb://` connection URI plus an options object for TLS, retries, message framing, queue limits, signing, logging, and credential handling."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Install"),v("npm install @scriptdb/client"),h({class:t.pageP},"Package: ",X(L.nodeClient,"@scriptdb/client"))),o({class:t.card},w({class:t.cardTitle},"Constructor"),h({class:t.pageP},"The URI selects host, port, and optional database. Credentials can be passed in the URI or, preferably, in the options object."),v(He)))),o({class:t.section},h({class:t.sectionLabel},"Public Surface"),k({class:t.pageH2},"The Node client adds queueing, retries, TLS, and lifecycle controls."),h({class:t.pageLead},"Use this client when the caller runs in Node, Bun, or a server-side automation context and you want the most control over transport behavior."),o({class:t.features},R("Connection lifecycle","These methods control the socket and the client lifecycle.",[T("connected","Getter that reports the current TCP or TLS connection state."),T("connect()","Connects, authenticates, and resolves once the session is ready."),T("disconnect() / close()","Gracefully ends the current socket."),T("destroy()","Destroys the client, clears timers, and rejects queued work.")]),R("Database lifecycle","The high-level database operations mirror the browser client where possible.",[T("listDatabases()","Fetches the list of available databases."),T("createDatabase(name)","Creates a named database on the server."),T("removeDatabase(name)","Deletes a named database."),T("renameDatabase(oldName, newName)","Renames a database."),T("updateDatabase(databaseName, data)","Updates stored metadata for the database.")]),R("Execution and server actions","This is the main path for real application code.",[T("run(code, databaseName)","Executes TypeScript or JavaScript in the selected database."),T("saveDatabase(databaseName, code?)","Persists the database to disk."),T("getInfo()","Returns server information."),T("executeShell(command)","Sends a shell command request to the server.")]),R("Transport options","These settings are the reason to prefer the Node client for back-end workflows.",[T("secure / tlsOptions","Enable TLS and pass through Node TLS connection options."),T("retries / retryDelay","Control reconnection behavior."),T("frame / preferLengthPrefix","Choose NDJSON or length-prefixed framing."),T("maxPending / maxQueue / maxMessageSize","Control request queueing and message limits."),T("signing / tokenRefresh","Enable message signing and token refresh strategies.")]))),o({class:t.section},h({class:t.sectionLabel},"Examples"),k({class:t.pageH2},"A normal workflow uses high-level methods, with raw execute only for special cases."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Quick start"),v(J)),o({class:t.card},w({class:t.cardTitle},"Raw execute"),v(Re)))),o({class:t.section},h({class:t.sectionLabel},"Security Options"),k({class:t.pageH2},"Authentication is basic by default, but the Node client exposes stronger controls."),o({class:t.splitGrid},o({class:t.card},w({class:t.cardTitle},"Explicit credentials"),v(re)),o({class:t.card},w({class:t.cardTitle},"HMAC signing"),v(ae)))),o({class:t.note},"Both clients understand the same core actions like `script-code`, `list-dbs`, `create-db`, `save-db`, and `get-info`, but the Node client is the better fit when you need retries, TLS, framing control, or request queue tuning."));var Ke=[{path:"/",component:je},{path:"/installation",component:Fe},{path:"/quick-start",component:qe},{path:"/docs",component:We},{path:"/usage",component:ze},{path:"/scripts",component:Qe},{path:"/api",component:Ye}],xt={mode:"hash",base:"/script-db",routes:Ke},le=Ie(xt),Ze=()=>P(le.currentRoute,e=>{let s=Ke.find(r=>r.path===e.path);return s?s.component():{tagName:"div",props:{},children:["404 - Not Found"]}});var St=[{label:"Home",path:"/"},{label:"Installation",path:"/installation"},{label:"Quick Start",path:"/quick-start"},{label:"Docs",path:"/docs"},{label:"Usage",path:"/usage"},{label:"API",path:"/api"},{label:"Scripts",path:"/scripts"}],Xe=()=>{let e=s=>r=>{r.preventDefault(),le.push(s)};return Te({class:t.header},Le({class:`${t.container} ${t.nav}`},S({href:"#/",class:t.logo,onclick:e("/")},C({class:t.logoMark},"S"),C({class:t.logoText},"ScriptDB")),P(le.currentRoute,s=>I({class:t.navLinks},...St.map(r=>$(S({href:`#${r.path}`,class:s.path===r.path?t.navLinkActive:t.navLink,onclick:e(r.path)},r.label))))),o({class:t.navActions},S({href:L.repository,class:t.navButton,target:"_blank",rel:"noopener noreferrer"},"GitHub"))))};var et=()=>{let e=new Date().getFullYear();return ke({class:t.footer},o({class:`${t.container} ${t.footerGrid}`},o({class:t.footerBrand},h({class:t.cardTitle},"ScriptDB"),h("Store, version, and execute TypeScript or JavaScript through a ScriptDB server with a CLI, browser GUI, and official browser and Node clients."),h(`This site is aligned with the ScriptDB ${se} monorepo shape and focuses on the workflows that ship with the server, CLI, GUI, and clients.`)),o({class:t.footerLinks},h({class:t.footerHeading},"Navigate"),S({href:"#/"},"Overview"),S({href:"#/quick-start"},"Quick Start"),S({href:"#/docs"},"Documentation"),S({href:"#/usage"},"Usage"),S({href:"#/api"},"API reference")),o({class:t.footerLinks},h({class:t.footerHeading},"Packages"),S({href:"#/installation"},"Installation"),S({href:L.cliPackage,target:"_blank",rel:"noopener noreferrer"},"@scriptdb/cli"),S({href:L.browserClient,target:"_blank",rel:"noopener noreferrer"},"@scriptdb/browser-client"),S({href:L.nodeClient,target:"_blank",rel:"noopener noreferrer"},"@scriptdb/client"),S({href:L.releases,target:"_blank",rel:"noopener noreferrer"},"Releases"))),h({class:t.footerSmall},`\xA9 ${e} ScriptDB. Documentation site for the ScriptDB monorepo.`))};var tt=!1,st=()=>{if(tt)return;tt=!0;let e=document.createElement("style");e.id="app-styles",e.textContent=`
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
 
-// Later
-db.off('connected', handler);`))))),v({class:e.section},H({class:e.pageH2},"Type Definitions"),S({class:e.pagePre},i({class:e.pageCode},`interface ScriptDBOptions {
-  serverUrl: string;
-  apiKey?: string;
-  timeout?: number;
-  autoReconnect?: boolean;
-  reconnectInterval?: number;
-}
-
-interface ScriptData {
-  name: string;
-  content: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface Script {
-  id: string;
-  name: string;
-  content: string;
-  description?: string;
-  tags: string[];
-  metadata: Record<string, any>;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface ScriptResult {
-  name: string;
-  exitCode: number;
-  stdout: string;
-  stderr: string;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ScriptHistory {
-  id: string;
-  name: string;
-  exitCode: number;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ListOptions {
-  tag?: string;
-  verbose?: boolean;
-  limit?: number;
-  offset?: number;
-}
-
-interface RunOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  dryRun?: boolean;
-  timeout?: number;
-}
-
-interface HistoryOptions {
-  limit?: number;
-  offset?: number;
-}`)))),tt=()=>v(v({class:e.section},H({class:e.pageH2},"Installation"),S({class:e.pagePre},i({class:e.pageCode},"npm install @scriptdb/client"))),v({class:e.section},H({class:e.pageH2},"Quick Start"),T({class:e.pageP},"ScriptDB Node.js client for managing scripts from Node.js applications."),S({class:e.pagePre},i({class:e.pageCode},`import ScriptDB from '@scriptdb/client';
-
-async function main() {
-  // Initialize client
-  const db = new ScriptDB({
-    serverUrl: 'http://localhost:8080',
-    apiKey: 'your-api-key' // optional
-  });
-
-  // Connect to server
-  await db.connect();
-
-  // Add a script
-  await db.scripts.add({
-    name: 'backup.sh',
-    content: '#!/bin/bash\\necho "Backing up..."',
-    description: 'Daily backup script',
-    tags: ['backup', 'daily']
-  });
-
-  // List all scripts
-  const scripts = await db.scripts.list();
-  console.log(scripts);
-
-  // Run a script
-  const result = await db.scripts.run('backup.sh');
-  console.log('Exit code:', result.exitCode);
-
-  // Use with file paths
-  await db.scripts.addFromFile('./my-script.sh', {
-    name: 'my-script',
-    description: 'Script from file'
-  });
-
-  // Watch file changes
-  await db.scripts.watch('./scripts', {
-    pattern: '**/*.sh',
-    onAdd: async (file) => {
-      await db.scripts.addFromFile(file, {
-        name: file.split('/').pop()?.replace('.sh', ''),
-        description: 'Auto-added from watcher'
-      });
+    :root {
+      --bg-top: #fbf5ec;
+      --bg-bottom: #efe7da;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: rgba(255, 253, 249, 0.88);
+      --ink: #162235;
+      --muted: #5d6a7b;
+      --brand: #11344f;
+      --brand-strong: #0b2234;
+      --accent: #c86a3c;
+      --line: rgba(17, 52, 79, 0.14);
+      --shadow: 0 24px 60px rgba(17, 52, 79, 0.12);
+      --shadow-soft: 0 14px 30px rgba(17, 52, 79, 0.08);
     }
-  });
 
-  // Disconnect
-  await db.disconnect();
-}
-
-main().catch(console.error);`))),v({class:e.section},H({class:e.pageH2},"Constructor"),P({class:e.pageH3},"new ScriptDB(options)"),T({class:e.pageP},"Creates a new ScriptDB Node.js client instance."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("options "),i({class:e.pageCode},"ScriptDBOptions"),w({class:e.pageUl},o({class:e.pageLi},g("serverUrl "),i({class:e.pageCode},"string")," - ScriptDB server URL (default: ",i({class:e.pageCode},"http://localhost:8080"),")"),o({class:e.pageLi},g("apiKey "),i({class:e.pageCode},"string | undefined")," - Optional API key for authentication"),o({class:e.pageLi},g("timeout "),i({class:e.pageCode},"number")," - Request timeout in milliseconds (default: ",i({class:e.pageCode},"30000"),")"),o({class:e.pageLi},g("maxRetries "),i({class:e.pageCode},"number")," - Maximum retry attempts (default: ",i({class:e.pageCode},"3"),")"),o({class:e.pageLi},g("retryDelay "),i({class:e.pageCode},"number")," - Retry delay in ms (default: ",i({class:e.pageCode},"1000"),")"),o({class:e.pageLi},g("persistPath "),i({class:e.pageCode},"string")," - Path to persist local cache (default: ",i({class:e.pageCode},"~/.scriptdb/cache"),")"),o({class:e.pageLi},g("logLevel "),i({class:e.pageCode},"'debug' | 'info' | 'warn' | 'error'")," - Logging level (default: ",i({class:e.pageCode},"'info'"),")")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"ScriptDB")," - A new ScriptDB client instance")),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const db = new ScriptDB({
-  serverUrl: 'https://api.scriptdb.example.com',
-  apiKey: 'sk_live_1234567890',
-  timeout: 60000,
-  maxRetries: 5,
-  retryDelay: 2000,
-  persistPath: './cache/scriptdb',
-  logLevel: 'debug'
-});`))),v({class:e.section},H({class:e.pageH2},"Connection Methods"),v({class:e.section},P({class:e.pageH3},"db.connect()"),T({class:e.pageP},"Connects to the ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"await db.connect();"))),v({class:e.section},P({class:e.pageH3},"db.disconnect()"),T({class:e.pageP},"Disconnects from the ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"await db.disconnect();"))),v({class:e.section},P({class:e.pageH3},"db.isConnected"),T({class:e.pageP},"Returns the connection status."),L({class:e.pageH3},"Type"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"boolean"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`if (db.isConnected) {
-  console.log('Connected to server');
-}`)))),v({class:e.section},H({class:e.pageH2},"Scripts API"),T({class:e.pageP},"Manage scripts through the ",i({class:e.pageCode},"db.scripts")," interface."),v({class:e.section},P({class:e.pageH3},"db.scripts.add(script)"),T({class:e.pageP},"Adds a new script to the database."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("script "),i({class:e.pageCode},"ScriptData"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name/identifier"),o({class:e.pageLi},g("content "),i({class:e.pageCode},"string")," - Script content/code"),o({class:e.pageLi},g("description "),i({class:e.pageCode},"string | optional")," - Script description"),o({class:e.pageLi},g("tags "),i({class:e.pageCode},"string[] | optional")," - Array of tags"),o({class:e.pageLi},g("metadata "),i({class:e.pageCode},"Record<string, any> | optional")," - Additional metadata")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const script = await db.scripts.add({
-  name: 'deploy.sh',
-  content: '#!/bin/bash\\ndeploy-app',
-  description: 'Deploy application to production',
-  tags: ['deployment', 'production'],
-  metadata: {
-    author: 'DevOps Team',
-    version: '1.0.0'
-  }
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.addFromFile(filePath, options?)"),T({class:e.pageP},"Adds a script from a file on the local filesystem (Node.js only)."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("filePath "),i({class:e.pageCode},"string")," - Path to script file"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"AddFromFileOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Custom script name (default: filename without extension)"),o({class:e.pageLi},g("description "),i({class:e.pageCode},"string")," - Script description"),o({class:e.pageLi},g("tags "),i({class:e.pageCode},"string[]")," - Array of tags"),o({class:e.pageLi},g("metadata "),i({class:e.pageCode},"Record<string, any>")," - Additional metadata")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`// Add from file with default options
-const script = await db.scripts.addFromFile('./scripts/deploy.sh');
-
-// Add with custom options
-const script = await db.scripts.addFromFile('./scripts/deploy.sh', {
-  name: 'production-deploy',
-  description: 'Production deployment script',
-  tags: ['deployment', 'production'],
-  metadata: { version: '2.0.0' }
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.get(name)"),T({class:e.pageP},"Retrieves a script by name."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script | null>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const script = await db.scripts.get('deploy.sh');
-if (script) {
-  console.log(script.content);
-}`))),v({class:e.section},P({class:e.pageH3},"db.scripts.download(name, destPath)"),T({class:e.pageP},"Downloads a script to a local file (Node.js only)."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("destPath "),i({class:e.pageCode},"string")," - Destination file path")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},'await db.scripts.download("deploy.sh", "./downloaded/deploy.sh");'))),v({class:e.section},P({class:e.pageH3},"db.scripts.list(options?)"),T({class:e.pageP},"Lists all scripts with optional filtering."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("options "),i({class:e.pageCode},"ListOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("tag "),i({class:e.pageCode},"string")," - Filter by tag"),o({class:e.pageLi},g("verbose "),i({class:e.pageCode},"boolean")," - Include full details"),o({class:e.pageLi},g("limit "),i({class:e.pageCode},"number")," - Maximum number of results"),o({class:e.pageLi},g("offset "),i({class:e.pageCode},"number")," - Pagination offset")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script[]>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`// List all scripts
-const allScripts = await db.scripts.list();
-
-// Filter by tag
-const prodScripts = await db.scripts.list({ tag: 'production' });
-
-// Pagination
-const page = await db.scripts.list({ limit: 10, offset: 20 });`))),v({class:e.section},P({class:e.pageH3},"db.scripts.update(name, updates)"),T({class:e.pageP},"Updates an existing script."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("updates "),i({class:e.pageCode},"Partial<ScriptData>"),w({class:e.pageUl},o({class:e.pageLi},g("content "),i({class:e.pageCode},"string | optional")," - Updated content"),o({class:e.pageLi},g("description "),i({class:e.pageCode},"string | optional")," - Updated description"),o({class:e.pageLi},g("tags "),i({class:e.pageCode},"string[] | optional")," - Updated tags"),o({class:e.pageLi},g("metadata "),i({class:e.pageCode},"Record<string, any> | optional")," - Updated metadata")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const updated = await db.scripts.update('deploy.sh', {
-  description: 'Updated deployment script',
-  tags: ['deployment', 'production', 'v2']
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.remove(name)"),T({class:e.pageP},"Removes a script from the database."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},'await db.scripts.remove("old-script.sh");'))),v({class:e.section},P({class:e.pageH3},"db.scripts.run(name, options?)"),T({class:e.pageP},"Executes a script on the server."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"RunOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("args "),i({class:e.pageCode},"string[]")," - Command line arguments"),o({class:e.pageLi},g("env "),i({class:e.pageCode},"Record<string, string>")," - Environment variables"),o({class:e.pageLi},g("dryRun "),i({class:e.pageCode},"boolean")," - Preview without executing"),o({class:e.pageLi},g("timeout "),i({class:e.pageCode},"number")," - Execution timeout in ms"),o({class:e.pageLi},g("stdin "),i({class:e.pageCode},"string")," - Input to pass to stdin (Node.js only)")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ScriptResult>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const result = await db.scripts.run('deploy.sh', {
-  args: ['--env', 'production'],
-  env: { DEPLOY_MODE: 'production' },
-  timeout: 300000
-});
-
-console.log('Exit code:', result.exitCode);
-console.log('Output:', result.stdout);`))),v({class:e.section},P({class:e.pageH3},"db.scripts.runLocal(scriptPath, options?)"),T({class:e.pageP},"Runs a script locally on the current machine (Node.js only)."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("scriptPath "),i({class:e.pageCode},"string")," - Path to script file"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"RunLocalOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("args "),i({class:e.pageCode},"string[]")," - Command line arguments"),o({class:e.pageLi},g("env "),i({class:e.pageCode},"Record<string, string>")," - Environment variables"),o({class:e.pageLi},g("cwd "),i({class:e.pageCode},"string")," - Working directory"),o({class:e.pageLi},g("timeout "),i({class:e.pageCode},"number")," - Execution timeout in ms")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ScriptResult>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const result = await db.scripts.runLocal('./scripts/deploy.sh', {
-  args: ['--env', 'staging'],
-  env: { NODE_ENV: 'staging' },
-  cwd: './project'
-});`))),v({class:e.section},P({class:e.pageH3},"db.scripts.history(name, options?)"),T({class:e.pageP},"Gets execution history for a script."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("name "),i({class:e.pageCode},"string")," - Script name"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"HistoryOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("limit "),i({class:e.pageCode},"number")," - Maximum history entries"),o({class:e.pageLi},g("offset "),i({class:e.pageCode},"number")," - Pagination offset")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ScriptHistory[]>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"const history = await db.scripts.history('deploy.sh', { limit: 10 });\nhistory.forEach(entry => {\n  console.log(`${entry.timestamp}: ${entry.exitCode}`);\n});"))),v({class:e.section},P({class:e.pageH3},"db.scripts.watch(dirPath, options?)"),T({class:e.pageP},"Watches a directory for file changes and auto-syncs scripts (Node.js only)."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("dirPath "),i({class:e.pageCode},"string")," - Directory path to watch"),o({class:e.pageLi},g("options "),i({class:e.pageCode},"WatchOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("pattern "),i({class:e.pageCode},"string")," - Glob pattern to match files (default: ",i({class:e.pageCode},"**/*"),")"),o({class:e.pageLi},g("ignore "),i({class:e.pageCode},"string[]")," - Patterns to ignore"),o({class:e.pageLi},g("onAdd "),i({class:e.pageCode},"(file: string) => Promise<void>")," - Callback when file is added"),o({class:e.pageLi},g("onChange "),i({class:e.pageCode},"(file: string) => Promise<void>")," - Callback when file is changed"),o({class:e.pageLi},g("onRemove "),i({class:e.pageCode},"(file: string) => Promise<void>")," - Callback when file is removed")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<FSWatcher>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const watcher = await db.scripts.watch('./scripts', {
-  pattern: '**/*.sh',
-  ignore: ['**/*.test.sh'],
-  onAdd: async (file) => {
-    await db.scripts.addFromFile(file);
-    console.log('Added:', file);
-  },
-  onChange: async (file) => {
-    const name = path.basename(file, '.sh');
-    await db.scripts.update(name, { content: await fs.readFile(file, 'utf-8') });
-  },
-  onRemove: async (file) => {
-    const name = path.basename(file, '.sh');
-    await db.scripts.remove(name);
-  }
-});
-
-// Stop watching
-watcher.close();`)))),v({class:e.section},H({class:e.pageH2},"Batch Operations"),v({class:e.section},P({class:e.pageH3},"db.scripts.batchAdd(scripts)"),T({class:e.pageP},"Adds multiple scripts in a single batch operation."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("scripts "),i({class:e.pageCode},"ScriptData[]")," - Array of scripts to add")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<Script[]>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const scripts = await db.scripts.batchAdd([
-  { name: 'script1.sh', content: '#!/bin/bash\\necho "1"' },
-  { name: 'script2.sh', content: '#!/bin/bash\\necho "2"' },
-  { name: 'script3.sh', content: '#!/bin/bash\\necho "3"' }
-]);`))),v({class:e.section},P({class:e.pageH3},"db.scripts.batchRemove(names)"),T({class:e.pageP},"Removes multiple scripts in a single batch operation."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("names "),i({class:e.pageCode},"string[]")," - Array of script names to remove")),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},'await db.scripts.batchRemove(["script1.sh", "script2.sh", "script3.sh"]);')))),v({class:e.section},H({class:e.pageH2},"Server Management (Node.js Only)"),v({class:e.section},P({class:e.pageH3},"db.server.start(options?)"),T({class:e.pageP},"Starts a local ScriptDB server."),L({class:e.pageH3},"Parameters"),w({class:e.pageUl},o({class:e.pageLi},g("options "),i({class:e.pageCode},"ServerOptions | optional"),w({class:e.pageUl},o({class:e.pageLi},g("port "),i({class:e.pageCode},"number")," - Server port (default: ",i({class:e.pageCode},"8080"),")"),o({class:e.pageLi},g("host "),i({class:e.pageCode},"string")," - Server host (default: ",i({class:e.pageCode},"'0.0.0.0'"),")"),o({class:e.pageLi},g("dataDir "),i({class:e.pageCode},"string")," - Data directory path"),o({class:e.pageLi},g("logLevel "),i({class:e.pageCode},"'debug' | 'info' | 'warn' | 'error'")," - Log level")))),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ServerProcess>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const server = await db.server.start({
-  port: 8080,
-  dataDir: './data',
-  logLevel: 'debug'
-});
-
-// Stop server
-await server.stop();`))),v({class:e.section},P({class:e.pageH3},"db.server.stop()"),T({class:e.pageP},"Stops the local ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<void>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},"await db.server.stop();"))),v({class:e.section},P({class:e.pageH3},"db.server.status()"),T({class:e.pageP},"Gets the status of the local ScriptDB server."),L({class:e.pageH3},"Returns"),w({class:e.pageUl},o({class:e.pageLi},i({class:e.pageCode},"Promise<ServerStatus>"))),L({class:e.pageH3},"Example"),S({class:e.pagePre},i({class:e.pageCode},`const status = await db.server.status();
-console.log('Server running:', status.running);
-console.log('PID:', status.pid);
-console.log('Uptime:', status.uptime);`)))),v({class:e.section},H({class:e.pageH2},"Events"),T({class:e.pageP},"The Node.js client uses Node.js EventEmitter and emits events."),v({class:e.section},P({class:e.pageH3},"db.on(event, callback)"),T({class:e.pageP},"Subscribe to client events."),L({class:e.pageH3},"Events"),w({class:e.pageUl},o({class:e.pageLi},g("connected")," - Fired when connected to server",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("connected", () => {
-  console.log("Connected to server");
-});`))),o({class:e.pageLi},g("disconnected")," - Fired when disconnected",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("disconnected", () => {
-  console.log("Disconnected from server");
-});`))),o({class:e.pageLi},g("error")," - Fired on errors",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("error", (error) => {
-  console.error("Error:", error.message);
-});`))),o({class:e.pageLi},g("reconnecting")," - Fired when attempting to reconnect",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},'db.on("reconnecting", (attempt) => {\n  console.log(`Reconnecting... attempt ${attempt}`);\n});'))),o({class:e.pageLi},g("script:added")," - Fired when a script is added",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:added", (script) => {
-  console.log("Script added:", script.name);
-});`))),o({class:e.pageLi},g("script:updated")," - Fired when a script is updated",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:updated", (script) => {
-  console.log("Script updated:", script.name);
-});`))),o({class:e.pageLi},g("script:removed")," - Fired when a script is removed",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:removed", (name) => {
-  console.log("Script removed:", name);
-});`))),o({class:e.pageLi},g("script:executed")," - Fired when a script finishes execution",S({class:e.pagePre,style:"margin-top: 0.5rem;"},i({class:e.pageCode},`db.on("script:executed", (result) => {
-  console.log("Script executed:", result.name, result.exitCode);
-});`)))),v({class:e.section},P({class:e.pageH3},"db.off(event, callback)"),T({class:e.pageP},"Unsubscribe from events."),S({class:e.pagePre},i({class:e.pageCode},`const handler = () => console.log('Connected');
-db.on('connected', handler);
-
-// Later
-db.off('connected', handler);`))),v({class:e.section},P({class:e.pageH3},"db.once(event, callback)"),T({class:e.pageP},"Subscribe to event one time only (Node.js only)."),S({class:e.pagePre},i({class:e.pageCode},`db.once('connected', () => {
-  console.log('Connected! This will only fire once.');
-});`))))),v({class:e.section},H({class:e.pageH2},"Error Handling"),T({class:e.pageP},"The client provides detailed error information."),S({class:e.pagePre},i({class:e.pageCode},`try {
-  const script = await db.scripts.get('nonexistent.sh');
-} catch (error) {
-  if (error.code === 'SCRIPT_NOT_FOUND') {
-    console.log('Script does not exist');
-  } else if (error.code === 'CONNECTION_ERROR') {
-    console.log('Cannot connect to server');
-  } else if (error.code === 'AUTH_ERROR') {
-    console.log('Invalid API key');
-  } else {
-    console.error('Unexpected error:', error.message);
-  }
-}`))),v({class:e.section},H({class:e.pageH2},"Type Definitions"),S({class:e.pagePre},i({class:e.pageCode},`interface ScriptDBOptions {
-  serverUrl: string;
-  apiKey?: string;
-  timeout?: number;
-  maxRetries?: number;
-  retryDelay?: number;
-  persistPath?: string;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error';
-}
-
-interface ScriptData {
-  name: string;
-  content: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface Script {
-  id: string;
-  name: string;
-  content: string;
-  description?: string;
-  tags: string[];
-  metadata: Record<string, any>;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface ScriptResult {
-  name: string;
-  exitCode: number;
-  stdout: string;
-  stderr: string;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ScriptHistory {
-  id: string;
-  name: string;
-  exitCode: number;
-  duration: number;
-  timestamp: Date;
-}
-
-interface AddFromFileOptions {
-  name?: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface RunLocalOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  cwd?: string;
-  timeout?: number;
-}
-
-interface WatchOptions {
-  pattern?: string;
-  ignore?: string[];
-  onAdd?: (file: string) => Promise<void>;
-  onChange?: (file: string) => Promise<void>;
-  onRemove?: (file: string) => Promise<void>;
-}
-
-interface ListOptions {
-  tag?: string;
-  verbose?: boolean;
-  limit?: number;
-  offset?: number;
-}
-
-interface RunOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  dryRun?: boolean;
-  timeout?: number;
-  stdin?: string;
-}
-
-interface HistoryOptions {
-  limit?: number;
-  offset?: number;
-}
-
-interface ServerOptions {
-  port?: number;
-  host?: string;
-  dataDir?: string;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error';
-}
-
-interface ServerStatus {
-  running: boolean;
-  pid?: number;
-  uptime?: number;
-  port?: number;
-}
-
-interface ServerProcess {
-  stop(): Promise<void>;
-  status(): Promise<ServerStatus>;
-}
-
-// Error Codes
-type ErrorCode = 
-  | 'SCRIPT_NOT_FOUND'
-  | 'CONNECTION_ERROR'
-  | 'AUTH_ERROR'
-  | 'TIMEOUT'
-  | 'VALIDATION_ERROR'
-  | 'SERVER_ERROR';
-
-class ScriptDBError extends Error {
-  code: ErrorCode;
-  details?: any;
-}`))));var He=[{path:"/",component:Ce},{path:"/installation",component:Se},{path:"/quick-start",component:we},{path:"/docs",component:Le},{path:"/usage",component:Te},{path:"/scripts",component:Pe},{path:"/api",component:$e}],st={mode:"hash",base:"/script-db",routes:He},G=ye(st),Re=()=>E(G.currentRoute,t=>{let s=He.find(a=>a.path===t.path);return s?s.component():{tagName:"div",props:{},children:["404 - Not Found"]}});var xe=()=>{let t=(s,a)=>o(M({href:`#${a}`,class:e.navLink,onclick:n=>{n.preventDefault(),G.push(a)}},s));return de({class:e.header},ge({class:`${e.container} ${e.nav}`},M({href:"#/",class:e.logo,onclick:s=>{s.preventDefault(),G.push("/")}},"ScriptDB"),w({class:e.navLinks},t("Home","/"),t("Installation","/installation"),t("Quick Start","/quick-start"),t("Docs","/docs"),t("Usage","/usage"),t("API","/api"),t("Scripts","/scripts"))))};function re(t){return typeof t=="string"?document.getElementById(t.replace("#","")):t}function ie(t,s){if(!t)throw new Error(`Element not found: ${s}`);return t}function F(t){return t==null||t===!1}function De(t){return t==null||typeof t=="boolean"||typeof t=="string"||typeof t=="number"}var at=class{constructor(){this.elementCache=new WeakMap,this.reactiveNodes=new Map}createElement(t,s={},a=[]){return{tagName:t,props:s,children:a}}renderToDOM(t,s){if(t==null||t===!1)return;if(typeof t!="object"){s.appendChild(document.createTextNode(String(t)));return}let{tagName:a,props:n,children:c}=t,p=a==="svg"||a[0]==="s"&&a[1]==="v"&&a[2]==="g"||s.namespaceURI==="http://www.w3.org/2000/svg",r=p?document.createElementNS("http://www.w3.org/2000/svg",a.replace("svg","").toLowerCase()||a):document.createElement(a);for(let u in n){let f=n[u];if(f==null||f===!1)continue;let l=u.charCodeAt(0);if(l===99&&(u.length<6||u[5]==="N")){let C=Array.isArray(f)?f.join(" "):f;p?r.setAttribute("class",C):r.className=C}else if(l===115&&u.length===5)if(typeof f=="string")r.style.cssText=f;else{let C=r.style;for(let y in f)C[y]=f[y]}else l===111&&u.charCodeAt(1)===110?r[u.toLowerCase()]=f:l===100&&u.length>20?r.innerHTML=f.e:l===114&&u.length===3?setTimeout(()=>{typeof f=="function"?f(r):f.current=r},0):r.setAttribute(u,f===!0?"":String(f))}let d=c.length;if(!d){s.appendChild(r);return}let b=u=>{for(let f=0;f<d;f++){let l=c[f];if(!F(l))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];!F(m)&&this.renderToDOM(m,u)}else this.renderToDOM(l,u)}};if(d>30){let u=document.createDocumentFragment();b(u),r.appendChild(u)}else b(r);s.appendChild(r)}render(t,s){let a=ie(re(t),t);if(a.innerHTML="",s.children&&s.children.length>500){let n=document.createDocumentFragment();this.renderToDOM(s,n),a.appendChild(n)}else this.renderToDOM(s,a);return a}batchRender(t,s){let a=ie(re(t),t),n=s.length;if(n>3e3){let c=document.createDocumentFragment(),p=0,r=1500,d=()=>{let b=Math.min(p+r,n);for(let u=p;u<b;u++)this.renderToDOM(s[u],c);p=b,p>=n?a.appendChild(c):requestAnimationFrame(d)};d()}else{let c=document.createDocumentFragment();for(let p=0;p<n;p++)this.renderToDOM(s[p],c);a.appendChild(c)}return a}renderChunked(t,s,a=5e3,n){let c=ie(re(t),t),p=s.length,r=0,d=()=>{let b=Math.min(r+a,p),u=document.createDocumentFragment();for(let f=r;f<b;f++)this.renderToDOM(s[f],u);c.appendChild(u),r=b,n&&n(r,p),r<p&&requestAnimationFrame(d)};return requestAnimationFrame(d),c}renderToHead(...t){let s=document.head;if(s)for(let a of t.flat())a&&this.renderToDOM(a,s);return s}addStyle(t){let s=document.createElement("style");return s.textContent=t,document.head.appendChild(s)}addMeta(t){let s=document.createElement("meta");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}addLink(t){let s=document.createElement("link");for(let a in t)s.setAttribute(a,t[a]);return document.head.appendChild(s)}setTitle(t){return document.title=t}createState(t,s={}){let a=t,n=new Set,c=null,{throttle:p=0,deep:r=!1}=s,d=()=>n.forEach(u=>u(a)),b=()=>{p>0?c||(c=setTimeout(()=>{c=null,d()},p)):d()};return{get value(){return a},set value(u){(r?JSON.stringify(a)!==JSON.stringify(u):a!==u)&&(a=u,b())},subscribe(u){return n.add(u),()=>n.delete(u)},destroy(){n.clear(),c&&clearTimeout(c)}}}computed(t,s){let a=t.map(c=>c.value),n=this.createState(s(...a));return t.forEach((c,p)=>{c.subscribe(r=>{a[p]=r,n.value=s(...a)})}),n}effect(t){t()}createVirtualList(t,s,a,n=50,c=5){let p=t.clientHeight,r=s.length*n,d=0,b=()=>{let l=Math.max(0,Math.floor(d/n)-c),C=Math.min(s.length,Math.ceil((d+p)/n)+c);return{start:l,end:C}},u=()=>{let{start:l,end:C}=b(),y=document.createElement("div");y.style.cssText=`height:${r}px;position:relative`;for(let m=l;m<C;m++){let h=document.createElement("div");h.style.cssText=`position:absolute;top:${m*n}px;height:${n}px;width:100%`,this.renderToDOM(a(s[m],m),h),y.appendChild(h)}t.innerHTML="",t.appendChild(y)},f=()=>{d=t.scrollTop,requestAnimationFrame(u)};return t.addEventListener("scroll",f),u(),{render:u,destroy:()=>{t.removeEventListener("scroll",f),t.innerHTML=""}}}lazy(t){let s=null,a=!1;return async(...n)=>(!s&&!a&&(a=!0,s=await t(),a=!1),s?s(...n):{tagName:"div",props:{class:"loading"},children:["Loading..."]})}cleanupUnusedElements(t){let s=document.createTreeWalker(t,NodeFilter.SHOW_ELEMENT),a=[];for(;s.nextNode();){let n=s.currentNode;n.id&&n.id.startsWith("r")&&!this.elementCache.has(n)&&a.push(n)}return a.forEach(n=>n.remove()),a.length}renderToString(t,s={}){let{pretty:a=!1,indent:n=0}=s,c=a?"  ".repeat(n):"",p=a?`
-`:"",r=this.resolveStateValue(t);if(r=this.unwrapReactive(r),Array.isArray(r))return r.map(y=>this.renderToString(y,s)).join("");if(typeof r!="object"||r===null)return r==null||r===!1?"":this.escapeHtml(String(r));let{tagName:d,props:b,children:u}=r,f=this.isSelfClosingTag(d),l=`${c}<${d}`,C=this.propsToAttributes(b);if(C&&(l+=` ${C}`),f)return l+=` />${p}`,l;if(l+=">",b.dangerouslySetInnerHTML)return l+=b.dangerouslySetInnerHTML.e,l+=`</${d}>${p}`,l;if(u&&u.length>0){let y=u.map(h=>{let $=this.resolveStateValue(h);return this.unwrapReactive($)}),m=y.some(h=>typeof h=="object"&&h!==null&&!Array.isArray(h)&&"tagName"in h);if(a&&m){l+=p;for(let h of y)if(!F(h))if(Array.isArray(h))for(let $ of h)F($)||(l+=this.renderToString($,{pretty:a,indent:n+1}));else l+=this.renderToString(h,{pretty:a,indent:n+1});l+=c}else for(let h of y)if(!F(h))if(Array.isArray(h))for(let $ of h)F($)||(l+=this.renderToString($,{pretty:!1,indent:0}));else l+=this.renderToString(h,{pretty:!1,indent:0})}return l+=`</${d}>${p}`,l}resolveStateValue(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t?t.value:t}isReactiveWrapper(t){return!t||typeof t!="object"||!t.tagName?!1:t.tagName==="span"&&t.props?.id&&typeof t.props.id=="string"&&t.props.id.match(/^r[a-z0-9]{9}$/)}unwrapReactive(t){if(!this.isReactiveWrapper(t))return t;let s=t.children;if(!s||s.length===0)return"";if(s.length===1){let a=s[0];if(a&&typeof a=="object"&&a.tagName==="span"){let n=a.props,c=!n||Object.keys(n).length===0,p=a.children&&a.children.length===1&&typeof a.children[0]=="string";if(c&&p)return a.children[0]}return this.unwrapReactive(a)}return s.map(a=>this.unwrapReactive(a))}escapeHtml(t){let s={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"};return t.replace(/[&<>"']/g,a=>s[a])}isSelfClosingTag(t){return new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]).has(t.toLowerCase())}propsToAttributes(t){let s=[];for(let a in t){if(a==="children"||a==="dangerouslySetInnerHTML"||a==="ref")continue;let n=t[a];if(n=this.resolveStateValue(n),!(n==null||n===!1)&&!(a.startsWith("on")&&typeof n=="function")){if(a==="className"||a==="class"){let c=Array.isArray(n)?n.join(" "):n;c&&s.push(`class="${this.escapeHtml(String(c))}"`);continue}if(a==="style"){let c=this.styleToString(n);c&&s.push(`style="${this.escapeHtml(c)}"`);continue}if(n===!0){s.push(a);continue}s.push(`${a}="${this.escapeHtml(String(n))}"`)}}return s.join(" ")}styleToString(t){if(typeof t=="string")return t;if(typeof t=="object"&&t!==null){let s=[];for(let a in t){let n=a.replace(/([A-Z])/g,"-$1").toLowerCase();s.push(`${n}:${t[a]}`)}return s.join(";")}return""}isState(t){return t&&typeof t=="object"&&"value"in t&&"subscribe"in t&&typeof t.subscribe=="function"}createReactiveChild(t,s){let a=s(t.value);if(typeof window<"u"&&typeof document<"u"){let n={node:null,renderFn:s};this.reactiveNodes.set(t,n),t.subscribe(()=>{if(n.node&&n.node.parentNode){let c=s(t.value);n.node.textContent=String(c??"")}})}return a}jsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(De(t))return t;let{tag:s,attributes:a={},children:n}=t,c={};for(let r in a){let d=a[r];r==="class"?c.className=this.isState(d)?d.value:d:c[r]=this.isState(d)?d.value:d}let p=[];if(n!=null)if(Array.isArray(n))for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.jsonToVNode(r);d!=null&&d!==!1&&p.push(d)}else if(this.isState(n))p.push(this.createReactiveChild(n,r=>r));else if(typeof n=="object"&&"tag"in n){let r=this.jsonToVNode(n);r!=null&&r!==!1&&p.push(r)}else p.push(n);return{tagName:s,props:c,children:p}}vNodeJsonToVNode(t){if(this.isState(t))return this.createReactiveChild(t,r=>r);if(De(t))return t;let{tagName:s,props:a={},children:n=[]}=t,c={};for(let r in a){let d=a[r];c[r]=this.isState(d)?d.value:d}let p=[];for(let r of n)if(this.isState(r))p.push(this.createReactiveChild(r,d=>d));else{let d=this.vNodeJsonToVNode(r);d!=null&&d!==!1&&p.push(d)}return{tagName:s,props:c,children:p}}renderJson(t,s){let a=this.jsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid JSON structure");return this.render(t,a)}renderVNode(t,s){let a=this.vNodeJsonToVNode(s);if(!a||typeof a!="object"||!("tagName"in a))throw new Error("Invalid VNode JSON structure");return this.render(t,a)}renderJsonToString(t,s={}){let a=this.jsonToVNode(t);return this.renderToString(a,s)}renderVNodeToString(t,s={}){let a=this.vNodeJsonToVNode(t);return this.renderToString(a,s)}renderToHTMLDocument(t,s={}){let{title:a="",meta:n=[],links:c=[],scripts:p=[],styles:r=[],lang:d="en",head:b="",bodyAttrs:u={},pretty:f=!1}=s,l=f?`
-`:"",C=f?"  ":"",y=f?"    ":"",m=`<!DOCTYPE html>${l}<html lang="${d}">${l}${C}<head>${l}${y}<meta charset="UTF-8">${l}${y}<meta name="viewport" content="width=device-width, initial-scale=1.0">${l}`;a&&(m+=`${y}<title>${this.escapeHtml(a)}</title>${l}`);for(let h of n){m+=`${y}<meta`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of c){m+=`${y}<link`;for(let $ in h)m+=` ${$}="${this.escapeHtml(h[$])}"`;m+=`>${l}`}for(let h of r)h.href?m+=`${y}<link rel="stylesheet" href="${this.escapeHtml(h.href)}">${l}`:h.content&&(m+=`${y}<style>${h.content}</style>${l}`);b&&(m+=b+l),m+=`${C}</head>${l}${C}<body`;for(let h in u)m+=` ${h}="${this.escapeHtml(u[h])}"`;m+=`>${l}`,m+=this.renderToString(t,{pretty:f,indent:2});for(let h of p)m+=`${y}<script`,h.type&&(m+=` type="${this.escapeHtml(h.type)}"`),h.async&&(m+=" async"),h.defer&&(m+=" defer"),h.src?m+=` src="${this.escapeHtml(h.src)}"><\/script>${l}`:h.content?m+=`>${h.content}<\/script>${l}`:m+=`><\/script>${l}`;return m+=`${C}</body>${l}</html>`,m}getElementCache(){return this.elementCache}},q=new at,mr=q.render.bind(q),fr=q.renderToString.bind(q);var nt=(t,s)=>q.createState(t,s);var rt=class{constructor(t,s,a){this.key=t,this.wsUrl=a,this.ws=null,this.pendingUpdates=[],this.localState=nt(s),this.previousValue=s,this.connect()}get value(){return this.localState.value}set value(t){this.previousValue=this.localState.value,this.localState.value=t,this.sendToServer(t)}get state(){return this.localState}onChange(t){return this.localState.subscribe(s=>{let a=this.previousValue;this.previousValue=s,t(s,a)})}update(t){this.value=t(this.value)}connect(){if(typeof window>"u")return;let t=this.wsUrl||`ws://${location.host}`;this.ws=new WebSocket(t),this.ws.addEventListener("open",()=>{for(this.subscribe();this.pendingUpdates.length>0;){let s=this.pendingUpdates.shift();this.sendToServer(s)}}),this.ws.addEventListener("message",s=>{this.handleMessage(s.data)}),this.ws.addEventListener("close",()=>{setTimeout(()=>this.connect(),1e3)}),this.ws.addEventListener("error",s=>{console.error("[SharedState] WebSocket error:",s)})}subscribe(){!this.ws||this.ws.readyState!==WebSocket.OPEN||this.ws.send(JSON.stringify({type:"state:subscribe",key:this.key}))}handleMessage(t){try{let s=JSON.parse(t);if(s.key!==this.key)return;(s.type==="state:init"||s.type==="state:update")&&(this.localState.value=s.value)}catch{}}sendToServer(t){if(this.ws){if(this.ws.readyState!==WebSocket.OPEN){this.pendingUpdates.push(t);return}this.ws.send(JSON.stringify({type:"state:change",key:this.key,value:t}))}}disconnect(){this.ws&&(this.ws.close(),this.ws=null)}destroy(){this.disconnect(),this.localState.destroy()}};var it=class{constructor(){this.states=new Map}create(t,s,a){if(this.states.has(t))return this.states.get(t);let n=new rt(t,s,a);return this.states.set(t,n),n}get(t){return this.states.get(t)}delete(t){let s=this.states.get(t);return s?(s.destroy(),this.states.delete(t)):!1}clear(){this.states.forEach(t=>t.destroy()),this.states.clear()}},br=new it;var oe=class{constructor(){this.variables=[],this.rules=[],this.mediaRules=[],this.keyframes=[],this.fontFaces=[],this.imports=[],this.containerRules=[],this.supportsRules=[],this.layerRules=[],this.t=[]}addVar(t,s){let a={name:t.startsWith("--")?t:`--${t}`,value:s,toString(){return`var(${this.name})`}};return this.variables.push(a),a}var(t,s){let a=typeof t=="string"?t.startsWith("--")?t:`--${t}`:t.name;return s?`var(${a}, ${s})`:`var(${a})`}addTag(t,s){let a={selector:t,styles:s,type:"tag"};return this.rules.push(a),a}addClass(t,s){let n={selector:t.startsWith(".")?t:`.${t}`,styles:s,type:"class"};return this.rules.push(n),n}addId(t,s){let n={selector:t.startsWith("#")?t:`#${t}`,styles:s,type:"id"};return this.rules.push(n),n}addPseudoClass(t,s,a){let n=t.startsWith(":")?t:`:${t}`,p={selector:a?`${a}${n}`:n,styles:s,type:"pseudo-class"};return this.rules.push(p),p}addPseudoElement(t,s,a){let n=t.startsWith("::")?t:`::${t}`,p={selector:a?`${a}${n}`:n,styles:s,type:"pseudo-element"};return this.rules.push(p),p}addAttribute(t,s,a){let n=t.startsWith("[")?t:`[${t}]`,p={selector:a?`${a}${n}`:n,styles:s,type:"attribute"};return this.rules.push(p),p}attrEquals(t,s,a,n){return this.addAttribute(`${t}="${s}"`,a,n)}attrContainsWord(t,s,a,n){return this.addAttribute(`${t}~="${s}"`,a,n)}attrStartsWith(t,s,a,n){return this.addAttribute(`${t}^="${s}"`,a,n)}attrEndsWith(t,s,a,n){return this.addAttribute(`${t}$="${s}"`,a,n)}attrContains(t,s,a,n){return this.addAttribute(`${t}*="${s}"`,a,n)}descendant(t,s,a){return this.createAndAddRule(`${t} ${s}`,a)}child(t,s,a){return this.createAndAddRule(`${t} > ${s}`,a)}adjacentSibling(t,s,a){return this.createAndAddRule(`${t} + ${s}`,a)}generalSibling(t,s,a){return this.createAndAddRule(`${t} ~ ${s}`,a)}multiple(t,s){return this.createAndAddRule(t.join(", "),s)}addName(t,s){return{selector:t.startsWith("--")?`&${t}`:`&--${t}`,styles:s,type:"name"}}nesting(t,...s){return t.nested=s,t}keyframe(t,s){let a=Object.entries(s).map(([c,p])=>({step:c==="from"?"from":c==="to"?"to":`${c}%`,styles:p})),n={name:t,steps:a};return this.keyframes.push(n),n}keyframeFromTo(t,s,a){return this.keyframe(t,{from:s,to:a})}fontFace(t){return this.fontFaces.push(t),t}import(t,s){let a=s?`@import url("${t}") ${s};`:`@import url("${t}");`;return this.imports.push(a),a}media(t,s,a){let n={type:t,condition:s,rules:this.rulesToCSSRules(a)};return this.mediaRules.push(n),n}mediaScreen(t,s){return this.media("screen",t,s)}mediaPrint(t){return this.media("print","",t)}mediaMinWidth(t,s){return this.media("screen",`min-width: ${t}`,s)}mediaMaxWidth(t,s){return this.media("screen",`max-width: ${t}`,s)}mediaDark(t){let s={type:"",condition:"prefers-color-scheme: dark",rules:this.rulesToCSSRules(t)};return this.mediaRules.push(s),s}mediaLight(t){let s={type:"",condition:"prefers-color-scheme: light",rules:this.rulesToCSSRules(t)};return this.mediaRules.push(s),s}mediaReducedMotion(t){let s={type:"",condition:"prefers-reduced-motion: reduce",rules:this.rulesToCSSRules(t)};return this.mediaRules.push(s),s}container(t,s,a){let n={name:a,condition:t,rules:this.rulesToCSSRules(s)};return this.containerRules.push(n),n}addContainer(t,s){let a={...s,containerName:t};return this.addClass(t,a)}supports(t,s){let a={condition:t,rules:this.rulesToCSSRules(s)};return this.supportsRules.push(a),a}layerOrder(...t){this.t=t}layer(t,s){let a={name:t,rules:this.rulesToCSSRules(s)};return this.layerRules.push(a),a}add(t){return Object.entries(t).map(([a,n])=>{let c={selector:a,styles:n,type:"custom"};return this.rules.push(c),c})}important(t){return`${t} !important`}toKebabCase(t){return t.replace(/([a-z])([A-Z])/g,"$1-$2").toLowerCase()}createAndAddRule(t,s,a="custom"){let n={selector:t,styles:s,type:a};return this.rules.push(n),n}rulesToCSSRules(t){return Object.entries(t).map(([s,a])=>({selector:s,styles:a,type:"custom"}))}renderRulesWithIndent(t,s="    "){return t.map(a=>this.renderRule(a,s)).join(`
-`)}stylesToString(t,s="    "){return Object.entries(t).map(([a,n])=>{let c=typeof n=="object"&&n!==null&&"name"in n?`var(${n.name})`:n;return`${s}${this.toKebabCase(a)}: ${c};`}).join(`
-`)}renderRule(t,s=""){let a=`${s}${t.selector} {
-${this.stylesToString(t.styles,s+"    ")}
-`;if(t.nested&&t.nested.length>0)for(let n of t.nested){let c=n.selector.startsWith("&")?n.selector.replace(/&/g,t.selector):`${t.selector} ${n.selector}`;a+=`
-${s}${c} {
-${this.stylesToString(n.styles,s+"    ")}
-${s}}
-`}return a+=`${s}}`,a}renderMediaRule(t){return`@media ${t.type&&t.condition?`${t.type} and (${t.condition})`:t.type?t.type:`(${t.condition})`} {
-${this.renderRulesWithIndent(t.rules)}
-}`}renderKeyframes(t){let s=`@keyframes ${t.name} {
-`;for(let a of t.steps)s+=`    ${a.step} {
-${this.stylesToString(a.styles,"        ")}
-    }
-`;return s+="}",s}renderFontFace(t){let s=`@font-face {
-`;return s+=`    font-family: "${t.fontFamily}";
-`,s+=`    src: ${t.src};
-`,t.fontWeight&&(s+=`    font-weight: ${t.fontWeight};
-`),t.fontStyle&&(s+=`    font-style: ${t.fontStyle};
-`),t.fontDisplay&&(s+=`    font-display: ${t.fontDisplay};
-`),t.unicodeRange&&(s+=`    unicode-range: ${t.unicodeRange};
-`),s+="}",s}renderContainerRule(t){return`@container ${t.name?`${t.name} `:""}(${t.condition}) {
-${this.renderRulesWithIndent(t.rules)}
-}`}renderSupportsRule(t){return`@supports (${t.condition}) {
-${this.renderRulesWithIndent(t.rules)}
-}`}renderLayerRule(t){return`@layer ${t.name} {
-${this.renderRulesWithIndent(t.rules)}
-}`}render(...t){let s=[];if(this.imports.length>0&&s.push(this.imports.join(`
-`)),this.t.length>0&&s.push(`@layer ${this.t.join(", ")};`),this.variables.length>0){let b=this.variables.map(u=>`    ${u.name}: ${u.value};`).join(`
-`);s.push(`:root {
-${b}
-}`)}for(let b of this.fontFaces)s.push(this.renderFontFace(b));for(let b of this.keyframes)s.push(this.renderKeyframes(b));let a=[...this.rules],n=[...this.mediaRules],c=[],p=[...this.containerRules],r=[...this.supportsRules],d=[...this.layerRules];for(let b of t)b&&(Array.isArray(b)?a.push(...b):"condition"in b&&"rules"in b&&!("name"in b&&"steps"in b)?"type"in b?n.push(b):"name"in b&&typeof b.name=="string"?p.push(b):r.push(b):"name"in b&&"steps"in b?c.push(b):"name"in b&&"rules"in b?d.push(b):a.push(b));for(let b of c)s.push(this.renderKeyframes(b));for(let b of d)s.push(this.renderLayerRule(b));for(let b of a)s.push(this.renderRule(b));for(let b of r)s.push(this.renderSupportsRule(b));for(let b of p)s.push(this.renderContainerRule(b));for(let b of n)s.push(this.renderMediaRule(b));return s.join(`
-
-`)}inject(t){let s=this.render(),a=document.createElement("style");return t&&(a.id=t),a.textContent=s,document.head.appendChild(a),a}clear(){this.variables=[],this.rules=[],this.mediaRules=[],this.keyframes=[],this.fontFaces=[],this.imports=[],this.containerRules=[],this.supportsRules=[],this.layerRules=[],this.t=[]}},ot=new oe,{addVar:yr,var:vr,addTag:Cr,addClass:Sr,addId:wr,addPseudoClass:Lr,addPseudoElement:Tr,addAttribute:Pr,attrEquals:$r,attrContainsWord:Hr,attrStartsWith:Rr,attrEndsWith:xr,attrContains:Dr,descendant:Nr,child:kr,adjacentSibling:Er,generalSibling:Ar,multiple:Mr,addName:Ur,nesting:Or,keyframe:Br,keyframeFromTo:Ir,fontFace:Fr,import:Vr,media:Wr,mediaScreen:jr,mediaPrint:qr,mediaMinWidth:Jr,mediaMaxWidth:_r,mediaDark:zr,mediaLight:Gr,mediaReducedMotion:Qr,container:Kr,addContainer:Yr,supports:Zr,layerOrder:Xr,layer:ei,add:ti,important:si,render:ai,inject:ni,clear:ri}=ot,Q=typeof document<"u";function ct(t){return t.charAt(0).toUpperCase()+t.slice(1)}function A(t){return Q&&t?t.bind(D):void 0}function Ne(t,s,a){t.forEach(n=>{let c=s+ct(n);a[c]=ce(n)})}var ce=t=>function(s,...a){if(!arguments.length)return{tagName:t,props:{},children:[]};let n=s&&typeof s=="object"&&"value"in s&&"subscribe"in s,c=s&&typeof s=="object"&&"tagName"in s,p=typeof s!="object"||Array.isArray(s)||s===null||n||c,r=p?{}:s,d=p?[s,...a]:a;if(!d.length)return{tagName:t,props:r,children:[]};let b=[];for(let u=0,f=d.length;u<f;u++){let l=d[u];if(!(l==null||l===!1))if(Array.isArray(l))for(let C=0,y=l.length;C<y;C++){let m=l[C];m!=null&&m!==!1&&b.push(m)}else b.push(l)}return{tagName:t,props:r,children:b}},lt=["html","head","body","title","base","link","meta","style","address","article","aside","footer","header","h1","h2","h3","h4","h5","h6","main","nav","section","blockquote","dd","div","dl","dt","figcaption","figure","hr","li","ol","p","pre","ul","a","abbr","b","bdi","bdo","br","cite","code","data","dfn","em","i","kbd","mark","q","rp","rt","ruby","s","samp","small","span","strong","sub","sup","time","u","wbr","area","audio","img","map","track","video","embed","iframe","object","param","picture","portal","source","canvas","noscript","script","del","ins","caption","col","colgroup","table","tbody","td","tfoot","th","thead","tr","button","datalist","fieldset","form","input","label","legend","meter","optgroup","option","output","progress","select","textarea","details","dialog","menu","summary","slot","template"],pt=["svg","circle","rect","path","line","polyline","polygon","ellipse","g","text","tspan","defs","linearGradient","radialGradient","stop","pattern","mask","clipPath","use","symbol","marker","image","foreignObject","animate","animateTransform","animateMotion","set","filter","feBlend","feColorMatrix","feComponentTransfer","feComposite","feConvolveMatrix","feDiffuseLighting","feDisplacementMap","feFlood","feGaussianBlur","feMorphology","feOffset","feSpecularLighting","feTile","feTurbulence"],dt=["math","mi","mn","mo","ms","mtext","mrow","mfrac","msqrt","mroot","msub","msup"],J={};lt.forEach(t=>{J[t]=ce(t)});Ne(pt,"svg",J);Ne(dt,"math",J);J.varElement=ce("var");var{html:ii,head:oi,body:ci,title:li,base:pi,link:di,meta:ui,style:gi,address:hi,article:mi,aside:fi,footer:ke,header:bi,h1:yi,h2:vi,h3:Ci,h4:Si,h5:wi,h6:Li,main:Ti,nav:Pi,section:$i,blockquote:Hi,dd:Ri,div:Ee,dl:xi,dt:Di,figcaption:Ni,figure:ki,hr:Ei,li:Ai,ol:Mi,p:le,pre:Ui,ul:Oi,a:Ae,abbr:Bi,b:Ii,bdi:Fi,bdo:Vi,br:Wi,cite:ji,code:qi,data:Ji,dfn:_i,em:zi,i:Gi,kbd:Qi,mark:Ki,q:Yi,rp:Zi,rt:Xi,ruby:eo,s:to,samp:so,small:ao,span:no,strong:ro,sub:io,sup:oo,time:co,u:lo,wbr:po,area:uo,audio:go,img:ho,map:mo,track:fo,video:bo,embed:yo,iframe:vo,object:Co,param:So,picture:wo,portal:Lo,source:To,canvas:Po,noscript:$o,script:Ho,del:Ro,ins:xo,caption:Do,col:No,colgroup:ko,table:Eo,tbody:Ao,td:Mo,tfoot:Uo,th:Oo,thead:Bo,tr:Io,button:Fo,datalist:Vo,fieldset:Wo,form:jo,input:qo,label:Jo,legend:_o,meter:zo,optgroup:Go,option:Qo,output:Ko,progress:Yo,select:Zo,textarea:Xo,details:ec,dialog:tc,menu:sc,summary:ac,slot:nc,template:rc,svgSvg:ic,svgCircle:oc,svgRect:cc,svgPath:lc,svgLine:pc,svgPolyline:dc,svgPolygon:uc,svgEllipse:gc,svgG:hc,svgText:mc,svgTspan:fc,svgDefs:bc,svgLinearGradient:yc,svgRadialGradient:vc,svgStop:Cc,svgPattern:Sc,svgMask:wc,svgClipPath:Lc,svgUse:Tc,svgSymbol:Pc,svgMarker:$c,svgImage:Hc,svgForeignObject:Rc,svgAnimate:xc,svgAnimateTransform:Dc,svgAnimateMotion:Nc,svgSet:kc,svgFilter:Ec,svgFeBlend:Ac,svgFeColorMatrix:Mc,svgFeComponentTransfer:Uc,svgFeComposite:Oc,svgFeConvolveMatrix:Bc,svgFeDiffuseLighting:Ic,svgFeDisplacementMap:Fc,svgFeFlood:Vc,svgFeGaussianBlur:Wc,svgFeMorphology:jc,svgFeOffset:qc,svgFeSpecularLighting:Jc,svgFeTile:_c,svgFeTurbulence:zc,mathMath:Gc,mathMi:Qc,mathMn:Kc,mathMo:Yc,mathMs:Zc,mathMtext:Xc,mathMrow:el,mathMfrac:tl,mathMsqrt:sl,mathMroot:al,mathMsub:nl,mathMsup:rl,varElement:il}=J;var D=Q?document:void 0,ol=A(D?.querySelector),cl=A(D?.querySelectorAll),ll=A(D?.createElement),pl=Q?D.createElementNS.bind(D,"http://www.w3.org/2000/svg"):void 0,dl=Q?D.createElementNS.bind(D,"http://www.w3.org/1998/Math/MathML"):void 0,ul=A(D?.createDocumentFragment),gl=A(D?.createTextNode),hl=A(D?.createComment),ml=A(D?.getElementById),fl=A(D?.getElementsByClassName),bl=A(D?.getElementsByTagName),yl=A(D?.getElementsByName);var ut=class{constructor(){this.enabled=!1,this.ws=null,this.acceptCallbacks=[],this.disposeCallbacks=[],this.declined=!1,!(typeof window>"u")&&this.connect()}connect(){let t=window.location.protocol==="https:"?"wss:":"ws:",s=window.location.hostname,a=window.location.port||"3000";this.ws=new WebSocket(`${t}//${s}:${a}`),this.ws.onopen=()=>{this.enabled=!0,console.log("[Elit HMR] Connected \u2713")},this.ws.onmessage=n=>{try{let c=JSON.parse(n.data);this.handleMessage(c)}catch(c){console.error("[Elit HMR] Error parsing message:",c)}},this.ws.onclose=()=>{this.enabled=!1,console.log("[Elit HMR] Disconnected - Attempting reconnect..."),setTimeout(()=>this.reload(),1e3)},this.ws.onerror=n=>{console.error("[Elit HMR] WebSocket error:",n)}}handleMessage(t){switch(t.type){case"connected":console.log("[Elit HMR] Ready");break;case"update":if(console.log(`[Elit HMR] Update detected: ${t.path}`),this.declined){this.reload();return}this.disposeCallbacks.forEach(s=>s()),this.disposeCallbacks=[],this.acceptCallbacks.length>0?this.acceptCallbacks.forEach(s=>s()):this.reload();break;case"reload":console.log("[Elit HMR] Full reload requested"),this.reload();break;case"error":console.error("[Elit HMR] Server error:",t.error);break}}reload(){window.location.reload()}accept(t){t&&this.acceptCallbacks.push(t),this.declined=!1}decline(){this.declined=!0}dispose(t){this.disposeCallbacks.push(t)}},gt=new ut;typeof window<"u"&&(window.n=gt);var Me=()=>ke({class:e.footer},Ee({class:e.container},le("\xA9 2025 ScriptDB. MIT License."),le("Created by ",Ae({href:"https://github.com/n-devs",target:"n-devs",rel:"noopener noreferrer"},"@n-devs"))));var R=new oe,Ue=!1,Oe=()=>{if(Ue)return;Ue=!0;let t=document.createElement("style");t.textContent=`
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: #f5f5f5;
+    html {
+      scroll-behavior: smooth;
     }
-  `,document.head.appendChild(t),R.addClass("app-container",{minHeight:"100vh",display:"flex",flexDirection:"column"}),R.addClass("container",{maxWidth:"1200px",margin:"0 auto",padding:"0 20px"}),R.addClass("header",{background:"#2c3e50",color:"white",padding:"1rem 0",boxShadow:"0 2px 4px rgba(0, 0, 0, 0.1)"}),R.addClass("nav",{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1rem"}),R.addClass("logo",{fontSize:"1.5rem",fontWeight:"bold",textDecoration:"none",color:"white"}),R.addClass("nav-links",{display:"flex",gap:"2rem",listStyle:"none",flexWrap:"wrap"}),R.addClass("nav-link",{color:"white",textDecoration:"none",transition:"opacity 0.2s",padding:"0.25rem 0"}),R.addPseudoClass("hover",{opacity:.8},".nav-link"),R.addClass("nav-link-active",{color:"white",textDecoration:"none",padding:"0.25rem 0",borderBottom:"2px solid white"}),R.addPseudoClass("hover",{opacity:.8},".nav-link-active"),R.addClass("main-content",{flex:1,background:"white",margin:"2rem auto",padding:"2rem",borderRadius:"8px",boxShadow:"0 2px 8px rgba(0, 0, 0, 0.1)",maxWidth:"1200px",width:"100%"}),R.addClass("page",{maxWidth:"100%"}),R.addClass("page-h1",{color:"#2c3e50",marginBottom:"1rem",paddingBottom:"0.5rem",borderBottom:"3px solid #3498db"}),R.addClass("page-h2",{color:"#2c3e50",marginTop:"2rem",marginBottom:"1rem"}),R.addClass("page-h3",{color:"#34495e",marginTop:"1.5rem",marginBottom:"0.75rem"}),R.addClass("page-p",{marginBottom:"1rem",lineHeight:1.6}),R.addClass("page-ul",{marginLeft:"2rem",marginBottom:"1rem"}),R.addClass("page-li",{marginBottom:"0.5rem"}),R.addClass("page-pre",{background:"#f4f4f4",border:"1px solid #ddd",borderLeft:"3px solid #3498db",color:"#333",fontFamily:"'Courier New', Courier, monospace",fontSize:"14px",lineHeight:1.6,marginBottom:"1.6rem",maxWidth:"100%",overflow:"auto",padding:"1rem",borderRadius:"4px"}),R.addClass("page-code",{fontFamily:"'Courier New', Courier, monospace",background:"#f4f4f4",padding:"2px 6px",borderRadius:"3px",fontSize:"0.9em"}),R.addClass("hero",{textAlign:"center",padding:"3rem 0"}),R.addClass("hero-title",{fontSize:"3rem",border:"none",marginBottom:"0.5rem"}),R.addClass("subtitle",{fontSize:"1.25rem",color:"#666"}),R.addClass("features",{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))",gap:"2rem",margin:"3rem 0"}),R.addClass("feature",{padding:"1.5rem",border:"1px solid #ddd",borderRadius:"8px",transition:"transform 0.2s, box-shadow 0.2s"}),R.addPseudoClass("hover",{transform:"translateY(-4px)",boxShadow:"0 4px 12px rgba(0, 0, 0, 0.1)"},".feature"),R.addClass("feature-h3",{marginTop:0,marginBottom:"0.5rem"}),R.addClass("section",{margin:"2rem 0"}),R.addClass("footer",{textAlign:"center",padding:"2rem 0",color:"#666",background:"#f5f5f5",marginTop:"auto"}),R.addClass("tabs",{display:"flex",gap:"0.5rem",marginBottom:"1rem",borderBottom:"2px solid #e0e0e0"}),R.addClass("tab",{padding:"0.75rem 1.5rem",background:"transparent",border:"none",borderBottom:"2px solid transparent",cursor:"pointer",fontSize:"1rem",color:"#666",transition:"all 0.2s",marginBottom:"-2px"}),R.addPseudoClass("hover",{color:"#2c3e50",background:"#f5f5f5"},".tab"),R.addClass("tab-active",{padding:"0.75rem 1.5rem",background:"transparent",border:"none",borderBottom:"2px solid #3498db",cursor:"pointer",fontSize:"1rem",color:"#2c3e50",fontWeight:"bold",marginBottom:"-2px"}),R.addClass("tab-content",{marginTop:"1rem"}),R.addClass("download-section",{textAlign:"center",margin:"2rem 0"}),R.addClass("download-button",{display:"inline-block",background:"#27ae60",color:"white",padding:"1rem 2rem",textDecoration:"none",borderRadius:"8px",fontSize:"1.1rem",fontWeight:"bold",transition:"all 0.3s",border:"none",cursor:"pointer",boxShadow:"0 2px 4px rgba(0, 0, 0, 0.1)"}),R.addPseudoClass("hover",{background:"#229954",transform:"translateY(-2px)",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.2)"},".download-button"),R.mediaMaxWidth("768px",{".nav":{flexDirection:"column",alignItems:"flex-start"},".nav-links":{flexDirection:"column",gap:"1rem",width:"100%"},".hero-title":{fontSize:"2rem"},".main-content":{margin:"1rem auto",padding:"1rem"},".features":{gridTemplateColumns:"1fr"}}),R.inject("app-styles")};Oe();var ht=()=>v({class:e.appContainer},xe(),ue({class:e.mainContent},v({class:e.page},Re())),Me()),Be=document.getElementById("app");Be&&me(Be,ht());
+
+    body {
+      min-height: 100vh;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(200, 106, 60, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(17, 52, 79, 0.14), transparent 28%),
+        linear-gradient(180deg, var(--bg-top) 0%, #f4ede2 48%, var(--bg-bottom) 100%);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(17, 52, 79, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 52, 79, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 90%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    pre,
+    code {
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+    }
+
+    ::selection {
+      background: rgba(200, 106, 60, 0.2);
+    }
+
+    #app {
+      min-height: 100vh;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(251, 245, 236, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--brand-strong);
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #2c668f);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(17, 52, 79, 0.18);
+    }
+
+    .logo-text {
+      font-size: 1.08rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-link,
+    .nav-link-active {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      transition: all 0.18s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--brand);
+      background: rgba(17, 52, 79, 0.06);
+    }
+
+    .nav-link-active {
+      color: var(--brand-strong);
+      background: rgba(17, 52, 79, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(17, 52, 79, 0.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-button,
+    .button-primary,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      border: 1px solid transparent;
+    }
+
+    .button-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), #265c83);
+      box-shadow: 0 16px 28px rgba(17, 52, 79, 0.18);
+    }
+
+    .nav-button,
+    .button-secondary {
+      color: var(--brand-strong);
+      background: rgba(255, 255, 255, 0.62);
+      border-color: var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-button:hover,
+    .button-primary:hover,
+    .button-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-button:hover,
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(17, 52, 79, 0.22);
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 32px 0 48px;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, var(--surface-strong), rgba(255, 250, 244, 0.74));
+      border: 1px solid rgba(17, 52, 79, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      right: -120px;
+      bottom: -160px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(200, 106, 60, 0.2), transparent 62%);
+      pointer-events: none;
+    }
+
+    .badge-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(17, 52, 79, 0.08);
+      color: var(--brand-strong);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-eyebrow,
+    .section-label {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 14px;
+    }
+
+    .hero-title,
+    .page-h1 {
+      color: var(--brand-strong);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 1;
+      max-width: 12ch;
+      margin-bottom: 18px;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+    }
+
+    .page-h1 {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      margin-bottom: 12px;
+    }
+
+    .subtitle,
+    .page-lead,
+    .page-p {
+      color: var(--muted);
+      line-height: 1.78;
+    }
+
+    .subtitle,
+    .page-lead {
+      max-width: 68ch;
+      font-size: clamp(1.08rem, 2vw, 1.25rem);
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 28px 0 32px;
+    }
+
+    .stat-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card,
+    .feature,
+    .card,
+    .step-card,
+    .footer-grid {
+      border: 1px solid rgba(17, 52, 79, 0.1);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-card {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .stat-value {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--brand-strong);
+      font-size: 1.45rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .page-h2 {
+      color: var(--brand-strong);
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      letter-spacing: -0.04em;
+    }
+
+    .page-h3,
+    .feature-h3,
+    .card-title,
+    .footer-heading {
+      color: var(--brand-strong);
+      letter-spacing: -0.02em;
+    }
+
+    .page-h3,
+    .feature-h3,
+    .card-title {
+      font-size: 1.12rem;
+    }
+
+    .page-ul {
+      display: grid;
+      gap: 10px;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .page-li {
+      line-height: 1.7;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature,
+    .card,
+    .step-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feature:hover,
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 32px rgba(17, 52, 79, 0.12);
+    }
+
+    .feature-h3,
+    .card-title {
+      margin-bottom: 10px;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .page-pre {
+      overflow: auto;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #152334;
+      color: #eff4f8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 16px 30px rgba(11, 34, 52, 0.18);
+    }
+
+    .page-code {
+      display: block;
+      white-space: pre;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      background: transparent;
+      color: inherit;
+    }
+
+    :not(pre) > .page-code {
+      display: inline;
+      padding: 0.1rem 0.4rem;
+      border-radius: 8px;
+      background: rgba(17, 52, 79, 0.08);
+      color: var(--brand-strong);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab,
+    .tab-active {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--muted);
+      transition: all 0.18s ease;
+    }
+
+    .tab:hover {
+      color: var(--brand-strong);
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .tab-active {
+      color: #fff;
+      background: var(--brand);
+      border-color: var(--brand);
+      box-shadow: 0 10px 20px rgba(17, 52, 79, 0.14);
+    }
+
+    .tab-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .step-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(17, 52, 79, 0.1);
+      color: var(--brand-strong);
+      font-weight: 700;
+    }
+
+    .note {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(43, 122, 103, 0.1);
+      border: 1px solid rgba(43, 122, 103, 0.16);
+      color: #21463b;
+    }
+
+    .inline-link,
+    .footer-links a {
+      color: var(--brand);
+      text-decoration: underline;
+      text-decoration-color: rgba(17, 52, 79, 0.22);
+      text-underline-offset: 0.18em;
+    }
+
+    .inline-link:hover,
+    .footer-links a:hover {
+      color: var(--accent);
+      text-decoration-color: rgba(200, 106, 60, 0.35);
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 20px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 20px;
+      padding: 28px 30px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .footer-heading {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-small {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1080px) {
+      .features,
+      .step-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .split-grid,
+      .stat-grid,
+      .features,
+      .step-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container,
+      .page {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .nav {
+        padding: 14px 0;
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero-title,
+      .page-h1 {
+        font-size: clamp(2rem, 12vw, 3rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button-primary,
+      .button-secondary,
+      .nav-button,
+      .tab,
+      .tab-active {
+        width: 100%;
+      }
+
+      .main-content {
+        padding-top: 24px;
+      }
+    }
+  `,document.head.appendChild(e)};st();var kt=()=>o({class:t.appContainer},Xe(),Ce({class:t.mainContent},o({class:t.page},Ze())),et()),rt=document.getElementById("app");rt&&Pe(rt,kt());

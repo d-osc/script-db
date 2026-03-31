@@ -1,7 +1,7 @@
 {
   "name": "script-db-website",
   "version": "1.0.0",
-  "description": "ScriptDB Website - A lightweight script database management tool",
+  "description": "Documentation site for the ScriptDB CLI, server, GUI, and client packages",
   "type": "module",
   "scripts": {
     "dev": "elit dev",
@@ -9,10 +9,12 @@
     "preview": "elit preview"
   },
   "keywords": [
-    "script-db",
+    "scriptdb",
+    "documentation",
+    "typescript",
+    "cli",
     "database",
-    "scripts",
-    "installation"
+    "monorepo"
   ],
   "author": "",
   "license": "MIT",

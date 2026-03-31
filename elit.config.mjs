@@ -61,7 +61,7 @@ export default {
   preview: {
     port: 3001,
     host: 'localhost',
-    root: resolve(__dirname, 'dist'),
+    root: resolve(__dirname, 'docs'),
     index: './index.html',
     basePath: '/script-db',
     open: true,

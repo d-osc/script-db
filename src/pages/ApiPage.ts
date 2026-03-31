@@ -1,1235 +1,242 @@
-import { div, h1, h2, h3, h4, p, pre, code, ul, li, strong, a, span } from 'elit/el';
+import { a, button, code, div, h1, h2, h3, li, p, span, ul } from 'elit/el';
 import type { VNode } from 'elit';
 import { createState, reactive } from 'elit/state';
+import { CodeBlock } from '../components/CodeBlock';
+import {
+  authExample,
+  browserConstructorExample,
+  browserExecuteExample,
+  browserQuickStartExample,
+  externalLinks,
+  nodeConstructorExample,
+  nodeExecuteExample,
+  nodeQuickStartExample,
+  signingExample
+} from '../content';
 import { styles } from '../styleNames';
 
+const externalLink = (href: string, label: string): VNode => {
+  return a({ href, class: styles.inlineLink, target: '_blank', rel: 'noopener noreferrer' }, label);
+};
+
+const methodItem = (signature: string, description: string): VNode => {
+  return li({ class: styles.pageLi },
+    code({ class: styles.pageCode }, signature),
+    ' - ',
+    description
+  );
+};
+
+const methodCard = (title: string, description: string, items: VNode[]): VNode => {
+  return div({ class: styles.card },
+    h3({ class: styles.cardTitle }, title),
+    p({ class: styles.pageP }, description),
+    ul({ class: styles.pageUl }, ...items)
+  );
+};
+
 export const ApiPage = (): VNode => {
-  // Create state for active API tab
   const activeApiTab = createState<'browser' | 'node'>('browser');
 
   return div(
-    h1({ class: styles.pageH1 }, 'API Documentation'),
-    p({ class: styles.pageP }, 'Complete API reference for ScriptDB client libraries.'),
+    div({ class: styles.pageHero },
+      div({ class: styles.badgeRow },
+        span({ class: styles.badge }, 'API reference'),
+        span({ class: styles.badge }, '@scriptdb/browser-client 1.1.3'),
+        span({ class: styles.badge }, '@scriptdb/client 1.1.3')
+      ),
+      p({ class: styles.heroEyebrow }, 'API'),
+      h1({ class: styles.pageH1 }, 'Client reference based on the current source, not the old placeholder docs.'),
+      p({ class: styles.pageLead }, 'The previous API page described a different product. This version is narrowed to the public surfaces exposed today by `packages/browser-client/src/index.ts` and `packages/client/src/index.ts` in the ScriptDB monorepo.'),
+      div({ class: styles.heroActions },
+        externalLink(externalLinks.browserClient, 'Browser Package'),
+        externalLink(externalLinks.nodeClient, 'Node Package'),
+        externalLink(externalLinks.repository, 'Monorepo')
+      )
+    ),
 
-    // API Tabs
     div({ class: styles.tabs },
       reactive(activeApiTab, (tab) =>
-        span({
+        button({
           class: tab === 'browser' ? styles.tabActive : styles.tab,
-          style: 'cursor: pointer; padding: 0.75rem 1.5rem;',
           onclick: () => activeApiTab.value = 'browser'
         }, '@scriptdb/browser-client')
       ),
       reactive(activeApiTab, (tab) =>
-        span({
+        button({
           class: tab === 'node' ? styles.tabActive : styles.tab,
-          style: 'cursor: pointer; padding: 0.75rem 1.5rem;',
           onclick: () => activeApiTab.value = 'node'
         }, '@scriptdb/client')
       )
     ),
 
-    // Tab content
     div({ class: styles.tabContent },
-      reactive(activeApiTab, (tab) => {
-        if (tab === 'browser') {
-          return BrowserClientApi();
-        } else {
-          return NodeClientApi();
-        }
-      })
+      reactive(activeApiTab, (tab) => tab === 'browser' ? BrowserClientApi() : NodeClientApi())
     )
   );
 };
 
-// Browser Client API Documentation
 const BrowserClientApi = (): VNode => {
   return div(
-    // Installation
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Installation'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'npm install @scriptdb/browser-client')
-      ),
-      p({ class: styles.pageP }, 'Or use CDN:'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, '<script type="module">\n  import ScriptDBClient from \'https://cdn.jsdelivr.net/npm/@scriptdb/browser-client/+esm\';\n</script>')
-      )
-    ),
-
-    // Quick Start
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Quick Start'),
-      p({ class: styles.pageP }, 'ScriptDB Browser Client is a WebSocket client for connecting to ScriptDB servers from browser applications.'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `import ScriptDBClient from '@scriptdb/browser-client';
-
-// Initialize client with connection URI
-const client = new ScriptDBClient('scriptdb://localhost:1234', {
-  secure: false,        // Use wss:// if true, ws:// if false
-  requestTimeout: 30000 // Request timeout in milliseconds
-});
-
-// Connect to server
-await client.connect();
-
-// List all databases
-const databases = await client.listDatabases();
-console.log('Databases:', databases);
-
-// Run code in a database
-const result = await client.run('db.users.find()', 'mydb');
-console.log('Query result:', result);
-
-// Disconnect
-await client.disconnect();`)
-      )
-    ),
-
-    // Constructor
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Constructor'),
-      h3({ class: styles.pageH3 }, 'new ScriptDBClient(uri, options?)'),
-      p({ class: styles.pageP }, 'Creates a new ScriptDB browser client instance.'),
-      h4({ class: styles.pageH3 }, 'Parameters'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi },
-          strong('uri '), code({ class: styles.pageCode }, 'string'), ' - Connection URI in format ', code({ class: styles.pageCode }, 'scriptdb://host:port/database')),
-        li({ class: styles.pageLi },
-          strong('options '), code({ class: styles.pageCode }, 'ClientOptions | optional'),
-          ul({ class: styles.pageUl },
-            li({ class: styles.pageLi }, strong('secure '), code({ class: styles.pageCode }, 'boolean'), ' - Use wss:// if true, ws:// if false (default: ', code({ class: styles.pageCode }, 'true'), ')'),
-            li({ class: styles.pageLi }, strong('requestTimeout '), code({ class: styles.pageCode }, 'number'), ' - Request timeout in ms, 0 = disabled (default: ', code({ class: styles.pageCode }, '0'), ')'),
-            li({ class: styles.pageLi }, strong('socketTimeout '), code({ class: styles.pageCode }, 'number'), ' - Socket timeout in ms (default: ', code({ class: styles.pageCode }, '0'), ')'),
-            li({ class: styles.pageLi }, strong('retries '), code({ class: styles.pageCode }, 'number'), ' - Reconnection retries (default: ', code({ class: styles.pageCode }, '3'), ')'),
-            li({ class: styles.pageLi }, strong('retryDelay '), code({ class: styles.pageCode }, 'number'), ' - Initial retry delay in ms (default: ', code({ class: styles.pageCode }, '1000'), ')'),
-            li({ class: styles.pageLi }, strong('maxPending '), code({ class: styles.pageCode }, 'number'), ' - Max concurrent requests (default: ', code({ class: styles.pageCode }, '100'), ')'),
-            li({ class: styles.pageLi }, strong('maxQueue '), code({ class: styles.pageCode }, 'number'), ' - Max queued requests (default: ', code({ class: styles.pageCode }, '1000'), ')'),
-            li({ class: styles.pageLi }, strong('maxMessageSize '), code({ class: styles.pageCode }, 'number'), ' - Max message size in bytes (default: ', code({ class: styles.pageCode }, '5MB'), ')'),
-            li({ class: styles.pageLi }, strong('logger '), code({ class: styles.pageCode }, 'Logger'), ' - Custom logger { debug, info, warn, error }'),
-            li({ class: styles.pageLi }, strong('username '), code({ class: styles.pageCode }, 'string'), ' - Username for authentication'),
-            li({ class: styles.pageLi }, strong('password '), code({ class: styles.pageCode }, 'string'), ' - Password for authentication'),
-            li({ class: styles.pageLi }, strong('tokenRefresh '), code({ class: styles.pageCode }, 'function'), ' - Async function to refresh token'),
-            li({ class: styles.pageLi }, strong('signing '), code({ class: styles.pageCode }, '{ secret, algorithm }'), ' - HMAC signing configuration'),
-            li({ class: styles.pageLi }, strong('stringify '), code({ class: styles.pageCode }, 'function'), ' - Custom JSON stringify function')
-          )
-        )
-      ),
-      h4({ class: styles.pageH3 }, 'Returns'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'ScriptDBClient'), ' - A new ScriptDB client instance')
-      ),
-      h4({ class: styles.pageH3 }, 'Example'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `const client = new ScriptDBClient('scriptdb://localhost:1234/mydb', {\n  secure: false,\n  requestTimeout: 30000,\n  retries: 5,\n  retryDelay: 2000,\n  username: 'admin',\n  password: 'secret'\n});`)
-      )
-    ),
-
-    // Connection Methods
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Connection Methods'),
-      
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.connect()'),
-        p({ class: styles.pageP }, 'Connects to the ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
+      p({ class: styles.sectionLabel }, 'Browser Client'),
+      h2({ class: styles.pageH2 }, 'The browser client uses an options object and talks to the proxy on port + 1.'),
+      p({ class: styles.pageLead }, 'The current source exports `BrowserClient` and a default export. Unlike the older placeholder docs, the constructor in source takes a configuration object with `host`, `port`, `username`, `password`, `requestTimeout`, `secure`, and an optional logger.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Install'),
+          CodeBlock('npm install @scriptdb/browser-client'),
+          p({ class: styles.pageP }, 'Package: ', externalLink(externalLinks.browserClient, '@scriptdb/browser-client'))
         ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.connect();')
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.disconnect()'),
-        p({ class: styles.pageP }, 'Disconnects from the ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.disconnect();')
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.isConnected'),
-        p({ class: styles.pageP }, 'Returns the connection status.'),
-        h4({ class: styles.pageH3 }, 'Type'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'boolean'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `if (db.isConnected) {\n  console.log('Connected to server');\n}`)
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Constructor'),
+          p({ class: styles.pageP }, 'The source currently builds the WebSocket endpoint from `host` and `port`, then connects to the proxy on `port + 1`.'),
+          CodeBlock(browserConstructorExample)
         )
       )
     ),
 
-    // Scripts API
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Scripts API'),
-      p({ class: styles.pageP }, 'Manage scripts through the ', code({ class: styles.pageCode }, 'db.scripts'), ' interface.'),
+      p({ class: styles.sectionLabel }, 'Public Surface'),
+      h2({ class: styles.pageH2 }, 'The main browser methods are small and focused.'),
+      p({ class: styles.pageLead }, 'The browser client stays intentionally lean: connect, authenticate, manage databases, run code, and fall back to raw actions when needed.'),
+      div({ class: styles.features },
+        methodCard('Connection and auth', 'Use these to establish or inspect the browser session.', [
+          methodItem('connected', 'Getter that reports whether the WebSocket session is currently open.'),
+          methodItem('connect()', 'Opens the WebSocket connection and sends the login request.'),
+          methodItem('login(username, password)', 'Authenticates explicitly after construction if needed.'),
+          methodItem('logout()', 'Ends the authenticated session on the server side.'),
+          methodItem('disconnect() / close()', 'Close the browser connection and reject pending requests.')
+        ]),
+        methodCard('Database lifecycle', 'These methods manipulate named databases on the server.', [
+          methodItem('listDatabases()', 'Fetches the available database names from the server.'),
+          methodItem('createDatabase(name)', 'Creates a new database context.'),
+          methodItem('removeDatabase(name)', 'Deletes a database from the server.'),
+          methodItem('renameDatabase(oldName, newName)', 'Renames an existing database.'),
+          methodItem('getDatabase(name)', 'Fetches the stored content for a database.'),
+          methodItem('updateDatabase(databaseName, data)', 'Sends metadata updates for a database.')
+        ]),
+        methodCard('Execution and persistence', 'This is the high-level workflow most browser apps will use.', [
+          methodItem('run(code, databaseName)', 'Executes TypeScript or JavaScript in the named database.'),
+          methodItem('saveDatabase(databaseName, code?)', 'Persists the current database state to disk, optionally with code.'),
+          methodItem('getInfo()', 'Retrieves server metadata and status information.'),
+          methodItem('executeShell(command)', 'Sends a shell command request through the server interface.')
+        ]),
+        methodCard('Low-level actions', 'Drop down to raw actions when you need to send a custom payload.', [
+          methodItem('execute({ action, data })', 'Sends a raw action payload like `script-code`, `save-db`, or `get-info`.'),
+          methodItem('sendRequest(action, data)', 'Convenience wrapper that forwards to the raw execute path.'),
+          methodItem('requestTimeout', 'Configured in the constructor and enforced per in-flight request.')
+        ])
+      )
+    ),
 
-      // scripts.add()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.add(script)'),
-        p({ class: styles.pageP }, 'Adds a new script to the database.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('script '), code({ class: styles.pageCode }, 'ScriptData'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name/identifier'),
-              li({ class: styles.pageLi }, strong('content '), code({ class: styles.pageCode }, 'string'), ' - Script content/code'),
-              li({ class: styles.pageLi }, strong('description '), code({ class: styles.pageCode }, 'string | optional'), ' - Script description'),
-              li({ class: styles.pageLi }, strong('tags '), code({ class: styles.pageCode }, 'string[] | optional'), ' - Array of tags'),
-              li({ class: styles.pageLi }, strong('metadata '), code({ class: styles.pageCode }, 'Record<string, any> | optional'), ' - Additional metadata')
-            )
-          )
+    div({ class: styles.section },
+      p({ class: styles.sectionLabel }, 'Examples'),
+      h2({ class: styles.pageH2 }, 'Use the high-level API first, then drop to raw actions only when necessary.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Quick start'),
+          CodeBlock(browserQuickStartExample)
         ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const script = await db.scripts.add({
-  name: 'deploy.sh',
-  content: '#!/bin/bash\\ndeploy-app',
-  description: 'Deploy application to production',
-  tags: ['deployment', 'production'],
-  metadata: {
-    author: 'DevOps Team',
-    version: '1.0.0'
-  }
-});`)
-        )
-      ),
-
-      // scripts.get()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.get(name)'),
-        p({ class: styles.pageP }, 'Retrieves a script by name.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script | null>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const script = await db.scripts.get('deploy.sh');\nif (script) {\n  console.log(script.content);\n}`)
-        )
-      ),
-
-      // scripts.list()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.list(options?)'),
-        p({ class: styles.pageP }, 'Lists all scripts with optional filtering.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'ListOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('tag '), code({ class: styles.pageCode }, 'string'), ' - Filter by tag'),
-              li({ class: styles.pageLi }, strong('verbose '), code({ class: styles.pageCode }, 'boolean'), ' - Include full details'),
-              li({ class: styles.pageLi }, strong('limit '), code({ class: styles.pageCode }, 'number'), ' - Maximum number of results'),
-              li({ class: styles.pageLi }, strong('offset '), code({ class: styles.pageCode }, 'number'), ' - Pagination offset')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script[]>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `// List all scripts\nconst allScripts = await db.scripts.list();\n\n// Filter by tag\nconst prodScripts = await db.scripts.list({ tag: 'production' });\n\n// Pagination\nconst page = await db.scripts.list({ limit: 10, offset: 20 });`)
-        )
-      ),
-
-      // scripts.update()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.update(name, updates)'),
-        p({ class: styles.pageP }, 'Updates an existing script.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('updates '), code({ class: styles.pageCode }, 'Partial<ScriptData>'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('content '), code({ class: styles.pageCode }, 'string | optional'), ' - Updated content'),
-              li({ class: styles.pageLi }, strong('description '), code({ class: styles.pageCode }, 'string | optional'), ' - Updated description'),
-              li({ class: styles.pageLi }, strong('tags '), code({ class: styles.pageCode }, 'string[] | optional'), ' - Updated tags'),
-              li({ class: styles.pageLi }, strong('metadata '), code({ class: styles.pageCode }, 'Record<string, any> | optional'), ' - Updated metadata')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const updated = await db.scripts.update('deploy.sh', {\n  description: 'Updated deployment script',\n  tags: ['deployment', 'production', 'v2']\n});`)
-        )
-      ),
-
-      // scripts.remove()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.remove(name)'),
-        p({ class: styles.pageP }, 'Removes a script from the database.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.scripts.remove("old-script.sh");')
-        )
-      ),
-
-      // scripts.run()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.run(name, options?)'),
-        p({ class: styles.pageP }, 'Executes a script on the server.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'RunOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('args '), code({ class: styles.pageCode }, 'string[]'), ' - Command line arguments'),
-              li({ class: styles.pageLi }, strong('env '), code({ class: styles.pageCode }, 'Record<string, string>'), ' - Environment variables'),
-              li({ class: styles.pageLi }, strong('dryRun '), code({ class: styles.pageCode }, 'boolean'), ' - Preview without executing'),
-              li({ class: styles.pageLi }, strong('timeout '), code({ class: styles.pageCode }, 'number'), ' - Execution timeout in ms')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ScriptResult>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const result = await db.scripts.run('deploy.sh', {\n  args: ['--env', 'production'],\n  env: { DEPLOY_MODE: 'production' },\n  timeout: 300000\n});\n\nconsole.log('Exit code:', result.exitCode);\nconsole.log('Output:', result.stdout);`)
-        )
-      ),
-
-      // scripts.history()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.history(name, options?)'),
-        p({ class: styles.pageP }, 'Gets execution history for a script.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'HistoryOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('limit '), code({ class: styles.pageCode }, 'number'), ' - Maximum history entries'),
-              li({ class: styles.pageLi }, strong('offset '), code({ class: styles.pageCode }, 'number'), ' - Pagination offset')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ScriptHistory[]>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const history = await db.scripts.history('deploy.sh', { limit: 10 });\nhistory.forEach(entry => {\n  console.log(\`\${entry.timestamp}: \${entry.exitCode}\`);\n});`)
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Raw execute'),
+          CodeBlock(browserExecuteExample)
         )
       )
     ),
 
-    // Events
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Events'),
-      p({ class: styles.pageP }, 'The browser client emits events that you can listen to.'),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.on(event, callback)'),
-        p({ class: styles.pageP }, 'Subscribe to client events.'),
-        h4({ class: styles.pageH3 }, 'Events'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('connected'), ' - Fired when connected to server',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("connected", () => {\n  console.log("Connected to server");\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('disconnected'), ' - Fired when disconnected',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("disconnected", () => {\n  console.log("Disconnected from server");\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('error'), ' - Fired on errors',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("error", (error) => {\n  console.error("Error:", error.message);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:added'), ' - Fired when a script is added',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:added", (script) => {\n  console.log("Script added:", script.name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:updated'), ' - Fired when a script is updated',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:updated", (script) => {\n  console.log("Script updated:", script.name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:removed'), ' - Fired when a script is removed',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:removed", (name) => {\n  console.log("Script removed:", name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:executed'), ' - Fired when a script finishes execution',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:executed", (result) => {\n  console.log("Script executed:", result.name, result.exitCode);\n});')
-            )
-          )
-        ),
-
-        div({ class: styles.section },
-          h3({ class: styles.pageH3 }, 'db.off(event, callback)'),
-          p({ class: styles.pageP }, 'Unsubscribe from events.'),
-          pre({ class: styles.pagePre },
-            code({ class: styles.pageCode }, `const handler = () => console.log('Connected');\ndb.on('connected', handler);\n\n// Later\ndb.off('connected', handler);`)
-          )
-        )
-      )
-    ),
-
-    // Types
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Type Definitions'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `interface ScriptDBOptions {
-  serverUrl: string;
-  apiKey?: string;
-  timeout?: number;
-  autoReconnect?: boolean;
-  reconnectInterval?: number;
-}
-
-interface ScriptData {
-  name: string;
-  content: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface Script {
-  id: string;
-  name: string;
-  content: string;
-  description?: string;
-  tags: string[];
-  metadata: Record<string, any>;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface ScriptResult {
-  name: string;
-  exitCode: number;
-  stdout: string;
-  stderr: string;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ScriptHistory {
-  id: string;
-  name: string;
-  exitCode: number;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ListOptions {
-  tag?: string;
-  verbose?: boolean;
-  limit?: number;
-  offset?: number;
-}
-
-interface RunOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  dryRun?: boolean;
-  timeout?: number;
-}
-
-interface HistoryOptions {
-  limit?: number;
-  offset?: number;
-}`)
-      )
+    div({ class: styles.note },
+      'Source note: this client currently documents a constructor that takes an options object rather than a URI string. That difference is intentional here because the page follows the source implementation.'
     )
   );
 };
 
-// Node.js Client API Documentation
 const NodeClientApi = (): VNode => {
   return div(
-    // Installation
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Installation'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, 'npm install @scriptdb/client')
-      )
-    ),
-
-    // Quick Start
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Quick Start'),
-      p({ class: styles.pageP }, 'ScriptDB Node.js client for managing scripts from Node.js applications.'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `import ScriptDB from '@scriptdb/client';
-
-async function main() {
-  // Initialize client
-  const db = new ScriptDB({
-    serverUrl: 'http://localhost:8080',
-    apiKey: 'your-api-key' // optional
-  });
-
-  // Connect to server
-  await db.connect();
-
-  // Add a script
-  await db.scripts.add({
-    name: 'backup.sh',
-    content: '#!/bin/bash\\necho "Backing up..."',
-    description: 'Daily backup script',
-    tags: ['backup', 'daily']
-  });
-
-  // List all scripts
-  const scripts = await db.scripts.list();
-  console.log(scripts);
-
-  // Run a script
-  const result = await db.scripts.run('backup.sh');
-  console.log('Exit code:', result.exitCode);
-
-  // Use with file paths
-  await db.scripts.addFromFile('./my-script.sh', {
-    name: 'my-script',
-    description: 'Script from file'
-  });
-
-  // Watch file changes
-  await db.scripts.watch('./scripts', {
-    pattern: '**/*.sh',
-    onAdd: async (file) => {
-      await db.scripts.addFromFile(file, {
-        name: file.split('/').pop()?.replace('.sh', ''),
-        description: 'Auto-added from watcher'
-      });
-    }
-  });
-
-  // Disconnect
-  await db.disconnect();
-}
-
-main().catch(console.error);`)
-      )
-    ),
-
-    // Constructor
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Constructor'),
-      h3({ class: styles.pageH3 }, 'new ScriptDB(options)'),
-      p({ class: styles.pageP }, 'Creates a new ScriptDB Node.js client instance.'),
-      h4({ class: styles.pageH3 }, 'Parameters'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi },
-          strong('options '), code({ class: styles.pageCode }, 'ScriptDBOptions'),
-          ul({ class: styles.pageUl },
-            li({ class: styles.pageLi }, strong('serverUrl '), code({ class: styles.pageCode }, 'string'), ' - ScriptDB server URL (default: ', code({ class: styles.pageCode }, 'http://localhost:8080'), ')'),
-            li({ class: styles.pageLi }, strong('apiKey '), code({ class: styles.pageCode }, 'string | undefined'), ' - Optional API key for authentication'),
-            li({ class: styles.pageLi }, strong('timeout '), code({ class: styles.pageCode }, 'number'), ' - Request timeout in milliseconds (default: ', code({ class: styles.pageCode }, '30000'), ')'),
-            li({ class: styles.pageLi }, strong('maxRetries '), code({ class: styles.pageCode }, 'number'), ' - Maximum retry attempts (default: ', code({ class: styles.pageCode }, '3'), ')'),
-            li({ class: styles.pageLi }, strong('retryDelay '), code({ class: styles.pageCode }, 'number'), ' - Retry delay in ms (default: ', code({ class: styles.pageCode }, '1000'), ')'),
-            li({ class: styles.pageLi }, strong('persistPath '), code({ class: styles.pageCode }, 'string'), ' - Path to persist local cache (default: ', code({ class: styles.pageCode }, '~/.scriptdb/cache'), ')'),
-            li({ class: styles.pageLi }, strong('logLevel '), code({ class: styles.pageCode }, "'debug' | 'info' | 'warn' | 'error'"), ' - Logging level (default: ', code({ class: styles.pageCode }, "'info'"), ')')
-          )
-        )
-      ),
-      h4({ class: styles.pageH3 }, 'Returns'),
-      ul({ class: styles.pageUl },
-        li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'ScriptDB'), ' - A new ScriptDB client instance')
-      ),
-      h4({ class: styles.pageH3 }, 'Example'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `const db = new ScriptDB({
-  serverUrl: 'https://api.scriptdb.example.com',
-  apiKey: 'sk_live_1234567890',
-  timeout: 60000,
-  maxRetries: 5,
-  retryDelay: 2000,
-  persistPath: './cache/scriptdb',
-  logLevel: 'debug'
-});`)
-      )
-    ),
-
-    // Connection Methods
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Connection Methods'),
-      
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.connect()'),
-        p({ class: styles.pageP }, 'Connects to the ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
+      p({ class: styles.sectionLabel }, 'Node Client'),
+      h2({ class: styles.pageH2 }, 'The Node client is the richer transport surface for services and automation.'),
+      p({ class: styles.pageLead }, 'The current source exports `ScriptDBClient` with a `scriptdb://` connection URI plus an options object for TLS, retries, message framing, queue limits, signing, logging, and credential handling.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Install'),
+          CodeBlock('npm install @scriptdb/client'),
+          p({ class: styles.pageP }, 'Package: ', externalLink(externalLinks.nodeClient, '@scriptdb/client'))
         ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.connect();')
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.disconnect()'),
-        p({ class: styles.pageP }, 'Disconnects from the ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.disconnect();')
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.isConnected'),
-        p({ class: styles.pageP }, 'Returns the connection status.'),
-        h4({ class: styles.pageH3 }, 'Type'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'boolean'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `if (db.isConnected) {\n  console.log('Connected to server');\n}`)
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Constructor'),
+          p({ class: styles.pageP }, 'The URI selects host, port, and optional database. Credentials can be passed in the URI or, preferably, in the options object.'),
+          CodeBlock(nodeConstructorExample)
         )
       )
     ),
 
-    // Scripts API
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Scripts API'),
-      p({ class: styles.pageP }, 'Manage scripts through the ', code({ class: styles.pageCode }, 'db.scripts'), ' interface.'),
+      p({ class: styles.sectionLabel }, 'Public Surface'),
+      h2({ class: styles.pageH2 }, 'The Node client adds queueing, retries, TLS, and lifecycle controls.'),
+      p({ class: styles.pageLead }, 'Use this client when the caller runs in Node, Bun, or a server-side automation context and you want the most control over transport behavior.'),
+      div({ class: styles.features },
+        methodCard('Connection lifecycle', 'These methods control the socket and the client lifecycle.', [
+          methodItem('connected', 'Getter that reports the current TCP or TLS connection state.'),
+          methodItem('connect()', 'Connects, authenticates, and resolves once the session is ready.'),
+          methodItem('disconnect() / close()', 'Gracefully ends the current socket.'),
+          methodItem('destroy()', 'Destroys the client, clears timers, and rejects queued work.')
+        ]),
+        methodCard('Database lifecycle', 'The high-level database operations mirror the browser client where possible.', [
+          methodItem('listDatabases()', 'Fetches the list of available databases.'),
+          methodItem('createDatabase(name)', 'Creates a named database on the server.'),
+          methodItem('removeDatabase(name)', 'Deletes a named database.'),
+          methodItem('renameDatabase(oldName, newName)', 'Renames a database.'),
+          methodItem('updateDatabase(databaseName, data)', 'Updates stored metadata for the database.')
+        ]),
+        methodCard('Execution and server actions', 'This is the main path for real application code.', [
+          methodItem('run(code, databaseName)', 'Executes TypeScript or JavaScript in the selected database.'),
+          methodItem('saveDatabase(databaseName, code?)', 'Persists the database to disk.'),
+          methodItem('getInfo()', 'Returns server information.'),
+          methodItem('executeShell(command)', 'Sends a shell command request to the server.')
+        ]),
+        methodCard('Transport options', 'These settings are the reason to prefer the Node client for back-end workflows.', [
+          methodItem('secure / tlsOptions', 'Enable TLS and pass through Node TLS connection options.'),
+          methodItem('retries / retryDelay', 'Control reconnection behavior.'),
+          methodItem('frame / preferLengthPrefix', 'Choose NDJSON or length-prefixed framing.'),
+          methodItem('maxPending / maxQueue / maxMessageSize', 'Control request queueing and message limits.'),
+          methodItem('signing / tokenRefresh', 'Enable message signing and token refresh strategies.')
+        ])
+      )
+    ),
 
-      // scripts.add()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.add(script)'),
-        p({ class: styles.pageP }, 'Adds a new script to the database.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('script '), code({ class: styles.pageCode }, 'ScriptData'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name/identifier'),
-              li({ class: styles.pageLi }, strong('content '), code({ class: styles.pageCode }, 'string'), ' - Script content/code'),
-              li({ class: styles.pageLi }, strong('description '), code({ class: styles.pageCode }, 'string | optional'), ' - Script description'),
-              li({ class: styles.pageLi }, strong('tags '), code({ class: styles.pageCode }, 'string[] | optional'), ' - Array of tags'),
-              li({ class: styles.pageLi }, strong('metadata '), code({ class: styles.pageCode }, 'Record<string, any> | optional'), ' - Additional metadata')
-            )
-          )
+    div({ class: styles.section },
+      p({ class: styles.sectionLabel }, 'Examples'),
+      h2({ class: styles.pageH2 }, 'A normal workflow uses high-level methods, with raw execute only for special cases.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Quick start'),
+          CodeBlock(nodeQuickStartExample)
         ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const script = await db.scripts.add({
-  name: 'deploy.sh',
-  content: '#!/bin/bash\\ndeploy-app',
-  description: 'Deploy application to production',
-  tags: ['deployment', 'production'],
-  metadata: {
-    author: 'DevOps Team',
-    version: '1.0.0'
-  }
-});`)
-        )
-      ),
-
-      // scripts.addFromFile()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.addFromFile(filePath, options?)'),
-        p({ class: styles.pageP }, 'Adds a script from a file on the local filesystem (Node.js only).'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('filePath '), code({ class: styles.pageCode }, 'string'), ' - Path to script file'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'AddFromFileOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Custom script name (default: filename without extension)'),
-              li({ class: styles.pageLi }, strong('description '), code({ class: styles.pageCode }, 'string'), ' - Script description'),
-              li({ class: styles.pageLi }, strong('tags '), code({ class: styles.pageCode }, 'string[]'), ' - Array of tags'),
-              li({ class: styles.pageLi }, strong('metadata '), code({ class: styles.pageCode }, 'Record<string, any>'), ' - Additional metadata')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `// Add from file with default options\nconst script = await db.scripts.addFromFile('./scripts/deploy.sh');\n\n// Add with custom options\nconst script = await db.scripts.addFromFile('./scripts/deploy.sh', {\n  name: 'production-deploy',\n  description: 'Production deployment script',\n  tags: ['deployment', 'production'],\n  metadata: { version: '2.0.0' }\n});`)
-        )
-      ),
-
-      // scripts.get()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.get(name)'),
-        p({ class: styles.pageP }, 'Retrieves a script by name.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script | null>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const script = await db.scripts.get('deploy.sh');\nif (script) {\n  console.log(script.content);\n}`)
-        )
-      ),
-
-      // scripts.download()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.download(name, destPath)'),
-        p({ class: styles.pageP }, 'Downloads a script to a local file (Node.js only).'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi }, strong('destPath '), code({ class: styles.pageCode }, 'string'), ' - Destination file path')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.scripts.download("deploy.sh", "./downloaded/deploy.sh");')
-        )
-      ),
-
-      // scripts.list()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.list(options?)'),
-        p({ class: styles.pageP }, 'Lists all scripts with optional filtering.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'ListOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('tag '), code({ class: styles.pageCode }, 'string'), ' - Filter by tag'),
-              li({ class: styles.pageLi }, strong('verbose '), code({ class: styles.pageCode }, 'boolean'), ' - Include full details'),
-              li({ class: styles.pageLi }, strong('limit '), code({ class: styles.pageCode }, 'number'), ' - Maximum number of results'),
-              li({ class: styles.pageLi }, strong('offset '), code({ class: styles.pageCode }, 'number'), ' - Pagination offset')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script[]>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `// List all scripts\nconst allScripts = await db.scripts.list();\n\n// Filter by tag\nconst prodScripts = await db.scripts.list({ tag: 'production' });\n\n// Pagination\nconst page = await db.scripts.list({ limit: 10, offset: 20 });`)
-        )
-      ),
-
-      // scripts.update()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.update(name, updates)'),
-        p({ class: styles.pageP }, 'Updates an existing script.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('updates '), code({ class: styles.pageCode }, 'Partial<ScriptData>'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('content '), code({ class: styles.pageCode }, 'string | optional'), ' - Updated content'),
-              li({ class: styles.pageLi }, strong('description '), code({ class: styles.pageCode }, 'string | optional'), ' - Updated description'),
-              li({ class: styles.pageLi }, strong('tags '), code({ class: styles.pageCode }, 'string[] | optional'), ' - Updated tags'),
-              li({ class: styles.pageLi }, strong('metadata '), code({ class: styles.pageCode }, 'Record<string, any> | optional'), ' - Updated metadata')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const updated = await db.scripts.update('deploy.sh', {\n  description: 'Updated deployment script',\n  tags: ['deployment', 'production', 'v2']\n});`)
-        )
-      ),
-
-      // scripts.remove()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.remove(name)'),
-        p({ class: styles.pageP }, 'Removes a script from the database.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.scripts.remove("old-script.sh");')
-        )
-      ),
-
-      // scripts.run()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.run(name, options?)'),
-        p({ class: styles.pageP }, 'Executes a script on the server.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'RunOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('args '), code({ class: styles.pageCode }, 'string[]'), ' - Command line arguments'),
-              li({ class: styles.pageLi }, strong('env '), code({ class: styles.pageCode }, 'Record<string, string>'), ' - Environment variables'),
-              li({ class: styles.pageLi }, strong('dryRun '), code({ class: styles.pageCode }, 'boolean'), ' - Preview without executing'),
-              li({ class: styles.pageLi }, strong('timeout '), code({ class: styles.pageCode }, 'number'), ' - Execution timeout in ms'),
-              li({ class: styles.pageLi }, strong('stdin '), code({ class: styles.pageCode }, 'string'), ' - Input to pass to stdin (Node.js only)')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ScriptResult>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const result = await db.scripts.run('deploy.sh', {\n  args: ['--env', 'production'],\n  env: { DEPLOY_MODE: 'production' },\n  timeout: 300000\n});\n\nconsole.log('Exit code:', result.exitCode);\nconsole.log('Output:', result.stdout);`)
-        )
-      ),
-
-      // scripts.runLocal()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.runLocal(scriptPath, options?)'),
-        p({ class: styles.pageP }, 'Runs a script locally on the current machine (Node.js only).'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('scriptPath '), code({ class: styles.pageCode }, 'string'), ' - Path to script file'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'RunLocalOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('args '), code({ class: styles.pageCode }, 'string[]'), ' - Command line arguments'),
-              li({ class: styles.pageLi }, strong('env '), code({ class: styles.pageCode }, 'Record<string, string>'), ' - Environment variables'),
-              li({ class: styles.pageLi }, strong('cwd '), code({ class: styles.pageCode }, 'string'), ' - Working directory'),
-              li({ class: styles.pageLi }, strong('timeout '), code({ class: styles.pageCode }, 'number'), ' - Execution timeout in ms')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ScriptResult>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const result = await db.scripts.runLocal('./scripts/deploy.sh', {\n  args: ['--env', 'staging'],\n  env: { NODE_ENV: 'staging' },\n  cwd: './project'\n});`)
-        )
-      ),
-
-      // scripts.history()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.history(name, options?)'),
-        p({ class: styles.pageP }, 'Gets execution history for a script.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('name '), code({ class: styles.pageCode }, 'string'), ' - Script name'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'HistoryOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('limit '), code({ class: styles.pageCode }, 'number'), ' - Maximum history entries'),
-              li({ class: styles.pageLi }, strong('offset '), code({ class: styles.pageCode }, 'number'), ' - Pagination offset')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ScriptHistory[]>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const history = await db.scripts.history('deploy.sh', { limit: 10 });\nhistory.forEach(entry => {\n  console.log(\`\${entry.timestamp}: \${entry.exitCode}\`);\n});`)
-        )
-      ),
-
-      // scripts.watch()
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.watch(dirPath, options?)'),
-        p({ class: styles.pageP }, 'Watches a directory for file changes and auto-syncs scripts (Node.js only).'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('dirPath '), code({ class: styles.pageCode }, 'string'), ' - Directory path to watch'),
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'WatchOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('pattern '), code({ class: styles.pageCode }, 'string'), ' - Glob pattern to match files (default: ', code({ class: styles.pageCode }, '**/*'), ')'),
-              li({ class: styles.pageLi }, strong('ignore '), code({ class: styles.pageCode }, 'string[]'), ' - Patterns to ignore'),
-              li({ class: styles.pageLi }, strong('onAdd '), code({ class: styles.pageCode }, '(file: string) => Promise<void>'), ' - Callback when file is added'),
-              li({ class: styles.pageLi }, strong('onChange '), code({ class: styles.pageCode }, '(file: string) => Promise<void>'), ' - Callback when file is changed'),
-              li({ class: styles.pageLi }, strong('onRemove '), code({ class: styles.pageCode }, '(file: string) => Promise<void>'), ' - Callback when file is removed')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<FSWatcher>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const watcher = await db.scripts.watch('./scripts', {\n  pattern: '**/*.sh',\n  ignore: ['**/*.test.sh'],\n  onAdd: async (file) => {\n    await db.scripts.addFromFile(file);\n    console.log('Added:', file);\n  },\n  onChange: async (file) => {\n    const name = path.basename(file, '.sh');\n    await db.scripts.update(name, { content: await fs.readFile(file, 'utf-8') });\n  },\n  onRemove: async (file) => {\n    const name = path.basename(file, '.sh');\n    await db.scripts.remove(name);\n  }\n});\n\n// Stop watching\nwatcher.close();`)
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Raw execute'),
+          CodeBlock(nodeExecuteExample)
         )
       )
     ),
 
-    // Batch Operations
     div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Batch Operations'),
-      
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.batchAdd(scripts)'),
-        p({ class: styles.pageP }, 'Adds multiple scripts in a single batch operation.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('scripts '), code({ class: styles.pageCode }, 'ScriptData[]'), ' - Array of scripts to add')
+      p({ class: styles.sectionLabel }, 'Security Options'),
+      h2({ class: styles.pageH2 }, 'Authentication is basic by default, but the Node client exposes stronger controls.'),
+      div({ class: styles.splitGrid },
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'Explicit credentials'),
+          CodeBlock(authExample)
         ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<Script[]>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const scripts = await db.scripts.batchAdd([\n  { name: 'script1.sh', content: '#!/bin/bash\\necho "1"' },\n  { name: 'script2.sh', content: '#!/bin/bash\\necho "2"' },\n  { name: 'script3.sh', content: '#!/bin/bash\\necho "3"' }\n]);`)
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.scripts.batchRemove(names)'),
-        p({ class: styles.pageP }, 'Removes multiple scripts in a single batch operation.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, strong('names '), code({ class: styles.pageCode }, 'string[]'), ' - Array of script names to remove')
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.scripts.batchRemove(["script1.sh", "script2.sh", "script3.sh"]);')
+        div({ class: styles.card },
+          h3({ class: styles.cardTitle }, 'HMAC signing'),
+          CodeBlock(signingExample)
         )
       )
     ),
 
-    // Server Management
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Server Management (Node.js Only)'),
-      
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.server.start(options?)'),
-        p({ class: styles.pageP }, 'Starts a local ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Parameters'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('options '), code({ class: styles.pageCode }, 'ServerOptions | optional'),
-            ul({ class: styles.pageUl },
-              li({ class: styles.pageLi }, strong('port '), code({ class: styles.pageCode }, 'number'), ' - Server port (default: ', code({ class: styles.pageCode }, '8080'), ')'),
-              li({ class: styles.pageLi }, strong('host '), code({ class: styles.pageCode }, 'string'), ' - Server host (default: ', code({ class: styles.pageCode }, "'0.0.0.0'"), ')'),
-              li({ class: styles.pageLi }, strong('dataDir '), code({ class: styles.pageCode }, 'string'), ' - Data directory path'),
-              li({ class: styles.pageLi }, strong('logLevel '), code({ class: styles.pageCode }, "'debug' | 'info' | 'warn' | 'error'"), ' - Log level')
-            )
-          )
-        ),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ServerProcess>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const server = await db.server.start({\n  port: 8080,\n  dataDir: './data',\n  logLevel: 'debug'\n});\n\n// Stop server\nawait server.stop();`)
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.server.stop()'),
-        p({ class: styles.pageP }, 'Stops the local ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<void>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, 'await db.server.stop();')
-        )
-      ),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.server.status()'),
-        p({ class: styles.pageP }, 'Gets the status of the local ScriptDB server.'),
-        h4({ class: styles.pageH3 }, 'Returns'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi }, code({ class: styles.pageCode }, 'Promise<ServerStatus>'))
-        ),
-        h4({ class: styles.pageH3 }, 'Example'),
-        pre({ class: styles.pagePre },
-          code({ class: styles.pageCode }, `const status = await db.server.status();\nconsole.log('Server running:', status.running);\nconsole.log('PID:', status.pid);\nconsole.log('Uptime:', status.uptime);`)
-        )
-      )
-    ),
-
-    // Events
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Events'),
-      p({ class: styles.pageP }, 'The Node.js client uses Node.js EventEmitter and emits events.'),
-
-      div({ class: styles.section },
-        h3({ class: styles.pageH3 }, 'db.on(event, callback)'),
-        p({ class: styles.pageP }, 'Subscribe to client events.'),
-        h4({ class: styles.pageH3 }, 'Events'),
-        ul({ class: styles.pageUl },
-          li({ class: styles.pageLi },
-            strong('connected'), ' - Fired when connected to server',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("connected", () => {\n  console.log("Connected to server");\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('disconnected'), ' - Fired when disconnected',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("disconnected", () => {\n  console.log("Disconnected from server");\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('error'), ' - Fired on errors',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("error", (error) => {\n  console.error("Error:", error.message);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('reconnecting'), ' - Fired when attempting to reconnect',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("reconnecting", (attempt) => {\n  console.log(\`Reconnecting... attempt \${attempt}\`);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:added'), ' - Fired when a script is added',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:added", (script) => {\n  console.log("Script added:", script.name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:updated'), ' - Fired when a script is updated',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:updated", (script) => {\n  console.log("Script updated:", script.name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:removed'), ' - Fired when a script is removed',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:removed", (name) => {\n  console.log("Script removed:", name);\n});')
-            )
-          ),
-          li({ class: styles.pageLi },
-            strong('script:executed'), ' - Fired when a script finishes execution',
-            pre({ class: styles.pagePre, style: 'margin-top: 0.5rem;' },
-              code({ class: styles.pageCode }, 'db.on("script:executed", (result) => {\n  console.log("Script executed:", result.name, result.exitCode);\n});')
-            )
-          )
-        ),
-
-        div({ class: styles.section },
-          h3({ class: styles.pageH3 }, 'db.off(event, callback)'),
-          p({ class: styles.pageP }, 'Unsubscribe from events.'),
-          pre({ class: styles.pagePre },
-            code({ class: styles.pageCode }, `const handler = () => console.log('Connected');\ndb.on('connected', handler);\n\n// Later\ndb.off('connected', handler);`)
-          )
-        ),
-
-        div({ class: styles.section },
-          h3({ class: styles.pageH3 }, 'db.once(event, callback)'),
-          p({ class: styles.pageP }, 'Subscribe to event one time only (Node.js only).'),
-          pre({ class: styles.pagePre },
-            code({ class: styles.pageCode }, `db.once('connected', () => {\n  console.log('Connected! This will only fire once.');\n});`)
-          )
-        )
-      )
-    ),
-
-    // Error Handling
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Error Handling'),
-      p({ class: styles.pageP }, 'The client provides detailed error information.'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `try {\n  const script = await db.scripts.get('nonexistent.sh');\n} catch (error) {\n  if (error.code === 'SCRIPT_NOT_FOUND') {\n    console.log('Script does not exist');\n  } else if (error.code === 'CONNECTION_ERROR') {\n    console.log('Cannot connect to server');\n  } else if (error.code === 'AUTH_ERROR') {\n    console.log('Invalid API key');\n  } else {\n    console.error('Unexpected error:', error.message);\n  }\n}`)
-      )
-    ),
-
-    // Types
-    div({ class: styles.section },
-      h2({ class: styles.pageH2 }, 'Type Definitions'),
-      pre({ class: styles.pagePre },
-        code({ class: styles.pageCode }, `interface ScriptDBOptions {
-  serverUrl: string;
-  apiKey?: string;
-  timeout?: number;
-  maxRetries?: number;
-  retryDelay?: number;
-  persistPath?: string;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error';
-}
-
-interface ScriptData {
-  name: string;
-  content: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface Script {
-  id: string;
-  name: string;
-  content: string;
-  description?: string;
-  tags: string[];
-  metadata: Record<string, any>;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface ScriptResult {
-  name: string;
-  exitCode: number;
-  stdout: string;
-  stderr: string;
-  duration: number;
-  timestamp: Date;
-}
-
-interface ScriptHistory {
-  id: string;
-  name: string;
-  exitCode: number;
-  duration: number;
-  timestamp: Date;
-}
-
-interface AddFromFileOptions {
-  name?: string;
-  description?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-}
-
-interface RunLocalOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  cwd?: string;
-  timeout?: number;
-}
-
-interface WatchOptions {
-  pattern?: string;
-  ignore?: string[];
-  onAdd?: (file: string) => Promise<void>;
-  onChange?: (file: string) => Promise<void>;
-  onRemove?: (file: string) => Promise<void>;
-}
-
-interface ListOptions {
-  tag?: string;
-  verbose?: boolean;
-  limit?: number;
-  offset?: number;
-}
-
-interface RunOptions {
-  args?: string[];
-  env?: Record<string, string>;
-  dryRun?: boolean;
-  timeout?: number;
-  stdin?: string;
-}
-
-interface HistoryOptions {
-  limit?: number;
-  offset?: number;
-}
-
-interface ServerOptions {
-  port?: number;
-  host?: string;
-  dataDir?: string;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error';
-}
-
-interface ServerStatus {
-  running: boolean;
-  pid?: number;
-  uptime?: number;
-  port?: number;
-}
-
-interface ServerProcess {
-  stop(): Promise<void>;
-  status(): Promise<ServerStatus>;
-}
-
-// Error Codes
-type ErrorCode = 
-  | 'SCRIPT_NOT_FOUND'
-  | 'CONNECTION_ERROR'
-  | 'AUTH_ERROR'
-  | 'TIMEOUT'
-  | 'VALIDATION_ERROR'
-  | 'SERVER_ERROR';
-
-class ScriptDBError extends Error {
-  code: ErrorCode;
-  details?: any;
-}`)
-      )
+    div({ class: styles.note },
+      'Both clients understand the same core actions like `script-code`, `list-dbs`, `create-db`, `save-db`, and `get-info`, but the Node client is the better fit when you need retries, TLS, framing control, or request queue tuning.'
     )
   );
 };
